@@ -50,13 +50,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { onMounted, onUnmounted } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
+import axios from "axios";
 import { useRouter } from "vue-router";
 import Swal from "sweetalert2";
 import "../../assets/body-bg.css";
-
-//   import { login } from "../../api/server";
 
 export default defineComponent({
   name: "Track1Components",
@@ -68,6 +66,16 @@ export default defineComponent({
       email: "" as string,
       mobile: "" as string,
     };
+  },
+  setup() {
+    onMounted(async () => {
+      try {
+        const response = await axios.get("https://api.dev-miles.com/ewc/test");
+        console.log("Response from /test endpoint:", response.data);
+      } catch (error) {
+        console.error("Error calling /test endpoint:", error);
+      }
+    });
   },
 });
 </script>

@@ -236,15 +236,21 @@ export default defineComponent({
         if (participantResponse.status === 200) {
           console.log("Participant inserted successfully:", participantResult);
 
+          const email = {
+            full_name: this.fullName,
+            email: this.email,
+            pdfBase64: this.pdfBase64,
+          };
+
+          console.log("Email:", email);
+
           // Send email with PDF attachment
           const emailResponse = await fetch(
             "https://api.dev-miles.com/ewc/send-email",
             {
               method: "POST",
               body: JSON.stringify({
-                full_name: this.fullName,
-                email: this.email,
-                pdfBase64: this.pdfBase64,
+                ...email,
               }),
             }
           );
