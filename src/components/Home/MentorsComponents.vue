@@ -370,6 +370,9 @@ export default defineComponent({
           "https://api.dev-miles.com/ewc/insert_mentors",
           {
             method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
             body: JSON.stringify({
               ...participant,
               mentor_ids: this.selectedMentors,
@@ -385,6 +388,9 @@ export default defineComponent({
             "https://api.dev-miles.com/ewc/send_email_no_attachments",
             {
               method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
               body: JSON.stringify({
                 full_name: this.fullName,
                 email: this.email,

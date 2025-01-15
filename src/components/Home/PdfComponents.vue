@@ -228,6 +228,11 @@ export default defineComponent({
           "https://api.dev-miles.com/ewc/insert-track1-participants",
           {
             ...participant,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
         );
         console.log("Participant response:", participantResponse);
@@ -236,21 +241,18 @@ export default defineComponent({
         if (participantResponse.status === 200) {
           console.log("Participant inserted successfully:", participantResult);
 
-          const email = {
-            full_name: this.fullName,
-            email: this.email,
-            pdfBase64: this.pdfBase64,
-          };
-
-          console.log("Email:", email);
-
           // Send email with PDF attachment
           const emailResponse = await fetch(
             "https://api.dev-miles.com/ewc/send-email",
             {
               method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
               body: JSON.stringify({
-                ...email,
+                full_name: this.fullName,
+                email: this.email,
+                pdfBase64: this.pdfBase64,
               }),
             }
           );
