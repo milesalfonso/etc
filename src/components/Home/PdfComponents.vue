@@ -5,7 +5,11 @@
       style="background-color: #69478e; height: 300px"
     >
       <div class="row">
-        <h1 class="text-center">EWC</h1>
+        <img
+          src="../../assets/EWC Logo-White.svg"
+          alt="EWC Logo"
+          class="img-fluid mx-auto d-block w-75 h-75"
+        />
       </div>
       <div class="row">
         <h1 class="text-center">Welcome to the EWC Passion Goal</h1>
@@ -224,11 +228,6 @@ export default defineComponent({
           "https://api.dev-miles.com/ewc/insert-track1-participants",
           {
             ...participant,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
           }
         );
         console.log("Participant response:", participantResponse);
@@ -242,9 +241,6 @@ export default defineComponent({
             "https://api.dev-miles.com/ewc/send-email",
             {
               method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
               body: JSON.stringify({
                 full_name: this.fullName,
                 email: this.email,

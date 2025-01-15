@@ -4,8 +4,13 @@
       class="col d-flex justify-content-center align-items-center flex-column text-white"
       style="background-color: #69478e; height: 300px"
     >
-      <div class="row w-75">
-        <h1 class="text-center">EWC</h1>
+      <div class="row">
+        <!-- <h1 class="text-center">EWC</h1> -->
+        <img
+          src="../../assets/EWC Logo-White.svg"
+          alt="EWC Logo"
+          class="img-fluid mx-auto d-block w-75 h-75"
+        />
       </div>
       <div class="row w-75">
         <h1 class="text-center">Welcome to the EWC Passion Goal</h1>

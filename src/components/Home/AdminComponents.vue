@@ -5,7 +5,11 @@
       style="background-color: #69478e; height: 150px"
     >
       <div class="row">
-        <h1>EWC</h1>
+        <img
+          src="../../assets/EWC Logo-White.svg"
+          alt="EWC Logo"
+          class="img-fluid mx-auto d-block w-75 h-75"
+        />
       </div>
     </div>
   </div>
