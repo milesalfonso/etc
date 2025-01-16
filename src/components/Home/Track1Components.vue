@@ -8,7 +8,7 @@
         <img
           src="../../assets/EWC Logo-White.svg"
           alt="EWC Logo"
-          class="img-fluid mx-auto d-block w-75 h-75"
+          class="img-fluid mx-auto d-block ms-4"
         />
       </div>
       <div class="row w-75">
@@ -74,7 +74,7 @@
         </div>
 
         <div class="row mb-5">
-          <label for="mobile" class="form-label">Mobile Number</label>
+          <label for="mobile" class="form-label">EID Number</label>
           <input
             type="text"
             class="form-control inputBox mx-auto"

@@ -86,7 +86,7 @@ export default defineComponent({
   methods: {
     closeModalAndNavigate() {
       this.$emit("close-modal");
-      this.$router.push("/");
+      // this.$router.push("/");
     },
   },
 });

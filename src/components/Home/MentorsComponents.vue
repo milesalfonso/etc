@@ -21,10 +21,16 @@
       Welcome, {{ fullName }}. Please select four mentors who you think would be
       the best fit to help you in this journey:
     </h4>
-    <h4 class="text-purple text-center" v-if="4 - selectedMentors.length > 1">
+    <h4 class="text-purple text-center" v-if="4 - selectedMentors.length == 4">
+      Please select: {{ 4 - selectedMentors.length }} mentors
+    </h4>
+    <h4
+      class="text-purple text-center"
+      v-if="4 - selectedMentors.length >= 2 && 4 - selectedMentors.length <= 3"
+    >
       Please select: {{ 4 - selectedMentors.length }} more mentors
     </h4>
-    <h4 class="text-purple text-center" v-if="4 - selectedMentors.length <= 1">
+    <h4 class="text-purple text-center" v-if="4 - selectedMentors.length == 1">
       Please select: {{ 4 - selectedMentors.length }} more mentor
     </h4>
   </div>
@@ -356,7 +362,14 @@ export default defineComponent({
     },
     async insertMentors() {
       try {
-        console.log("Inserting mentors...");
+        Swal.fire({
+          title: "Sending...",
+          text: "Sending your mentor selection",
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
 
         const participant = {
           full_name: this.fullName,
@@ -366,26 +379,32 @@ export default defineComponent({
           mobile: this.mobile,
         };
 
-        const response = await fetch(
-          "https://api.dev-miles.com/ewc/insert_mentors",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              ...participant,
-              mentor_ids: this.selectedMentors,
-            }),
-          }
-        );
+        const response = await fetch("http://127.0.0.1:5000//insert_mentors", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...participant,
+            mentor_ids: this.selectedMentors,
+          }),
+        });
 
         // const result = await response.json();
 
         if (response.status === 200) {
           // Send email
+          Swal.close();
+          Swal.fire({
+            title: "Emailing...",
+            text: "Sending email to admin for assignment",
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading();
+            },
+          });
           const emailResponse = await fetch(
-            "https://api.dev-miles.com/ewc/send_email_no_attachments",
+            "http://127.0.0.1:5000//send_email_no_attachments",
             {
               method: "POST",
               headers: {
@@ -400,6 +419,7 @@ export default defineComponent({
 
           const emailResult = await emailResponse.json();
           if (emailResponse.ok) {
+            Swal.close();
             console.log("Email sent successfully:", emailResult);
             const modalElement = document.getElementById(
               "successSelectionModal"

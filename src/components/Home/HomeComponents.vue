@@ -5,11 +5,10 @@
       style="background-color: #69478e; height: 300px"
     >
       <div class="row">
-        <!-- <h1 class="text-center">EWC</h1> -->
         <img
           src="../../assets/EWC Logo-White.svg"
           alt="EWC Logo"
-          class="img-fluid mx-auto d-block w-75 h-75"
+          class="img-fluid mx-auto d-block ms-4"
         />
       </div>
       <div class="row w-75">
@@ -70,7 +69,7 @@ export default defineComponent({
   setup() {
     onMounted(async () => {
       try {
-        const response = await axios.get("https://api.dev-miles.com/ewc/test");
+        const response = await axios.get("http://127.0.0.1:5000//test");
         console.log("Response from /test endpoint:", response.data);
       } catch (error) {
         console.error("Error calling /test endpoint:", error);

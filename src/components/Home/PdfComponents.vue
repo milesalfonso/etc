@@ -8,10 +8,10 @@
         <img
           src="../../assets/EWC Logo-White.svg"
           alt="EWC Logo"
-          class="img-fluid mx-auto d-block w-75 h-75"
+          class="img-fluid mx-auto d-block ms-4"
         />
       </div>
-      <div class="row">
+      <div class="row w-75">
         <h1 class="text-center">Welcome to the EWC Passion Goal</h1>
       </div>
     </div>
@@ -21,90 +21,111 @@
       <div
         class="row d-flex justify-content-center align-items-center text-purple"
       >
-        <div class="row mb-3">
-          <h1 class="text-center">
-            Emirati Women Chapter (EWC) - Enrollment Form Duration from February
-            - August 2024 (6 months)
-          </h1>
-        </div>
-        <div class="row mb-5">
-          <h3>
-            Under the sponsorship of Pure Health Medical Supplies Company
-            incorporated in Dubai with Commercial License Number 678868 (hereby
-            referred to as “PureHealth”) and the program applicant classified
-            below, in which this form commit the candidate in this terms to
-            perform as per the expected plan and this application form terms
-            mentioned below:
-          </h3>
-        </div>
-        <div class="row mb-3">
-          <div class="col-8">
-            <div class="row mb-3">
-              <h2>EWC Candidate for Track 1- Personal Passion Goal</h2>
-            </div>
-            <div class="row">
-              <h2>Name: {{ fullName }}</h2>
-            </div>
-            <div class="row">
-              <h2>Title: {{ title }}</h2>
-            </div>
-            <div class="row">
-              <h2>Entity: {{ entity }}</h2>
-            </div>
+        <div class="row mb-3 justify-content-center">
+          <div class="col-auto">
+            <h4 class="text-center">Enrollment Undertaking</h4>
+            <h4 class="text-center">Emirati Women Chapter (EWC)</h4>
+            <h4 class="text-center">January -Nov 2025</h4>
           </div>
         </div>
-        <div class="row">
-          · The EWC candidate should commit to actively participating in the
-          learning process and dedicate the necessary time and effort to achieve
-          the set learning objective.
+        <div class="row mb-0 justify-content-center">
+          <div class="col-auto">
+            <p class="text-left mb-0">
+              <span style="font-weight: bold">WHEREAS</span> , Pure Health
+              Holding PJSC (hereby referred to as “Pure Health”) agrees to
+              sponsor the EWC Candidates for the
+              <span style="font-weight: bold">EWC Development Program</span> .
+            </p>
+            <p class="text-left">
+              <span style="font-weight: bold">WHEREAS</span> , the undersigned,
+              Name:
+              <span style="text-decoration: underline; font-weight: bold">{{
+                fullName
+              }}</span>
+              EID no:
+              <span style="text-decoration: underline; font-weight: bold">{{
+                mobile
+              }}</span>
+              (hereinafter referred to as the "
+              <span style="font-weight: bold">Mentee</span> "), wishes to attend
+              the EWC Program to develop her skills and expertise. NOW,
+              THEREFORE, in consideration of the opportunity to participate in
+              the EWC Program, the Mentee hereby undertakes to the following
+              obligations:
+            </p>
+          </div>
         </div>
-        <div class="row">
-          · The EWC candidate should attend 100% of the scheduled learning
-          sessions, workshops, or activities related to the learning objective
-          (wherever applicable), and complete assigned tasks and assignments on
-          time.
+        <div class="row mb-0 justify-content-center">
+          <div class="col-auto">
+            <ol>
+              <li>
+                <span style="font-weight: bold">Active Participation:</span> The
+                Mentee shall actively participate in the learning process and
+                dedicate the necessary time and effort to achieve the set
+                learning objectives.
+              </li>
+              <li>
+                <span style="font-weight: bold">Attendance:</span> The Mentee
+                shall attend 100% of the scheduled learning sessions, workshops,
+                or activities related to the learning objectives and shall
+                complete all assigned tasks and assignments on time.
+              </li>
+              <li>
+                <span style="font-weight: bold">Prerequisites:</span> The Mentee
+                shall possess the basic skills, knowledge, and prerequisites
+                necessary to successfully pursue this learning objective.
+              </li>
+              <li>
+                <span style="font-weight: bold">Seeking Assistance:</span> The
+                Mentee shall proactively seek assistance or guidance from
+                mentors, trainers, or relevant resources as needed.
+              </li>
+              <li>
+                <span style="font-weight: bold"
+                  >Self-Reflection and Assessment:</span
+                >
+                The Mentee shall engage in regular self-reflection and assess
+                her progress to identify areas for improvement.
+              </li>
+              <li>
+                <span style="font-weight: bold">Active Engagement:</span> The
+                Mentee shall actively participate in interactive activities,
+                discussions, or assessments to enhance her capabilities in
+                achieving the desired learning outcomes.
+              </li>
+            </ol>
+          </div>
         </div>
-        <div class="row">
-          · The EWC candidate should possess the basic skills, knowledge, and
-          prerequisites needed to pursue this learning objective.
-        </div>
-        <div class="row">
-          · The EWC candidate should proactively seek assistance or guidance
-          from mentors, trainers, or relevant resources.
-        </div>
-        <div class="row">
-          · The EWC candidate should engage in self-reflection and assess her
-          progress regularly to identify areas for improvement according to a
-          Personal Development Plan that will be shared with the applicants.
-        </div>
-        <div class="row mb-3">
-          · The EWC candidate should participate in interactive activities,
-          discussions, or assessments to enhance her capability in the desired
-          learning outcome.
-        </div>
-        <div class="row mb-3">
-          <div class="col-8">
-            <div class="row">
-              <h2>Name: {{ fullName }}</h2>
+        <div class="row mb-5 justify-content-center">
+          <div class="col">
+            <div
+              style="
+                border-bottom: 1px solid #69478e;
+                display: inline-block;
+                padding-bottom: 5px;
+              "
+            >
+              <img :src="waiver_signature" style="width: 50%" />
             </div>
-            <div class="row">
-              <h2>Date: {{ getCurrentDate() }}</h2>
-            </div>
-            <div class="row">
-              <h2>
-                Signature:
-                <img :src="waiver_signature" style="width: 50%" />
-              </h2>
-            </div>
+            <p class="mb-0">Signature of Mentee:</p>
+            <p class="mb-0">Name: {{ fullName }}</p>
+            <p class="mb-0">Date: {{ getCurrentDate() }}</p>
           </div>
         </div>
         <div class="row mb-5">
-          PureHealth agrees to sponsor the EWC Candidates for the EWC
-          Development Program, effective on the date of signing this Form by
-          Candidate of Track 1 . Considering designing a constructive plan to
-          develop the required skills for the program candidates, through well
-          selected topics and Subject Matter Experts (SME) that fit the passion
-          of the candidate as required.
+          <div class="col-auto">
+            <p class="text-left">
+              By signing this agreement, you grant the EWC Program and its
+              affiliates a perpetual, irrevocable, non-exclusive, royalty-free
+              license to use, modify, and distribute any photographs, videos, or
+              other content captured or provided during your participation. Such
+              materials may be used for branding, promotional, and marketing
+              purposes across various media. Furthermore, you acknowledge that
+              no compensation will be provided for such use and you agree to
+              waive any claims regarding publicity, privacy, or moral rights
+              related to the content's use.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -209,6 +230,14 @@ export default defineComponent({
     },
     async enroll() {
       try {
+        Swal.fire({
+          title: "Enrolling...",
+          text: "Enrolling to the program",
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
         console.log("Enrolling...");
 
         // Generate PDF
@@ -225,7 +254,7 @@ export default defineComponent({
 
         // Insert participant
         const participantResponse = await axios.post(
-          "https://api.dev-miles.com/ewc/insert-track1-participants",
+          "http://127.0.0.1:5000/insert-track1-participants",
           {
             ...participant,
           },
@@ -239,11 +268,20 @@ export default defineComponent({
         const participantResult = participantResponse.data;
 
         if (participantResponse.status === 200) {
+          Swal.close();
+          Swal.fire({
+            title: "Emailing...",
+            text: "Emailing signed PDF",
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading();
+            },
+          });
           console.log("Participant inserted successfully:", participantResult);
 
           // Send email with PDF attachment
           const emailResponse = await fetch(
-            "https://api.dev-miles.com/ewc/send-email",
+            "http://127.0.0.1:5000//send-email",
             {
               method: "POST",
               headers: {
@@ -259,6 +297,7 @@ export default defineComponent({
 
           const emailResult = await emailResponse.json();
           if (emailResponse.ok) {
+            Swal.close();
             console.log("Email sent successfully:", emailResult);
             // Show success modal
             const modalElement = document.getElementById("successModal");

@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row mb-3">
     <div
       class="col d-flex justify-content-center align-items-center flex-column text-white"
       style="background-color: #69478e; height: 300px"
@@ -8,11 +8,11 @@
         <img
           src="../../assets/EWC Logo-White.svg"
           alt="EWC Logo"
-          class="img-fluid mx-auto d-block w-75 h-75"
+          class="img-fluid mx-auto d-block ms-4"
         />
       </div>
-      <div class="row">
-        <h1>Welcome to the EWC Passion Goal</h1>
+      <div class="row w-75">
+        <h1 class="text-center">Welcome to the EWC Passion Goal</h1>
       </div>
     </div>
   </div>
@@ -69,7 +69,7 @@
         </div>
 
         <div class="row mb-3">
-          <label for="email" class="form-label">EMAIL ADDRESS</label>
+          <label for="email" class="form-label">Email Address</label>
           <input
             type="text"
             class="form-control inputBox"
@@ -79,7 +79,7 @@
         </div>
 
         <div class="row mb-5">
-          <label for="mobile" class="form-label">MOBILE NUMBER</label>
+          <label for="mobile" class="form-label">EID Number</label>
           <input
             type="text"
             class="form-control inputBox"
