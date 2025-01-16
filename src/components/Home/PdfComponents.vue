@@ -281,7 +281,7 @@ export default defineComponent({
 
           // Send email with PDF attachment
           const emailResponse = await fetch(
-            "https://api.dev-miles.com/ewc//send-email",
+            "https://api.dev-miles.com/ewc/send-email",
             {
               method: "POST",
               headers: {
