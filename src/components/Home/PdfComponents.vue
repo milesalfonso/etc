@@ -241,7 +241,8 @@ export default defineComponent({
         if (participantResponse.status === 200) {
           console.log("Participant inserted successfully:", participantResult);
 
-          // Send email with PDF attachment
+          // Comment out or remove the code that sends the PDF
+          /*
           const emailResponse = await fetch(
             "https://api.dev-miles.com/ewc/send-email",
             {
@@ -271,17 +272,11 @@ export default defineComponent({
           } else {
             console.error("Error sending email:", emailResult.error);
           }
-          // const modalElement = document.getElementById("successModal");
-          // if (modalElement) {
-          //   const modal = new bootstrap.Modal(modalElement);
-          //   modal.show();
-          // } else {
-          //   console.error("Modal element not found");
-          // }
+          */
         } else {
           console.error(
-            "Error inserting participant:"
-            // participantResult.error
+            "Error inserting participant:",
+            participantResult.error
           );
         }
       } catch (error) {
