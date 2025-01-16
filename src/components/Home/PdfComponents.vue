@@ -254,7 +254,7 @@ export default defineComponent({
 
         // Insert participant
         const participantResponse = await axios.post(
-          "http://127.0.0.1:5000/insert-track1-participants",
+          "https://api.dev-miles.com/ewc/insert-track1-participants",
           {
             ...participant,
           },
@@ -281,7 +281,7 @@ export default defineComponent({
 
           // Send email with PDF attachment
           const emailResponse = await fetch(
-            "http://127.0.0.1:5000//send-email",
+            "https://api.dev-miles.com/ewc//send-email",
             {
               method: "POST",
               headers: {

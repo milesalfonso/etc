@@ -257,7 +257,7 @@ export default defineComponent({
           },
         });
         const response = await axios.get(
-          "http://127.0.0.1:5000/fetch_track_2_participant",
+          "https://api.dev-miles.com/ewc/fetch_track_2_participant",
           {
             params: {
               id: id,
@@ -298,7 +298,7 @@ export default defineComponent({
           },
         });
         const response = await axios.post(
-          "http://127.0.0.1:5000/update_track_2_participant",
+          "https://api.dev-miles.com/ewc/update_track_2_participant",
           {
             id: this.id,
             participant_signature: this.participant_signature,

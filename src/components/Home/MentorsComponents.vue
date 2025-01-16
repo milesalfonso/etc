@@ -379,7 +379,7 @@ export default defineComponent({
           mobile: this.mobile,
         };
 
-        const response = await fetch("http://127.0.0.1:5000//insert_mentors", {
+        const response = await fetch("https://api.dev-miles.com/ewc/insert_mentors", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -404,7 +404,7 @@ export default defineComponent({
             },
           });
           const emailResponse = await fetch(
-            "http://127.0.0.1:5000//send_email_no_attachments",
+            "https://api.dev-miles.com/ewc/send_email_no_attachments",
             {
               method: "POST",
               headers: {
