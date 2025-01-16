@@ -261,7 +261,7 @@ export default defineComponent({
                 body: JSON.stringify({
                   full_name: this.fullName,
                   email: this.email,
-                  pdfBase64: base64data,
+                  // pdfBase64: base64data,
                 }),
               }
             );
