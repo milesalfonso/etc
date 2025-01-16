@@ -178,8 +178,8 @@ export default defineComponent({
         const opt = {
           margin: 1,
           filename: "document.pdf",
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: { scale: 2 },
+          image: { type: "jpeg", quality: 0.75 }, // Reduce image quality to 75%
+          html2canvas: { scale: 1.5 }, // Reduce the scale to 1.5
           jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
         };
         const pdf = await html2pdf()
