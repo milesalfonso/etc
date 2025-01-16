@@ -401,7 +401,9 @@ export default defineComponent({
           const emailResult = await emailResponse.json();
           if (emailResponse.ok) {
             console.log("Email sent successfully:", emailResult);
-            const modalElement = document.getElementById("successModal");
+            const modalElement = document.getElementById(
+              "successSelectionModal"
+            );
             if (modalElement) {
               const modal = new bootstrap.Modal(modalElement);
               modal.show();
