@@ -212,7 +212,7 @@ export default defineComponent({
         console.log("Enrolling...");
 
         // Generate PDF
-        await this.generatePdf();
+        // await this.generatePdf();
 
         const participant = {
           full_name: this.fullName,
@@ -241,8 +241,7 @@ export default defineComponent({
         if (participantResponse.status === 200) {
           console.log("Participant inserted successfully:", participantResult);
 
-          // Comment out or remove the code that sends the PDF
-          /*
+          // Send email with PDF attachment
           const emailResponse = await fetch(
             "https://api.dev-miles.com/ewc/send-email",
             {
@@ -253,7 +252,6 @@ export default defineComponent({
               body: JSON.stringify({
                 full_name: this.fullName,
                 email: this.email,
-                pdfBase64: this.pdfBase64,
               }),
             }
           );
@@ -272,11 +270,17 @@ export default defineComponent({
           } else {
             console.error("Error sending email:", emailResult.error);
           }
-          */
+          // const modalElement = document.getElementById("successModal");
+          // if (modalElement) {
+          //   const modal = new bootstrap.Modal(modalElement);
+          //   modal.show();
+          // } else {
+          //   console.error("Modal element not found");
+          // }
         } else {
           console.error(
-            "Error inserting participant:",
-            participantResult.error
+            "Error inserting participant:"
+            // participantResult.error
           );
         }
       } catch (error) {
