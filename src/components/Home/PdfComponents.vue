@@ -241,50 +241,47 @@ export default defineComponent({
         if (participantResponse.status === 200) {
           console.log("Participant inserted successfully:", participantResult);
 
-          // Convert PDF to base64
-          const pdfBlob = new Blob([this.pdfBase64], {
-            type: "application/pdf",
-          });
-          const reader = new FileReader();
-          reader.readAsDataURL(pdfBlob);
-          reader.onloadend = async () => {
-            const base64data = reader.result?.toString().split(",")[1];
-
-            // Send email with PDF attachment
-            const emailResponse = await fetch(
-              "https://api.dev-miles.com/ewc/send-email",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  full_name: this.fullName,
-                  email: this.email,
-                  // pdfBase64: base64data,
-                }),
-              }
-            );
-
-            const emailResult = await emailResponse.json();
-            if (emailResponse.ok) {
-              console.log("Email sent successfully:", emailResult);
-              // Show success modal
-              const modalElement = document.getElementById("successModal");
-              if (modalElement) {
-                const modal = new bootstrap.Modal(modalElement);
-                modal.show();
-              } else {
-                console.error("Modal element not found");
-              }
-            } else {
-              console.error("Error sending email:", emailResult.error);
+          // Send email with PDF attachment
+          const emailResponse = await fetch(
+            "https://api.dev-miles.com/ewc/send-email",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                full_name: this.fullName,
+                email: this.email,
+                // pdfBase64: this.pdfBase64,
+              }),
             }
-          };
+          );
+
+          const emailResult = await emailResponse.json();
+          if (emailResponse.ok) {
+            console.log("Email sent successfully:", emailResult);
+            // Show success modal
+            const modalElement = document.getElementById("successModal");
+            if (modalElement) {
+              const modal = new bootstrap.Modal(modalElement);
+              modal.show();
+            } else {
+              console.error("Modal element not found");
+            }
+          } else {
+            console.error("Error sending email:", emailResult.error);
+          }
+          // const modalElement = document.getElementById("successModal");
+          // if (modalElement) {
+          //   const modal = new bootstrap.Modal(modalElement);
+          //   modal.show();
+          // } else {
+          //   console.error("Modal element not found");
+          // }
         } else {
           console.error(
-            "Error inserting participant:",
-            participantResult.error
+            "Error inserting participant:"
+            // participantResult.error
           );
         }
       } catch (error) {
