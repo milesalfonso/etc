@@ -212,7 +212,7 @@ export default defineComponent({
         console.log("Enrolling...");
 
         // Generate PDF
-        // await this.generatePdf();
+        await this.generatePdf();
 
         const participant = {
           full_name: this.fullName,
@@ -252,6 +252,7 @@ export default defineComponent({
               body: JSON.stringify({
                 full_name: this.fullName,
                 email: this.email,
+                pdfBase64: this.pdfBase64,
               }),
             }
           );
