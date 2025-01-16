@@ -11,7 +11,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-purple" id="signatureTrack2ModalLabel">
-            Add Waiver Signature
+            Add Signature
           </h5>
           <button
             type="button"
