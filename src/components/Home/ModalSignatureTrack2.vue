@@ -156,7 +156,7 @@ export default defineComponent({
         }
 
         const response = await axios.post(
-          "https://api.dev-miles.com/ewc/" + endpoint,
+          "http://api.dev-miles.com/ewc/" + endpoint,
           formData,
           {
             headers: {

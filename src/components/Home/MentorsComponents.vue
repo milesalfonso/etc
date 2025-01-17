@@ -379,18 +379,21 @@ export default defineComponent({
           mobile: this.mobile,
         };
 
-        const response = await fetch("https://api.dev-miles.com/ewc/insert_mentors", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...participant,
-            mentor_ids: this.selectedMentors,
-          }),
-        });
+        const response = await fetch(
+          "http://api.dev-miles.com/ewc/insert_mentors",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              ...participant,
+              mentor_ids: this.selectedMentors,
+            }),
+          }
+        );
 
-        // const result = await response.json();
+        const result = await response.json();
 
         if (response.status === 200) {
           // Send email
@@ -404,7 +407,7 @@ export default defineComponent({
             },
           });
           const emailResponse = await fetch(
-            "https://api.dev-miles.com/ewc/send_email_no_attachments",
+            "http://api.dev-miles.com/ewc/send_email_no_attachments",
             {
               method: "POST",
               headers: {
@@ -413,6 +416,7 @@ export default defineComponent({
               body: JSON.stringify({
                 full_name: this.fullName,
                 email: this.email,
+                body: "<html><body><h1>Thank you for submitting your selection.</h1><h1>Our team will send an email to confirm your mentor.</h1></body></html>",
               }),
             }
           );
@@ -421,6 +425,7 @@ export default defineComponent({
           if (emailResponse.ok) {
             Swal.close();
             console.log("Email sent successfully:", emailResult);
+            Swal.close();
             const modalElement = document.getElementById(
               "successSelectionModal"
             );

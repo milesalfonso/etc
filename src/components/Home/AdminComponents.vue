@@ -15,7 +15,7 @@
   </div>
   <div class="row mb-3 justify-content-center">
     <div
-      class="row d-flex justify-content-center align-items-center text-purple w-25"
+      class="row d-flex justify-content-center align-items-center text-purple text-center"
     >
       <div class="row">
         <h1 class="text-purple">Programme Mapping</h1>
@@ -31,7 +31,7 @@
         :key="index"
         class="row mb-3"
       >
-        <div class="col-3">
+        <div class="col-6">
           <h3>{{ participant.participant_name }}</h3>
           <p>{{ participant.participant_email }}</p>
         </div>
@@ -46,28 +46,36 @@
             >
               <input
                 class="form-check-input custom-checkbox me-3"
-                type="checkbox"
+                type="radio"
                 :value="participant.participant_id + '-' + mentor.mentor_id"
                 :name="'mentor-' + participant.participant_id"
+                :id="'mentor-' + participant.participant_id + '-' + mentorIndex"
               />
-              <label :for="'flexCheckDefault' + mentorIndex">{{
-                mentor.mentor_name
-              }}</label>
+              <label
+                :for="
+                  'mentor-' + participant.participant_id + '-' + mentorIndex
+                "
+                >{{ mentor.mentor_name }}</label
+              >
             </li>
           </ul>
         </div>
-        <div class="col-3">
-          <button
-            class="btn btnPurplePillLight dynamic-width"
-            @click="handleSubmit(participant.participant_id)"
-          >
-            Submit
-          </button>
-        </div>
         <hr class="w-100 mt-5" />
       </div>
-
-      <div class="row mb-3 justify-content-center align-items-center"></div>
+    </div>
+  </div>
+  <div class="row mb-3 justify-content-center">
+    <div
+      class="d-flex justify-content-center align-items-center text-purple text-center"
+    >
+      <div class="d-flex justify-content-center">
+        <button
+          class="btn btnPurplePillLight dynamic-width"
+          @click="handleSubmit()"
+        >
+          Submit
+        </button>
+      </div>
     </div>
   </div>
   <ModalAdminSuccess />
@@ -111,110 +119,202 @@ export default defineComponent({
     this.fetchParticipantsAndMentors();
   },
   methods: {
-    async handleSubmit(participantId: string) {
-      const checkboxes = document.querySelectorAll(
-        `input[name="mentor-${participantId}"]:checked`
-      );
-      if (checkboxes.length > 0) {
-        const selectedValue = (checkboxes[0] as HTMLInputElement).value;
-        const mentorId = selectedValue.split("-")[1];
-
-        try {
-          Swal.fire({
-            title: "Inserting...",
-            text: "Inserting participants and mentors data",
-            allowOutsideClick: false,
-            didOpen: () => {
-              Swal.showLoading();
-            },
-          });
-          const response = await axios.post(
-            "https://api.dev-miles.com/ewc/insert_track_2_participant",
-            {
-              participant_id: participantId,
-              mentor_id: mentorId,
-            }
-          );
-          console.log("Response from server:", response.data);
-
-          // Fetch participant and mentor emails
-          const participant = this.participants.find(
-            (p) => p.participant_id === participantId
-          );
-          const mentor = participant?.mentors.find(
-            (m) => m.mentor_id === mentorId
-          );
-
-          if (participant && mentor) {
-            // Send email to participant
-            const emailParticipantResponse = await fetch(
-              "https://api.dev-miles.com/ewc/send_email_no_attachments",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  full_name: participant.participant_name,
-                  email: participant.participant_email,
-                }),
-              }
-            );
-            const emailParticipantData = await emailParticipantResponse.json();
-            if (emailParticipantResponse.ok) {
-              console.log("Email sent to participant:", emailParticipantData);
-            } else {
-              console.error(
-                "Error sending email to participant:",
-                emailParticipantData
-              );
-            }
-
-            // Send email to mentor
-            const emailMentorResponse = await fetch(
-              "https://api.dev-miles.com/ewc/send_email_no_attachments",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  full_name: mentor.mentor_name,
-                  email: mentor.mentor_email,
-                }),
-              }
-            );
-            const emailMentorData = await emailMentorResponse.json();
-            if (emailMentorResponse.ok) {
-              console.log("Email sent to mentor:", emailMentorData);
-            } else {
-              console.error("Error sending email to mentor:", emailMentorData);
-            }
-          }
-          Swal.close();
-          Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: "Data inserted and emails sent successfully",
-          });
-          this.fetchParticipantsAndMentors();
-        } catch (error) {
-          console.error("Error inserting data or sending emails:", error);
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Failed to insert data or send emails",
-          });
-        }
-      } else {
-        console.error("No mentor selected for participant:", participantId);
+    gatherSelectedMentors() {
+      const selectedMentors = this.participants.map((participant) => {
+        const selectedRadio = document.querySelector(
+          `input[name='mentor-${participant.participant_id}']:checked`
+        );
+        return selectedRadio ? (selectedRadio as HTMLInputElement).value : null;
+      });
+      return selectedMentors.filter((value) => value !== null);
+    },
+    async handleSubmit() {
+      const selectedMentors = this.gatherSelectedMentors();
+      try {
         Swal.fire({
-          icon: "warning",
-          title: "Warning",
-          text: "No mentor selected for participant",
+          title: "Inserting...",
+          text: "Inserting participants and mentors data",
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+
+        for (const selectedMentor of selectedMentors) {
+          const [participant_id, mentor_id] = selectedMentor.split("-");
+          const response = await axios.post(
+            "http://api.dev-miles.com/ewc/insert_track_2_participant",
+            {
+              participant_id,
+              mentor_id,
+            }
+          );
+
+          if (response.status === 200) {
+            console.log("Response from server:", response.data);
+            const { id } = response.data;
+
+            // Send email to participant
+            const participant = this.participants.find((p) => {
+              return p.participant_id.toString() === participant_id.toString();
+            });
+            console.log("Participant:", participant);
+            if (participant) {
+              const emailParticipantResponse = await fetch(
+                "http://api.dev-miles.com/ewc/send_email_no_attachments",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    full_name: participant.participant_name,
+                    email: participant.participant_email,
+                    body: `<html><body><h1>Thank you for enrolling in the program, ${participant.participant_name}!</h1><a href="http://localhost:5173/#/mentee-pdf?id=${id}">Sign Agreement Document Here</a></body></html>`,
+                  }),
+                }
+              );
+              const emailParticipantData =
+                await emailParticipantResponse.json();
+              if (emailParticipantResponse.ok) {
+                console.log("Email sent to participant:", emailParticipantData);
+                Swal.fire({
+                  title: "Success",
+                  text: `Email sent to participant ${participant.participant_name}`,
+                  icon: "success",
+                });
+              } else {
+                console.error(
+                  `Error sending email to participant ${participant.participant_name} (${participant.participant_email}):`,
+                  emailParticipantData
+                );
+              }
+            }
+          } else {
+            throw new Error("Failed to submit mentors");
+          }
+        }
+
+        Swal.close();
+        Swal.fire({
+          title: "Success",
+          text: "Mentors submitted successfully",
+          icon: "success",
+        });
+        location.reload();
+      } catch (error) {
+        console.error("Error submitting mentors:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Failed to submit mentors",
         });
       }
     },
+    // async handleSubmit(participantId: string) {
+    //   const checkboxes = document.querySelectorAll(
+    //     `input[name="mentor-${participantId}"]:checked`
+    //   );
+    //   if (checkboxes.length > 0) {
+    //     const selectedValue = (checkboxes[0] as HTMLInputElement).value;
+    //     const mentorId = selectedValue.split("-")[1];
+
+    //     try {
+    // Swal.fire({
+    //   title: "Inserting...",
+    //   text: "Inserting participants and mentors data",
+    //   allowOutsideClick: false,
+    //   didOpen: () => {
+    //     Swal.showLoading();
+    //   },
+    // });
+    //       const response = await axios.post(
+    //         "http://api.dev-miles.com/ewc/insert_track_2_participant",
+    //         {
+    //           participant_id: participantId,
+    //           mentor_id: mentorId,
+    //         }
+    //       );
+    //       console.log("Response from server:", response.data);
+
+    //       // Fetch participant and mentor emails
+    //       const participant = this.participants.find(
+    //         (p) => p.participant_id === participantId
+    //       );
+    //       const mentor = participant?.mentors.find(
+    //         (m) => m.mentor_id === mentorId
+    //       );
+
+    //       if (participant && mentor) {
+    //         // Send email to participant
+    //         const emailParticipantResponse = await fetch(
+    //           "http://api.dev-miles.com/ewc/send_email_no_attachments",
+    //           {
+    //             method: "POST",
+    //             headers: {
+    //               "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({
+    //               full_name: participant.participant_name,
+    //               email: participant.participant_email,
+    //             }),
+    //           }
+    //         );
+    //         const emailParticipantData = await emailParticipantResponse.json();
+    //         if (emailParticipantResponse.ok) {
+    //           console.log("Email sent to participant:", emailParticipantData);
+    //         } else {
+    //           console.error(
+    //             "Error sending email to participant:",
+    //             emailParticipantData
+    //           );
+    //         }
+
+    //         // Send email to mentor
+    //         const emailMentorResponse = await fetch(
+    //           "http://api.dev-miles.com/ewc/send_email_no_attachments",
+    //           {
+    //             method: "POST",
+    //             headers: {
+    //               "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({
+    //               full_name: mentor.mentor_name,
+    //               email: mentor.mentor_email,
+    //             }),
+    //           }
+    //         );
+    //         const emailMentorData = await emailMentorResponse.json();
+    //         if (emailMentorResponse.ok) {
+    //           console.log("Email sent to mentor:", emailMentorData);
+    //         } else {
+    //           console.error("Error sending email to mentor:", emailMentorData);
+    //         }
+    //       }
+    //       Swal.close();
+    //       Swal.fire({
+    //         icon: "success",
+    //         title: "Success",
+    //         text: "Data inserted and emails sent successfully",
+    //       });
+    //       this.fetchParticipantsAndMentors();
+    //     } catch (error) {
+    //       console.error("Error inserting data or sending emails:", error);
+    //       Swal.fire({
+    //         icon: "error",
+    //         title: "Error",
+    //         text: "Failed to insert data or send emails",
+    //       });
+    //     }
+    //   } else {
+    //     console.error("No mentor selected for participant:", participantId);
+    //     Swal.fire({
+    //       icon: "warning",
+    //       title: "Warning",
+    //       text: "No mentor selected for participant",
+    //     });
+    //   }
+    // },
     async fetchParticipantsAndMentors() {
       try {
         Swal.fire({
@@ -226,7 +326,7 @@ export default defineComponent({
           },
         });
         const response = await axios.get(
-          "https://api.dev-miles.com/ewc/fetch_participants_and_mentors"
+          "http://api.dev-miles.com/ewc/fetch_participants_and_mentors"
         );
         this.participants = response.data;
         Swal.close();

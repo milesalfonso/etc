@@ -2,9 +2,9 @@
   <div class="row mb-3">
     <div
       class="col d-flex justify-content-center align-items-center flex-column text-white"
-      style="background-color: #69478e; height: 300px"
+      style="background-color: #69478e; height: 350px"
     >
-      <div class="row">
+      <div class="row mb-3">
         <img
           src="../../assets/EWC Logo-White.svg"
           alt="EWC Logo"
@@ -254,7 +254,7 @@ export default defineComponent({
 
         // Insert participant
         const participantResponse = await axios.post(
-          "https://api.dev-miles.com/ewc/insert-track1-participants",
+          "http://api.dev-miles.com/ewc/insert-track1-participants",
           {
             ...participant,
           },
@@ -281,7 +281,7 @@ export default defineComponent({
 
           // Send email with PDF attachment
           const emailResponse = await fetch(
-            "https://api.dev-miles.com/ewc/send-email",
+            "http://api.dev-miles.com/ewc/send-email",
             {
               method: "POST",
               headers: {
@@ -291,6 +291,7 @@ export default defineComponent({
                 full_name: this.fullName,
                 email: this.email,
                 pdfBase64: this.pdfBase64,
+                body: `"<html><body><h1>A new enrollment has been submitted for ${this.fullName}</h1></body></html>"`,
               }),
             }
           );
@@ -310,13 +311,13 @@ export default defineComponent({
           } else {
             console.error("Error sending email:", emailResult.error);
           }
-          // const modalElement = document.getElementById("successModal");
-          // if (modalElement) {
-          //   const modal = new bootstrap.Modal(modalElement);
-          //   modal.show();
-          // } else {
-          //   console.error("Modal element not found");
-          // }
+          const modalElement = document.getElementById("successModal");
+          if (modalElement) {
+            const modal = new bootstrap.Modal(modalElement);
+            modal.show();
+          } else {
+            console.error("Modal element not found");
+          }
         } else {
           console.error(
             "Error inserting participant:"

@@ -2,9 +2,9 @@
   <div class="row mb-3">
     <div
       class="col d-flex justify-content-center align-items-center flex-column text-white"
-      style="background-color: #69478e; height: 300px"
+      style="background-color: #69478e; height: 350px"
     >
-      <div class="row">
+      <div class="row mb-3">
         <img
           src="../../assets/EWC Logo-White.svg"
           alt="EWC Logo"
@@ -75,17 +75,47 @@
 
         <div class="row mb-5">
           <label for="mobile" class="form-label">EID Number</label>
-          <input
-            type="text"
-            class="form-control inputBox mx-auto"
-            id="mobile"
-            v-model="mobile"
-          />
+          <div class="d-flex">
+            <input
+              type="text"
+              class="form-control inputBox mx-1"
+              id="eid-part1"
+              v-model="eidPart1"
+              maxlength="3"
+              @input="moveFocus($event, 'eid-part2')"
+            />
+            <span class="mx-1">-</span>
+            <input
+              type="text"
+              class="form-control inputBox mx-1"
+              id="eid-part2"
+              v-model="eidPart2"
+              maxlength="4"
+              @input="moveFocus($event, 'eid-part3')"
+            />
+            <span class="mx-1">-</span>
+            <input
+              type="text"
+              class="form-control inputBox mx-1"
+              id="eid-part3"
+              v-model="eidPart3"
+              maxlength="7"
+              @input="moveFocus($event, 'eid-part4')"
+            />
+            <span class="mx-1">-</span>
+            <input
+              type="text"
+              class="form-control inputBox mx-1"
+              id="eid-part4"
+              v-model="eidPart4"
+              maxlength="1"
+            />
+          </div>
         </div>
 
         <div class="row mb-3 justify-content-center align-items-center">
           <router-link
-            v-if="full_name && title && entity && email && mobile"
+            v-if="full_name && title && entity && email && eidNumber"
             :to="{
               path: '/pdf',
               query: {
@@ -93,7 +123,7 @@
                 title: title,
                 entity: entity,
                 email: email,
-                mobile: mobile,
+                mobile: eidNumber,
               },
             }"
             class="btn btnPurplePillLight dynamic-width"
@@ -117,6 +147,11 @@ import "../../assets/body-bg.css";
 
 export default defineComponent({
   name: "Track1Components",
+  computed: {
+    eidNumber() {
+      return `${this.eidPart1}-${this.eidPart2}-${this.eidPart3}-${this.eidPart4}`;
+    },
+  },
   data() {
     return {
       full_name: "" as string,
@@ -124,7 +159,19 @@ export default defineComponent({
       entity: "" as string,
       email: "" as string,
       mobile: "" as string,
+      eidPart1: "",
+      eidPart2: "",
+      eidPart3: "",
+      eidPart4: "",
     };
+  },
+  methods: {
+    moveFocus(event: Event, nextFieldId: string) {
+      const target = event.target as HTMLInputElement | null;
+      if (target && target.value.length === target.maxLength) {
+        (this.$refs[nextFieldId] as HTMLInputElement).focus();
+      }
+    },
   },
 });
 </script>

@@ -2,9 +2,9 @@
   <div class="row mb-3">
     <div
       class="col d-flex justify-content-center align-items-center flex-column text-white"
-      style="background-color: #69478e; height: 300px"
+      style="background-color: #69478e; height: 350px"
     >
-      <div class="row">
+      <div class="row mb-3">
         <img
           src="../../assets/EWC Logo-White.svg"
           alt="EWC Logo"
@@ -195,8 +195,7 @@
     <button
       v-if="mentor_signature != '' && mentor_signature != null"
       class="btn btnPurplePillLight dynamic-width"
-      data-bs-toggle="modal"
-      data-bs-target="#successModal"
+      @click="enroll"
     >
       SUBMIT
     </button>
@@ -221,6 +220,8 @@ import ModalSignatureTrack2 from "./ModalSignatureTrack2.vue";
 import ModalSuccess from "./ModalSuccess.vue";
 //   import { login } from "../../api/server";
 import axios from "axios";
+import html2pdf from "html2pdf.js";
+import * as bootstrap from "bootstrap";
 
 export default defineComponent({
   name: "HomeCompoonents",
@@ -243,6 +244,9 @@ export default defineComponent({
       mentor_name: "",
       mentor_title: "",
       mentor_entity: "",
+      participant_email: "",
+      mentor_email: "",
+      pdfBase64: "",
     };
   },
   mounted() {
@@ -265,7 +269,7 @@ export default defineComponent({
           },
         });
         const response = await axios.get(
-          "https://api.dev-miles.com/ewc/fetch_track_2_participant",
+          "http://api.dev-miles.com/ewc/fetch_track_2_participant",
           {
             params: {
               id: id,
@@ -285,6 +289,8 @@ export default defineComponent({
           this.mentor_name = participantData.mentor_name;
           this.mentor_title = participantData.mentor_title;
           this.mentor_entity = participantData.mentor_entity;
+          this.participant_email = participantData.participant_email;
+          this.mentor_email = participantData.mentor_email;
 
           console.log("Fetched participant data:", participantData);
           Swal.close();
@@ -295,30 +301,100 @@ export default defineComponent({
         console.error("Error fetching participant data:", error);
       }
     },
-    async submit() {
+    async generatePdf() {
+      const element = document.getElementById("pdf-content");
+      if (element) {
+        const opt = {
+          margin: 1,
+          filename: "document.pdf",
+          image: { type: "jpeg", quality: 0.75 }, // Reduce image quality to 75%
+          html2canvas: { scale: 1.5 }, // Reduce the scale to 1.5
+          jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+        };
+        const pdf = await html2pdf()
+          .from(element)
+          .set(opt)
+          .outputPdf("datauristring");
+        this.pdfBase64 = pdf.split(",")[1]; // Get base64 part of the data URI
+      } else {
+        console.error("PDF content element not found");
+      }
+    },
+    async enroll() {
       try {
+        // Generate PDF
+        await this.generatePdf();
+
         Swal.fire({
-          title: "Signing...",
-          text: "Signing document",
+          title: "Emailing...",
+          text: "Emailing signed PDF",
           allowOutsideClick: false,
           didOpen: () => {
             Swal.showLoading();
           },
         });
-        const response = await axios.post(
-          "https://api.dev-miles.com/ewc/update_track_2_participant",
+
+        // Send email with PDF attachment
+        const emailParticipantResponse = await fetch(
+          "http://api.dev-miles.com/ewc/send-email",
           {
-            id: this.id,
-            participant_signature: this.participant_signature,
-            participant_signed_date: this.participant_signed_date,
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              full_name: this.participant_name,
+              email: this.participant_email,
+              pdfBase64: this.pdfBase64,
+              body: `"<html><body><h1>A new enrollment has been submitted for ${this.participant_name}</h1></body></html>"`,
+            }),
           }
         );
-        console.log("Response from server:", response.data);
-        Swal.close();
-        // Handle success response
+
+        const emailMentorResponse = await fetch(
+          "http://api.dev-miles.com/ewc/send-email",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              full_name: this.participant_name,
+              email: this.mentor_email,
+              pdfBase64: this.pdfBase64,
+              body: `"<html><body><h1>A new enrollment has been submitted for ${this.participant_name}</h1></body></html>"`,
+            }),
+          }
+        );
+
+        const emailParticipantResult = await emailParticipantResponse.json();
+        const emailMentorResult = await emailMentorResponse.json();
+
+        if (emailParticipantResponse.ok && emailMentorResponse.ok) {
+          Swal.close();
+          console.log("Email sent successfully:", emailParticipantResult);
+          console.log("Email sent successfully:", emailMentorResult);
+          // Show success modal
+          const modalElement = document.getElementById("successModal");
+          if (modalElement) {
+            const modal = new bootstrap.Modal(modalElement);
+            modal.show();
+          } else {
+            console.error("Modal element not found");
+          }
+        } else {
+          console.error("Error sending email:", emailParticipantResult.error);
+          console.error("Error sending email:", emailMentorResult.error);
+        }
+        const modalElement = document.getElementById("successModal");
+        if (modalElement) {
+          const modal = new bootstrap.Modal(modalElement);
+          modal.show();
+        } else {
+          console.error("Modal element not found");
+        }
       } catch (error) {
-        console.error("Error updating participant data:", error);
-        // Handle error response
+        console.error("Error:", error);
       }
     },
     getCurrentDate() {

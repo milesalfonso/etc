@@ -9,9 +9,16 @@
   >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="modal"
+            @click="closeModalAndNavigate"
+          ></button>
+        </div>
         <div class="modal-body container-fluid">
           <div class="row d-flex justify-content-center">
-            <h1 class="text-center mb-5">EWC</h1>
             <h3 class="text-center mb-5">
               Thank you for submitting your selection.
             </h3>
@@ -19,13 +26,6 @@
             <h3 class="text-center mb-5">
               Our team will send an email to confirm your mentor.
             </h3>
-            <button
-              class="btn btnWhitePillLight text-purple w-100"
-              data-bs-dismiss="modal"
-              @click="closeModalAndNavigate"
-            >
-              Confirm
-            </button>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default defineComponent({
   methods: {
     closeModalAndNavigate() {
       this.$emit("close-modal");
-      this.$router.push("/track-2");
+      this.$router.push("/");
     },
   },
 });
