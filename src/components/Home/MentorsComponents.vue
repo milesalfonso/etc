@@ -380,7 +380,7 @@ export default defineComponent({
         };
 
         const response = await fetch(
-          "http://api.dev-miles.com/ewc/insert_mentors",
+          "https://api.dev-miles.com/ewc/insert_mentors",
           {
             method: "POST",
             headers: {
@@ -407,7 +407,7 @@ export default defineComponent({
             },
           });
           const emailResponse = await fetch(
-            "http://api.dev-miles.com/ewc/send_email_no_attachments",
+            "https://api.dev-miles.com/ewc/send_email_no_attachments",
             {
               method: "POST",
               headers: {

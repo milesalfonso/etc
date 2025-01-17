@@ -143,7 +143,7 @@ export default defineComponent({
         for (const selectedMentor of selectedMentors) {
           const [participant_id, mentor_id] = selectedMentor.split("-");
           const response = await axios.post(
-            "http://api.dev-miles.com/ewc/insert_track_2_participant",
+            "https://api.dev-miles.com/ewc/insert_track_2_participant",
             {
               participant_id,
               mentor_id,
@@ -161,7 +161,7 @@ export default defineComponent({
             console.log("Participant:", participant);
             if (participant) {
               const emailParticipantResponse = await fetch(
-                "http://api.dev-miles.com/ewc/send_email_no_attachments",
+                "https://api.dev-miles.com/ewc/send_email_no_attachments",
                 {
                   method: "POST",
                   headers: {
@@ -229,7 +229,7 @@ export default defineComponent({
     //   },
     // });
     //       const response = await axios.post(
-    //         "http://api.dev-miles.com/ewc/insert_track_2_participant",
+    //         "https://api.dev-miles.com/ewc/insert_track_2_participant",
     //         {
     //           participant_id: participantId,
     //           mentor_id: mentorId,
@@ -248,7 +248,7 @@ export default defineComponent({
     //       if (participant && mentor) {
     //         // Send email to participant
     //         const emailParticipantResponse = await fetch(
-    //           "http://api.dev-miles.com/ewc/send_email_no_attachments",
+    //           "https://api.dev-miles.com/ewc/send_email_no_attachments",
     //           {
     //             method: "POST",
     //             headers: {
@@ -272,7 +272,7 @@ export default defineComponent({
 
     //         // Send email to mentor
     //         const emailMentorResponse = await fetch(
-    //           "http://api.dev-miles.com/ewc/send_email_no_attachments",
+    //           "https://api.dev-miles.com/ewc/send_email_no_attachments",
     //           {
     //             method: "POST",
     //             headers: {
@@ -326,7 +326,7 @@ export default defineComponent({
           },
         });
         const response = await axios.get(
-          "http://api.dev-miles.com/ewc/fetch_participants_and_mentors"
+          "https://api.dev-miles.com/ewc/fetch_participants_and_mentors"
         );
         this.participants = response.data;
         Swal.close();
