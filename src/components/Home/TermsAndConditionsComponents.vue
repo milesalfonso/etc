@@ -458,7 +458,7 @@
               </li>
               <li>
                 <p class="text-left">
-                  Program email: Emiratiwomenchapter@purehealth.ae<br />
+                  Program email:<br />emiratiwomenchapter@purehealth.ae
                 </p>
               </li>
             </ul>
