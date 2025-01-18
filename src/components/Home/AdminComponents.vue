@@ -170,7 +170,7 @@ export default defineComponent({
                   body: JSON.stringify({
                     full_name: participant.participant_name,
                     email: participant.participant_email,
-                    body: `<html><body><h1>Thank you for enrolling in the program, ${participant.participant_name}!</h1><a href="http://localhost:5173/#/mentee-pdf?id=${id}">Sign Agreement Document Here</a></body></html>`,
+                    body: `<html><body><h1>Thank you for enrolling in the program, ${participant.participant_name}!</h1><a href="https://api.dev-miles.com/ewc/#/mentee-pdf?id=${id}">Sign Agreement Document Here</a></body></html>`,
                   }),
                 }
               );

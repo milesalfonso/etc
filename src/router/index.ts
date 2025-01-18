@@ -13,6 +13,7 @@ import PdfView from "../views/PdfView.vue";
 import MentorPdfView from "../views/MentorPdfView.vue";
 import MenteePdfView from "../views/MenteePdfView.vue";
 import HomeView from "../views/HomeView.vue";
+import TermsAndConditionsView from "../views/TermsAndConditionsView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -46,6 +47,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/mentee-pdf",
     component: MenteePdfView,
+  },
+  {
+    path: "/terms-and-conditions",
+    component: TermsAndConditionsView,
   },
 ];
 

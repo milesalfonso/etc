@@ -184,21 +184,46 @@
     </div>
   </div>
   <div class="row mb-5 justify-content-center align-items-center">
-    <button
-      v-if="participant_signature === '' || participant_signature === null"
-      class="btn btnPurplePillLight dynamic-width"
-      data-bs-toggle="modal"
-      data-bs-target="#signatureTrack2Modal"
-    >
-      SIGN
-    </button>
-    <button
-      v-if="participant_signature != '' && participant_signature != null"
-      class="btn btnPurplePillLight dynamic-width"
-      @click="enroll"
-    >
-      SUBMIT
-    </button>
+    <div class="col-auto text-center">
+      <div class="form-check">
+        <input
+          class="form-check-input custom-checkbox me-3"
+          type="checkbox"
+          v-model="agreement"
+          id="termsCheck"
+        />
+        <label class="form-check-label me-3" for="termsCheck">
+          By Agreeing, you agree to the Terms and Conditions</label
+        ><router-link
+          :to="{
+            path: '/terms-and-conditions',
+          }"
+          class="btn btnPurplePillLight dynamic-width"
+          target="_blank"
+        >
+          Visit
+        </router-link>
+      </div>
+      <button
+        v-if="participant_signature === '' || participant_signature === null"
+        class="btn btnPurplePillLight dynamic-width"
+        data-bs-toggle="modal"
+        data-bs-target="#signatureTrack2Modal"
+      >
+        SIGN
+      </button>
+      <button
+        v-if="
+          participant_signature != '' &&
+          participant_signature != null &&
+          agreement
+        "
+        class="btn btnPurplePillLight dynamic-width"
+        @click="enroll"
+      >
+        SUBMIT
+      </button>
+    </div>
   </div>
   <ModalSignatureTrack2
     :id="id"
@@ -247,6 +272,7 @@ export default defineComponent({
       participant_email: "",
       mentor_email: "",
       pdfBase64: "",
+      agreement: false,
     };
   },
   mounted() {
@@ -362,7 +388,7 @@ export default defineComponent({
               full_name: this.participant_name,
               email: this.mentor_email,
               pdfBase64: this.pdfBase64,
-              body: `"<html><body><h1>A new enrollment has been submitted for ${this.participant_name}</h1><a href="http://localhost:5173/#/mentor-pdf?id=${this.id}">Sign Agreement Document Here</a></body></html>"`,
+              body: `"<html><body><h1>A new enrollment has been submitted for ${this.participant_name}</h1><a href="https://api.dev-miles.com/ewc/#/mentor-pdf?id=${this.id}">Sign Agreement Document Here</a></body></html>"`,
             }),
           }
         );

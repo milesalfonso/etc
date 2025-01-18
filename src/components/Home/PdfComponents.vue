@@ -131,21 +131,42 @@
     </div>
   </div>
   <div class="row mb-5 justify-content-center align-items-center">
-    <button
-      v-if="waiver_signature === ''"
-      class="btn btnPurplePillLight dynamic-width"
-      data-bs-toggle="modal"
-      data-bs-target="#signatureModal"
-    >
-      SIGN
-    </button>
-    <button
-      v-if="waiver_signature !== ''"
-      class="btn btnPurplePillLight dynamic-width"
-      @click="enroll"
-    >
-      ENROLL
-    </button>
+    <div class="col-auto text-center">
+      <div class="form-check">
+        <input
+          class="form-check-input custom-checkbox me-3"
+          type="checkbox"
+          v-model="agreement"
+          id="termsCheck"
+        />
+        <label class="form-check-label me-3" for="termsCheck">
+          By Agreeing, you agree to the Terms and Conditions</label
+        ><router-link
+          :to="{
+            path: '/terms-and-conditions',
+          }"
+          class="btn btnPurplePillLight dynamic-width"
+          target="_blank"
+        >
+          Visit
+        </router-link>
+      </div>
+      <button
+        v-if="waiver_signature === ''"
+        class="btn btnPurplePillLight dynamic-width mt-3"
+        data-bs-toggle="modal"
+        data-bs-target="#signatureModal"
+      >
+        SIGN
+      </button>
+      <button
+        v-if="waiver_signature !== '' && agreement"
+        class="btn btnPurplePillLight dynamic-width mt-3"
+        @click="enroll"
+      >
+        ENROLL
+      </button>
+    </div>
   </div>
   <ModalSignature
     @signature-added="updateSignature"
@@ -181,6 +202,7 @@ export default defineComponent({
       email: "",
       mobile: "",
       pdfBase64: "",
+      agreement: false,
     };
   },
   mounted() {
@@ -346,5 +368,20 @@ input {
   width: 100%;
   padding: 10px 10px;
   font-size: 0.875em;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #69478e;
+  border-radius: 3px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-checkbox:checked {
+  background-color: #69478e;
+  border-color: #69478e;
 }
 </style>

@@ -78,6 +78,16 @@
           />
         </div>
 
+        <div class="row mb-3">
+          <label for="email" class="form-label">Confirm Email Address</label>
+          <input
+            type="text"
+            class="form-control inputBox"
+            id="email"
+            v-model="confirm_email"
+          />
+        </div>
+
         <div class="row mb-5">
           <label for="mobile" class="form-label">EID Number</label>
           <div class="d-flex">
@@ -120,7 +130,14 @@
 
         <div class="row mb-3 justify-content-center align-items-center">
           <router-link
-            v-if="full_name && title && entity && email && eidNumber"
+            v-if="
+              full_name &&
+              title &&
+              entity &&
+              email &&
+              eidNumber &&
+              email == confirm_email
+            "
             :to="{
               path: '/mentors',
               query: {
@@ -163,6 +180,7 @@ export default defineComponent({
       title: "" as string,
       entity: "" as string,
       email: "" as string,
+      confirm_email: "" as string,
       mobile: "" as string,
       eidPart1: "",
       eidPart2: "",
