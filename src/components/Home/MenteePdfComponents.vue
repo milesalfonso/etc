@@ -215,13 +215,23 @@
       >
         SIGN
       </button>
+      <br />
       <button
-        v-if="
-          participant_signature != '' &&
-          participant_signature != null &&
-          agreement
+        :class="{
+          'btn btnPurplePillLight dynamic-width':
+            participant_signature !== '' &&
+            participant_signature !== null &&
+            agreement,
+          'btn btnGrey dynamic-width':
+            participant_signature === '' ||
+            participant_signature === null ||
+            !agreement,
+        }"
+        :disabled="
+          participant_signature === '' ||
+          participant_signature === null ||
+          !agreement
         "
-        class="btn btnPurplePillLight dynamic-width"
         @click="enroll"
       >
         SUBMIT

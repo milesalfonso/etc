@@ -14,6 +14,8 @@ import MentorPdfView from "../views/MentorPdfView.vue";
 import MenteePdfView from "../views/MenteePdfView.vue";
 import HomeView from "../views/HomeView.vue";
 import TermsAndConditionsView from "../views/TermsAndConditionsView.vue";
+import ThankYouView from "../views/ThankYouView.vue";
+import ThankYouViewMentor from "../views/ThankYouMentorView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -51,6 +53,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/terms-and-conditions",
     component: TermsAndConditionsView,
+  },
+  {
+    path: "/thank-you",
+    component: ThankYouView,
+  },
+  {
+    path: "/thank-you-mentor",
+    component: ThankYouViewMentor,
   },
 ];
 

@@ -20,6 +20,21 @@
       <div class="row">
         <h1 class="text-purple">Programme Mapping</h1>
       </div>
+      <div class="row" v-if="participants.length < 1">
+        <h1 class="text-purple">
+          No pending mentee applications for matchmaking
+        </h1>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <button
+            @click="exportToExcel"
+            class="btn btnPurplePillLight dynamic-width mt-3"
+          >
+            Export to Excel
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row d-flex justify-content-center align-items-center">
@@ -82,6 +97,7 @@
     >
       <div class="d-flex justify-content-center">
         <button
+          v-if="participants.length > 0"
           class="btn btnPurplePillLight dynamic-width"
           @click="handleSubmit()"
         >
@@ -101,6 +117,7 @@ import Swal from "sweetalert2";
 import "../../assets/body-bg.css";
 import ModalAdminSuccess from "./ModalAdminSuccess.vue";
 import axios from "axios";
+import * as XLSX from "xlsx";
 
 //   import { login } from "../../api/server";
 
@@ -379,6 +396,74 @@ export default defineComponent({
           title: "Error",
           text: "Failed to fetch participants and mentors data",
         });
+      }
+    },
+    async exportToExcel() {
+      try {
+        const response = await axios.get(
+          "https://api.dev-miles.com/ewc/get-data"
+        );
+        const data = response.data;
+
+        if (!Array.isArray(data)) {
+          throw new Error("Data is not an array");
+        }
+
+        // Add headers to the data
+        const headers = [
+          "Name",
+          "Email",
+          "EID",
+          "Mentor 1",
+          "Mentor 2",
+          "Mentor 3",
+          "Mentor 4",
+        ];
+        const formattedData = [
+          headers,
+          ...data.map(
+            (item: {
+              full_name: string;
+              email: string;
+              mobile: string;
+              mentor_name_1: string;
+              mentor_name_2: string;
+              mentor_name_3: string;
+              mentor_name_4: string;
+            }) => [
+              item.full_name,
+              item.email,
+              item.mobile,
+              item.mentor_name_1,
+              item.mentor_name_2,
+              item.mentor_name_3,
+              item.mentor_name_4,
+            ]
+          ),
+        ];
+
+        // Create a new workbook and add the data
+        const workbook = XLSX.utils.book_new();
+        const worksheet = XLSX.utils.aoa_to_sheet(formattedData);
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Participants");
+
+        // Generate Excel file and trigger download
+        const excelBuffer = XLSX.write(workbook, {
+          bookType: "xlsx",
+          type: "array",
+        });
+        const blob = new Blob([excelBuffer], {
+          type: "application/octet-stream",
+        });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "participants.xlsx";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } catch (error) {
+        console.error("Error exporting to Excel:", error);
       }
     },
   },

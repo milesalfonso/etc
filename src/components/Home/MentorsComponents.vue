@@ -443,15 +443,7 @@ export default defineComponent({
           if (emailResponse.ok) {
             Swal.close();
             console.log("Email sent successfully:", emailResult);
-            const modalElement = document.getElementById(
-              "successSelectionModal"
-            );
-            if (modalElement) {
-              const modal = new bootstrap.Modal(modalElement);
-              modal.show();
-            } else {
-              console.error("Modal element not found");
-            }
+            this.$router.push("/thank-you");
           } else {
             console.error("Error sending email:", emailResult.error);
           }
