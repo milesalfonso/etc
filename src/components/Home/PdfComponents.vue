@@ -313,22 +313,7 @@ export default defineComponent({
                 full_name: this.fullName,
                 email: this.email,
                 pdfBase64: this.pdfBase64,
-                body: `<html>
-                          <body>
-                              <p>Dear Mentee,</p>
-                              <br>
-                              <p>We are pleased to confirm that you have successfully enrolled in Emirati Women Chapter (EWC) Program 2025.</p>
-                              <br>
-                              <p>You can now download the attached approved version of the signed agreement.</p>
-                              <br>
-                              <p>Thank you for your cooperation, and we look forward to a successful and engaging program experience.</p>
-                              <br>
-                              <br>
-                              <br>
-                              <p>Best Regards,</p>
-                              <p>The EWC Team</p>
-                          </body>
-                      </html>`,
+                body: `<html><body><h1>A new enrollment has been submitted for ${this.fullName}</h1></body></html>`,
               }),
             }
           );
