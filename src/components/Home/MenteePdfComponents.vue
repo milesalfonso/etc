@@ -185,7 +185,10 @@
   </div>
   <div class="row mb-5 justify-content-center align-items-center">
     <div class="col-auto text-center">
-      <div class="form-check">
+      <div
+        v-if="participant_signature != '' && participant_signature != null"
+        class="form-check"
+      >
         <input
           class="form-check-input custom-checkbox me-3"
           type="checkbox"
@@ -399,7 +402,7 @@ export default defineComponent({
                             <br>
                             <p>We are pleased to inform you that your mentee from EWC program 2025- cohort 2, has completed the necessary steps and submitted the signed Undertaking Agreement.</p>
                             <p>Next, we need you to review, sign, and submit the Undertaking Agreement from your end as a second party. Please read the document and acknowledge your commitment to supporting your mentee throughout the program.</p>
-                            <p>To view the undertaking agreement, click <a href="https:///ewc-program.com/#/mentor-pdf?id=${this.id}">Here</a></p>
+                            <p>To view the undertaking agreement, click <a href="https://ewc-program.com/#/mentor-pdf?id=${this.id}">Here</a></p>
                             <p>Kindly sign & submit the agreement at the earliest to grant you the portal access which has all your assigned mentees’ reports.</
                             <p>Please confirm your signing completion for our follow-up and verification.</p>
                             <p>Thank you, and we look forward to your continued engagement in the program.</p>

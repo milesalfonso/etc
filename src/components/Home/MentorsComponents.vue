@@ -419,7 +419,7 @@ export default defineComponent({
               },
               body: JSON.stringify({
                 full_name: this.fullName,
-                email: "onboarding@ewc-program.ae",
+                email: this.email,
                 subject: "EWC | EWC Program Matchmaking In Progress - 2025",
                 body: `<!DOCTYPE html>
                         <html>

@@ -132,7 +132,7 @@
   </div>
   <div class="row mb-5 justify-content-center align-items-center">
     <div class="col-auto text-center">
-      <div class="form-check">
+      <div v-if="waiver_signature !== ''" class="form-check">
         <input
           class="form-check-input custom-checkbox me-3"
           type="checkbox"
