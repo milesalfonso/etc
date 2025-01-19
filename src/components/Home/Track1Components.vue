@@ -89,34 +89,34 @@
             <input
               type="text"
               class="form-control inputBox mx-1"
-              id="eid-part1"
+              ref="eidPart1"
               v-model="eidPart1"
               maxlength="3"
-              @input="moveFocus($event, 'eid-part2')"
+              @input="moveFocus($event, 'eidPart2')"
             />
             <span class="mx-1">-</span>
             <input
               type="text"
               class="form-control inputBox mx-1"
-              id="eid-part2"
+              ref="eidPart2"
               v-model="eidPart2"
               maxlength="4"
-              @input="moveFocus($event, 'eid-part3')"
+              @input="moveFocus($event, 'eidPart3')"
             />
             <span class="mx-1">-</span>
             <input
               type="text"
               class="form-control inputBox mx-1"
-              id="eid-part3"
+              ref="eidPart3"
               v-model="eidPart3"
               maxlength="7"
-              @input="moveFocus($event, 'eid-part4')"
+              @input="moveFocus($event, 'eidPart4')"
             />
             <span class="mx-1">-</span>
             <input
               type="text"
               class="form-control inputBox mx-1"
-              id="eid-part4"
+              ref="eidPart4"
               v-model="eidPart4"
               maxlength="1"
             />
@@ -154,7 +154,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, nextTick, ref } from "vue";
 import { onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 import Swal from "sweetalert2";
@@ -187,7 +187,14 @@ export default defineComponent({
     moveFocus(event: Event, nextFieldId: string) {
       const target = event.target as HTMLInputElement | null;
       if (target && target.value.length === target.maxLength) {
-        (this.$refs[nextFieldId] as HTMLInputElement).focus();
+        nextTick(() => {
+          const nextField = this.$refs[nextFieldId] as HTMLInputElement | null;
+          if (nextField) {
+            nextField.focus();
+          } else {
+            console.error(`Element with ref ${nextFieldId} not found.`);
+          }
+        });
       }
     },
   },
