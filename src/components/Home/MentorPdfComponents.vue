@@ -425,7 +425,7 @@ export default defineComponent({
             },
             body: JSON.stringify({
               full_name: this.participant_name,
-              email: "",
+              email: "emiratiwomenchapter@purehealth.ae",
               pdfBase64: this.pdfBase64,
               subject:
                 "EWC | Signed Undertaking Agreement for EWC Program - 2025",
