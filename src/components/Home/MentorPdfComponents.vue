@@ -501,20 +501,14 @@ export default defineComponent({
           console.log("Email sent successfully:", emailAdmin1Result);
           console.log("Email sent successfully:", emailAdmin2Result);
           // Show success modal
-          const modalElement = document.getElementById("successModal");
-          if (modalElement) {
-            const modal = new bootstrap.Modal(modalElement);
-            modal.show();
-          } else {
-            console.error("Modal element not found");
-          }
+
+          this.$router.push("/thank-you-mentor");
         } else {
           console.error("Error sending email:", emailParticipantResult.error);
           console.error("Error sending email:", emailMentorResult.error);
           console.error("Error sending email:", emailAdmin1Result.error);
           console.error("Error sending email:", emailAdmin2Result.error);
         }
-        this.$router.push("/thank-you-mentor");
       } catch (error) {
         console.error("Error:", error);
       }
