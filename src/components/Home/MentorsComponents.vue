@@ -46,7 +46,7 @@
               src="../../assets/images/mentor_0.png"
               alt="arati"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
           <div
@@ -66,7 +66,7 @@
               src="../../assets/images/mentor_1.png"
               alt="nahmita"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
           <div
@@ -86,7 +86,7 @@
               src="../../assets/images/mentor_2.png"
               alt="aisha"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
         </div>
@@ -108,7 +108,7 @@
               src="../../assets/images/mentor_3.png"
               alt="drmona"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
           <div
@@ -128,7 +128,7 @@
               src="../../assets/images/mentor_4.png"
               alt="nada"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
           <div
@@ -148,7 +148,7 @@
               src="../../assets/images/mentor_5.png"
               alt="simar"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
         </div>
@@ -170,7 +170,7 @@
               src="../../assets/images/mentor_6.png"
               alt="nervana"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
           <div
@@ -190,7 +190,7 @@
               src="../../assets/images/mentor_7.png"
               alt="nataliya"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
           <div
@@ -210,7 +210,7 @@
               src="../../assets/images/mentor_8.png"
               alt="jameela"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
         </div>
@@ -232,7 +232,7 @@
               src="../../assets/images/mentor_9.png"
               alt="dromneya"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
           <div
@@ -252,7 +252,7 @@
               src="../../assets/images/mentor_10.png"
               alt="sarah"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
           <div
@@ -272,7 +272,7 @@
               src="../../assets/images/mentor_11.png"
               alt="israa"
               class="ml-2"
-              style="width: 300px; height: 400px"
+              style="width: 100%; height: 100%"
             />
           </div>
         </div>
