@@ -415,8 +415,22 @@ export default defineComponent({
               },
               body: JSON.stringify({
                 full_name: this.fullName,
-                email: this.email,
-                body: "<html><body><h1>Thank you for submitting your selection.</h1><h1>Our team will send an email to confirm your mentor.</h1></body></html>",
+                email: "onboarding@ewc-program.ae",
+                subject: "EWC | EWC Program Matchmaking In Progress - 2025",
+                body: `<!DOCTYPE html>
+                        <html>
+                            <body style="text-align: center;">
+                            <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                                <img src="https://angelicahenson.com/wp-content/uploads/2025/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <p style="text-align: left;">Dear 2025 Candidate,</p>
+                                <p style="text-align: left;">We are pleased to inform you that your selection has been submitted to the EWC Team for review.</p>
+                                <p style="text-align: left;">You will be notified via email once the matchmaking process is complete.</p>
+                                <p style="text-align: left;">Thank you, and we look forward to your continued engagement in the program.</p>
+                                <p style="text-align: left;">Best regards,</p>
+                                <p style="text-align: left;">EWC Team</p>
+                            </div>
+                            </body>
+                        </html>`,
               }),
             }
           );
@@ -425,7 +439,6 @@ export default defineComponent({
           if (emailResponse.ok) {
             Swal.close();
             console.log("Email sent successfully:", emailResult);
-            Swal.close();
             const modalElement = document.getElementById(
               "successSelectionModal"
             );

@@ -344,9 +344,27 @@ export default defineComponent({
             },
             body: JSON.stringify({
               full_name: this.participant_name,
-              email: this.participant_email,
+              email: "onboarding@ewc-program.ae",
               pdfBase64: this.pdfBase64,
-              body: `"<html><body><h1>A new enrollment has been submitted for ${this.participant_name}</h1></body></html>"`,
+              subject:
+                "EWC | Signed Undertaking Agreement for EWC Program - 2025",
+              body: `<!DOCTYPE html>
+                      <html>
+                        <body style="text-align: center;">
+                          <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                            <img src="https://angelicahenson.com/wp-content/uploads/2025/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                            <p  style="text-align: left;">Dear Mentor & Mentee,</p>
+                            <br>
+                            <p  style="text-align: left;">We are pleased to confirm that the Undertaking Agreement for the Emirati Women Chapter (EWC) Program 2025 has been successfully signed by both of you.</p>
+                            <p  style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
+                            <p  style="text-align: left;">The EWC Management was notified that the process has been completed.</p>
+                            <p  style="text-align: left;">Thank you for your cooperation, and we look forward to a successful and engaging program experience.</p>
+                            <br>
+                            <p  style="text-align: left;">Best Regards,</p>
+                            <p  style="text-align: left;">The EWC Team</p>
+                          </div>
+                        </body>
+                      </html>`,
             }),
           }
         );
@@ -362,7 +380,25 @@ export default defineComponent({
               full_name: this.participant_name,
               email: this.mentor_email,
               pdfBase64: this.pdfBase64,
-              body: `"<html><body><h1>A new enrollment has been submitted for ${this.participant_name}</h1></body></html>"`,
+              subject:
+                "EWC | Signed Undertaking Agreement for EWC Program - 2025",
+              body: `<!DOCTYPE html>
+                      <html>
+                        <body style="text-align: center;">
+                          <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                            <img src="https://angelicahenson.com/wp-content/uploads/2025/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                            <p  style="text-align: left;">Dear Mentor & Mentee,</p>
+                            <br>
+                            <p  style="text-align: left;">We are pleased to confirm that the Undertaking Agreement for the Emirati Women Chapter (EWC) Program 2025 has been successfully signed by both of you.</p>
+                            <p  style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
+                            <p  style="text-align: left;">The EWC Management was notified that the process has been completed.</p>
+                            <p  style="text-align: left;">Thank you for your cooperation, and we look forward to a successful and engaging program experience.</p>
+                            <br>
+                            <p  style="text-align: left;">Best Regards,</p>
+                            <p  style="text-align: left;">The EWC Team</p>
+                          </div>
+                        </body>
+                      </html>`,
             }),
           }
         );
@@ -439,5 +475,20 @@ input {
   width: 100%;
   padding: 10px 10px;
   font-size: 0.875em;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #69478e;
+  border-radius: 3px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-checkbox:checked {
+  background-color: #69478e;
+  border-color: #69478e;
 }
 </style>

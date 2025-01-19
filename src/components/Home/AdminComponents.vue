@@ -47,8 +47,19 @@
               <input
                 class="form-check-input custom-checkbox me-3"
                 type="radio"
-                :value="participant.participant_id + '-' + mentor.mentor_id"
-                :name="'mentor-' + participant.participant_id"
+                :value="
+                  participant.participant_id +
+                  '-' +
+                  mentor.mentor_id +
+                  '-' +
+                  mentor.mentor_name
+                "
+                :name="
+                  'mentor-' +
+                  participant.participant_id +
+                  '-' +
+                  mentor.mentor_name
+                "
                 :id="'mentor-' + participant.participant_id + '-' + mentorIndex"
               />
               <label
@@ -120,16 +131,21 @@ export default defineComponent({
   },
   methods: {
     gatherSelectedMentors() {
-      const selectedMentors = this.participants.map((participant) => {
-        const selectedRadio = document.querySelector(
-          `input[name='mentor-${participant.participant_id}']:checked`
-        );
-        return selectedRadio ? (selectedRadio as HTMLInputElement).value : null;
+      const selectedMentors = this.participants.flatMap((participant) => {
+        return participant.mentors.map((mentor) => {
+          const selectedRadio = document.querySelector(
+            `input[name='mentor-${participant.participant_id}-${mentor.mentor_name}']:checked`
+          );
+          return selectedRadio
+            ? (selectedRadio as HTMLInputElement).value
+            : null;
+        });
       });
       return selectedMentors.filter((value) => value !== null);
     },
     async handleSubmit() {
       const selectedMentors = this.gatherSelectedMentors();
+      console.log("Selected mentors:", selectedMentors);
       try {
         Swal.fire({
           title: "Inserting...",
@@ -141,7 +157,8 @@ export default defineComponent({
         });
 
         for (const selectedMentor of selectedMentors) {
-          const [participant_id, mentor_id] = selectedMentor.split("-");
+          const [participant_id, mentor_id, mentor_name] =
+            selectedMentor.split("-");
           const response = await axios.post(
             "https://api.dev-miles.com/ewc/insert_track_2_participant",
             {
@@ -169,8 +186,31 @@ export default defineComponent({
                   },
                   body: JSON.stringify({
                     full_name: participant.participant_name,
-                    email: participant.participant_email,
-                    body: `<html><body><h1>Thank you for enrolling in the program, ${participant.participant_name}!</h1><a href="https://api.dev-miles.com/ewc/#/mentee-pdf?id=${id}">Sign Agreement Document Here</a></body></html>`,
+                    email: "onboarding@ewc-program.ae",
+                    subject:
+                      "EWC | Your Mentor Assignment and Agreement for the EWC Program 2025",
+                    body: `<!DOCTYPE html>
+                            <html>
+                              <body style="text-align: center;">
+                                <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                                  <img src="https://angelicahenson.com/wp-content/uploads/2025/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                  <p>Dear 2025 Candidate,</p>
+                                  <p>We are excited to inform you that the mentor assignment process for the EWC program 2025- cohort 2, has been completed, and you have been assigned to a mentor from the pre-list that matches your profile.</p>
+                                  <p>Your Assigned Mentor is:</p>
+                                  <p><strong>${mentor_name}</strong></p>
+                                  <p>As part of the next steps, we would like to share with you the Undertaking Agreement with your assigned mentor. Please take the time to carefully review the document and acknowledge your commitment to the program. Kindly proceed to sign off the documents by clicking on the below link:</p>
+                                  <p><a href="https://api.dev-miles.com/ewc/#/mentee-pdf?id=${id}">Sign Agreement Document Here</a></p>
+                                  <p>The below steps have to be timely managed:</p>
+                                  <ul style="text-align: left; display: inline-block; margin: 0 auto;">
+                                    <li style="text-align: left;">Review the Undertaking Agreement.</li>
+                                    <li style="text-align: left;">Sign the agreement.</li>
+                                    <li style="text-align: left;">Submit the signed agreement.</li>
+                                  </ul>
+                                  <p>Please ensure that you complete these steps as soon as possible to move forward in the program. Thank you, and we look forward to your continued engagement in the program.</p>
+                                  <p>It will be great to engage them.</p>
+                                </div>
+                              </body>
+                            </html>`,
                   }),
                 }
               );

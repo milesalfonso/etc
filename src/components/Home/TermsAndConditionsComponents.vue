@@ -17,7 +17,7 @@
         <div class="row mb-3 justify-content-center">
           <div class="col-auto">
             <h2 class="text-center">MENTORING GUIDELINES</h2>
-            <h4 class="text-center">Emirates Women Chapter 2025</h4>
+            <h4 class="text-center">Emirati Women Chapter 2025</h4>
             <hr />
           </div>
         </div>

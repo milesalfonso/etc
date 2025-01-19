@@ -140,16 +140,16 @@
           id="termsCheck"
         />
         <label class="form-check-label me-3" for="termsCheck">
-          By Agreeing, you agree to the Terms and Conditions</label
-        ><router-link
-          :to="{
-            path: '/terms-and-conditions',
-          }"
-          class="btn btnPurplePillLight dynamic-width"
-          target="_blank"
+          By signing, you agree to the
+          <router-link
+            :to="{
+              path: '/terms-and-conditions',
+            }"
+            target="_blank"
+          >
+            Terms and Conditions
+          </router-link></label
         >
-          Visit
-        </router-link>
       </div>
       <button
         v-if="waiver_signature === ''"
@@ -313,7 +313,7 @@ export default defineComponent({
                 full_name: this.fullName,
                 email: this.email,
                 pdfBase64: this.pdfBase64,
-                body: `<html><body><h1>A new enrollment has been submitted for ${this.fullName}</h1></body></html>`,
+                body: `<!DOCTYPE html><body><h1>A new enrollment has been submitted for ${this.fullName}</h1></body></html>`,
               }),
             }
           );

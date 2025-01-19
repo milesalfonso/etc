@@ -193,16 +193,16 @@
           id="termsCheck"
         />
         <label class="form-check-label me-3" for="termsCheck">
-          By Agreeing, you agree to the Terms and Conditions</label
-        ><router-link
-          :to="{
-            path: '/terms-and-conditions',
-          }"
-          class="btn btnPurplePillLight dynamic-width"
-          target="_blank"
+          By signing, you agree to the
+          <router-link
+            :to="{
+              path: '/terms-and-conditions',
+            }"
+            target="_blank"
+          >
+            Terms and Conditions
+          </router-link></label
         >
-          Visit
-        </router-link>
       </div>
       <button
         v-if="participant_signature === '' || participant_signature === null"
@@ -360,22 +360,22 @@ export default defineComponent({
           },
         });
 
-        // Send email with PDF attachment
-        const emailParticipantResponse = await fetch(
-          "https://api.dev-miles.com/ewc/send-email",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              full_name: this.participant_name,
-              email: this.participant_email,
-              pdfBase64: this.pdfBase64,
-              body: `"<html><body><h1>A new enrollment has been submitted for ${this.participant_name}</h1></body></html>"`,
-            }),
-          }
-        );
+        // // Send email with PDF attachment
+        // const emailParticipantResponse = await fetch(
+        //   "https://api.dev-miles.com/ewc/send-email",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //       full_name: this.participant_name,
+        //       email: this.participant_email,
+        //       pdfBase64: this.pdfBase64,
+        //       body: `<html><body><h1>A new enrollment has been submitted for ${this.participant_name}</h1></body></html>`,
+        //     }),
+        //   }
+        // );
 
         const emailMentorResponse = await fetch(
           "https://api.dev-miles.com/ewc/send-email",
@@ -388,17 +388,36 @@ export default defineComponent({
               full_name: this.participant_name,
               email: this.mentor_email,
               pdfBase64: this.pdfBase64,
-              body: `"<html><body><h1>A new enrollment has been submitted for ${this.participant_name}</h1><a href="https://api.dev-miles.com/ewc/#/mentor-pdf?id=${this.id}">Sign Agreement Document Here</a></body></html>"`,
+              subject:
+                "Emirati Women Chapter | Please Acknowledge and Sign the Undertaking Agreement for the Emirati Women Chapter Program 2025",
+              body: `<!DOCTYPE html>
+                      <html>
+                        <body style="text-align: center;">
+                          <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                            <img src="https://angelicahenson.com/wp-content/uploads/2025/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                            <p>Dear 2025 Mentor,</p>
+                            <br>
+                            <p>We are pleased to inform you that your mentee from EWC program 2025- cohort 2, has completed the necessary steps and submitted the signed Undertaking Agreement.</p>
+                            <p>Next, we need you to review, sign, and submit the Undertaking Agreement from your end as a second party. Please read the document and acknowledge your commitment to supporting your mentee throughout the program.</p>
+                            <p>To view the undertaking agreement, click <a href="https://api.dev-miles.com/ewc/#/mentor-pdf?id=${this.id}">Here</a></p>
+                            <p>Kindly sign & submit the agreement at the earliest to grant you the portal access which has all your assigned mentees’ reports.</
+                            <p>Please confirm your signing completion for our follow-up and verification.</p>
+                            <p>Thank you, and we look forward to your continued engagement in the program.</p>
+                            <br>
+                            <p>Best Regards,</p>
+                            <p>EWC Team</p>
+                          </div>
+                        </body>
+                      </html>`,
             }),
           }
         );
 
-        const emailParticipantResult = await emailParticipantResponse.json();
+        // const emailParticipantResult = await emailParticipantResponse.json();
         const emailMentorResult = await emailMentorResponse.json();
 
-        if (emailParticipantResponse.ok && emailMentorResponse.ok) {
+        if (emailMentorResponse.ok) {
           Swal.close();
-          console.log("Email sent successfully:", emailParticipantResult);
           console.log("Email sent successfully:", emailMentorResult);
           // Show success modal
           const modalElement = document.getElementById("successModal");
@@ -409,7 +428,7 @@ export default defineComponent({
             console.error("Modal element not found");
           }
         } else {
-          console.error("Error sending email:", emailParticipantResult.error);
+          // console.error("Error sending email:", emailParticipantResult.error);
           console.error("Error sending email:", emailMentorResult.error);
         }
         const modalElement = document.getElementById("successModal");
@@ -465,5 +484,20 @@ input {
   width: 100%;
   padding: 10px 10px;
   font-size: 0.875em;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #69478e;
+  border-radius: 3px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-checkbox:checked {
+  background-color: #69478e;
+  border-color: #69478e;
 }
 </style>
