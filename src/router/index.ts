@@ -16,6 +16,7 @@ import HomeView from "../views/HomeView.vue";
 import TermsAndConditionsView from "../views/TermsAndConditionsView.vue";
 import ThankYouView from "../views/ThankYouView.vue";
 import ThankYouViewMentor from "../views/ThankYouMentorView.vue";
+import ThankYouViewParticipant from "../views/ThankYouParticipantView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -59,8 +60,12 @@ const routes: Array<RouteRecordRaw> = [
     component: ThankYouView,
   },
   {
-    path: "/thank-you-mentor",
+    path: "/thank-you-for-participating",
     component: ThankYouViewMentor,
+  },
+  {
+    path: "/thank-you-participant",
+    component: ThankYouViewParticipant,
   },
 ];
 

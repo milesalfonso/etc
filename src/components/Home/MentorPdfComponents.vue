@@ -502,7 +502,7 @@ export default defineComponent({
           console.log("Email sent successfully:", emailAdmin2Result);
           // Show success modal
 
-          this.$router.push("/thank-you-mentor");
+          this.$router.push("/thank-you-for-participating");
         } else {
           console.error("Error sending email:", emailParticipantResult.error);
           console.error("Error sending email:", emailMentorResult.error);

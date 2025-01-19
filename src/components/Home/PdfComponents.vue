@@ -311,7 +311,7 @@ export default defineComponent({
           console.log("Participant inserted successfully:", participantResult);
 
           // Send email with PDF attachment
-          const emailResponse = await fetch(
+          const emailParticipantResponse = await fetch(
             "https://api.dev-miles.com/ewc/send-email",
             {
               method: "POST",
@@ -322,8 +322,7 @@ export default defineComponent({
                 full_name: this.fullName,
                 email: this.email,
                 pdfBase64: this.pdfBase64,
-                subject:
-                  "EWC | Successfully Enrollment to the EWC Program 2025",
+                subject: "EWC | Successful Enrollment to the EWC Program 2025",
                 body: `<!DOCTYPE html>
                         <html>
                             <body style="text-align: center;">
@@ -331,7 +330,7 @@ export default defineComponent({
                                 <img src="https://angelicahenson.com/wp-content/uploads/2025/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
                                 <p style="text-align: left;">Dear Mentee,</p>
                                 <br>
-                                <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in Emirati Women Chapter (EWC) Program 2025.</p>
+                                <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in the Emirati Women Chapter (EWC) Program 2025.</p>
                                 <p style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
                                 <p style="text-align: left;">Thank you for your cooperation, and we look forward to a successful and engaging program experience.</p>
                                 <br>
@@ -344,16 +343,91 @@ export default defineComponent({
             }
           );
 
-          const emailResult = await emailResponse.json();
-          if (emailResponse.ok) {
+          const emailOnboardingResponse = await fetch(
+            "https://api.dev-miles.com/ewc/send-email",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                full_name: this.fullName,
+                email: "onboarding@ewc-program.ae",
+                pdfBase64: this.pdfBase64,
+                subject: "EWC | Successful Enrollment to the EWC Program 2025",
+                body: `<!DOCTYPE html>
+                        <html>
+                            <body style="text-align: center;">
+                            <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                                <img src="https://angelicahenson.com/wp-content/uploads/2025/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <p style="text-align: left;">Dear Mentee,</p>
+                                <br>
+                                <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in the Emirati Women Chapter (EWC) Program 2025.</p>
+                                <p style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
+                                <p style="text-align: left;">Thank you for your cooperation, and we look forward to a successful and engaging program experience.</p>
+                                <br>
+                                <p style="text-align: left;">Best regards,</p>
+                                <p style="text-align: left;">The EWC Team</p>
+                            </div>
+                            </body>
+                        </html>`,
+              }),
+            }
+          );
+
+          const emailEwcResponse = await fetch(
+            "https://api.dev-miles.com/ewc/send-email",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                full_name: this.fullName,
+                email: "emiratiwomenchapter@purehealth.ae",
+                pdfBase64: this.pdfBase64,
+                subject: "EWC | Successful Enrollment to the EWC Program 2025",
+                body: `<!DOCTYPE html>
+                        <html>
+                            <body style="text-align: center;">
+                            <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                                <img src="https://angelicahenson.com/wp-content/uploads/2025/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <p style="text-align: left;">Dear Mentee,</p>
+                                <br>
+                                <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in the Emirati Women Chapter (EWC) Program 2025.</p>
+                                <p style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
+                                <p style="text-align: left;">Thank you for your cooperation, and we look forward to a successful and engaging program experience.</p>
+                                <br>
+                                <p style="text-align: left;">Best regards,</p>
+                                <p style="text-align: left;">The EWC Team</p>
+                            </div>
+                            </body>
+                        </html>`,
+              }),
+            }
+          );
+
+          const emailParticipantResult = await emailParticipantResponse.json();
+          const emailOnboardingResult = await emailOnboardingResponse.json();
+          const emailEwcResult = await emailEwcResponse.json();
+
+          if (
+            emailParticipantResponse.ok &&
+            emailOnboardingResponse.ok &&
+            emailEwcResponse.ok
+          ) {
             Swal.close();
-            console.log("Email sent successfully:", emailResult);
+            console.log("Email sent successfully:", emailParticipantResult);
+            console.log("Email sent successfully:", emailOnboardingResult);
+            console.log("Email sent successfully:", emailEwcResult);
             // Show success modal
-            this.$router.push("/thank-you-mentor");
+            this.$router.push("/thank-you-participant");
           } else {
-            console.error("Error sending email:", emailResult.error);
+            console.error("Error sending email:", emailParticipantResult.error);
+            console.error("Error sending email:", emailOnboardingResult.error);
+            console.error("Error sending email:", emailEwcResult.error);
           }
-          this.$router.push("/thank-you-mentor");
+          this.$router.push("/thank-you-participant");
         } else {
           console.error(
             "Error inserting participant:"
