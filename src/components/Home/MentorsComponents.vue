@@ -2,303 +2,291 @@
   <div class="row mb-3">
     <div
       class="col d-flex justify-content-center align-items-center flex-column text-white"
-      style="background-color: #69478e; height: 300px"
+      style="background-color: #69478e; height: 350px"
     >
-      <div class="row">
+      <div class="row mb-3">
         <img
           src="../../assets/EWC Logo-White.svg"
           alt="EWC Logo"
-          class="img-fluid mx-auto d-block w-75 h-75"
+          class="img-fluid mx-auto d-block ms-4"
         />
       </div>
-      <div class="row">
-        <h1>Welcome to the EWC Passion Goal</h1>
+      <div class="row w-75">
+        <h1 class="text-center">Welcome to the EWC Passion Goal</h1>
       </div>
     </div>
   </div>
   <div class="row mb-3 justify-content-center">
+    <h4 class="text-purple text-center">Welcome, {{ fullName }}.</h4>
     <h4 class="text-purple text-center">
-      Welcome, {{ fullName }}. Please select four mentors who you think would be
-      the best fit to help you in this journey:
-    </h4>
-    <h4 class="text-purple text-center" v-if="4 - selectedMentors.length == 4">
-      Please select: {{ 4 - selectedMentors.length }} mentors
-    </h4>
-    <h4
-      class="text-purple text-center"
-      v-if="4 - selectedMentors.length >= 2 && 4 - selectedMentors.length <= 3"
-    >
-      Please select: {{ 4 - selectedMentors.length }} more mentors
-    </h4>
-    <h4 class="text-purple text-center" v-if="4 - selectedMentors.length == 1">
-      Please select: {{ 4 - selectedMentors.length }} more mentor
+      Please select four mentors who you think would be the best fit to help you
+      in this journey.
     </h4>
   </div>
   <div class="row d-flex justify-content-center align-items-center">
     <div
-      class="row d-flex justify-content-center align-items-center text-purple w-25"
+      class="row d-flex justify-content-center align-items-center text-purple w-50"
     >
       <div class="row mb-3">
-        <div class="d-flex justify-content-center align-items-center">
-          <img
-            src="../../assets/images/mentor_1.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
+        <div class="col-md-3 mb-3">
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="1"
+              :checked="selectedMentors.includes(1)"
+              @change="toggleMentorSelection(1)"
+              :disabled="
+                !selectedMentors.includes(1) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 1"
+            /><img
+              src="../../assets/images/mentor_0.png"
+              alt="arati"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="2"
+              :checked="selectedMentors.includes(2)"
+              @change="toggleMentorSelection(2)"
+              :disabled="
+                !selectedMentors.includes(2) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 2"
+            /><img
+              src="../../assets/images/mentor_1.png"
+              alt="nahmita"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="3"
+              :checked="selectedMentors.includes(3)"
+              @change="toggleMentorSelection(3)"
+              :disabled="
+                !selectedMentors.includes(3) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 3"
+            /><img
+              src="../../assets/images/mentor_2.png"
+              alt="aisha"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="4"
+              :checked="selectedMentors.includes(4)"
+              @change="toggleMentorSelection(4)"
+              :disabled="
+                !selectedMentors.includes(4) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 4"
+            /><img
+              src="../../assets/images/mentor_3.png"
+              alt="drmona"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="5"
+              :checked="selectedMentors.includes(5)"
+              @change="toggleMentorSelection(5)"
+              :disabled="
+                !selectedMentors.includes(5) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 5"
+            /><img
+              src="../../assets/images/mentor_4.png"
+              alt="nada"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="6"
+              :checked="selectedMentors.includes(6)"
+              @change="toggleMentorSelection(6)"
+              :disabled="
+                !selectedMentors.includes(6) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 6"
+            /><img
+              src="../../assets/images/mentor_5.png"
+              alt="simar"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="7"
+              :checked="selectedMentors.includes(7)"
+              @change="toggleMentorSelection(7)"
+              :disabled="
+                !selectedMentors.includes(7) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 7"
+            /><img
+              src="../../assets/images/mentor_6.png"
+              alt="nervana"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="8"
+              :checked="selectedMentors.includes(8)"
+              @change="toggleMentorSelection(8)"
+              :disabled="
+                !selectedMentors.includes(8) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 8"
+            /><img
+              src="../../assets/images/mentor_7.png"
+              alt="nataliya"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="9"
+              :checked="selectedMentors.includes(9)"
+              @change="toggleMentorSelection(9)"
+              :disabled="
+                !selectedMentors.includes(9) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 9"
+            /><img
+              src="../../assets/images/mentor_8.png"
+              alt="jameela"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="10"
+              :checked="selectedMentors.includes(10)"
+              @change="toggleMentorSelection(10)"
+              :disabled="
+                !selectedMentors.includes(10) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 10"
+            /><img
+              src="../../assets/images/mentor_9.png"
+              alt="dromneya"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="11"
+              :checked="selectedMentors.includes(11)"
+              @change="toggleMentorSelection(11)"
+              :disabled="
+                !selectedMentors.includes(11) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 11"
+            /><img
+              src="../../assets/images/mentor_10.png"
+              alt="sarah"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
+          <div
+            class="form-check d-flex justify-content-center align-items-center"
+          >
+            <input
+              class="form-check-input custom-checkbox"
+              type="checkbox"
+              :value="12"
+              :checked="selectedMentors.includes(12)"
+              @change="toggleMentorSelection(12)"
+              :disabled="
+                !selectedMentors.includes(12) && selectedMentors.length >= 4
+              "
+              :id="'flexCheckDefault' + 12"
+            /><img
+              src="../../assets/images/mentor_11.png"
+              alt="israa"
+              class="ml-2"
+              style="width: 300px; height: 400px"
+            />
+          </div>
         </div>
       </div>
-      <div class="row mb-3">
-        <div class="d-flex justify-content-center align-items-center">
-          <img
-            src="../../assets/images/mentor_2.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="1"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_3.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="2"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_4.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="3"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_5.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="4"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_6.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="5"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_7.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="6"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_8.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="7"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_9.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="8"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_10.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="d-flex justify-content-center align-items-center">
-          <img
-            src="../../assets/images/mentor_11.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="9"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_12.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="10"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_13.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="11"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_14.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div
-          class="form-check d-flex justify-content-center align-items-center"
-        >
-          <input
-            class="form-check-input custom-checkbox"
-            type="checkbox"
-            :value="12"
-            v-model="selectedMentors"
-            id="flexCheckDefault"
-          /><img
-            src="../../assets/images/mentor_15.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="d-flex justify-content-center align-items-center">
-          <img
-            src="../../assets/images/mentor_16.png"
-            alt="checkbox"
-            class="ml-2"
-            style="width: 800px; height: 400px"
-          />
-        </div>
-      </div>
+
       <div class="row mb-3 justify-content-center align-items-center">
         <button
-          v-if="selectedMentors.length === 4"
-          class="btn btnPurplePillLight dynamic-width"
+          :class="
+            selectedMentors.length === 4
+              ? 'btn btnPurplePillLight dynamic-width'
+              : 'btn btnGrey dynamic-width'
+          "
           @click="insertMentors"
+          :disabled="selectedMentors.length !== 4"
         >
           Next
         </button>
@@ -333,13 +321,21 @@ export default defineComponent({
       email: "",
       mobile: "",
       mentors: [
-        { image: "@assets/images/mentor_1.png" },
-        { image: "../../assets/images/mentor_2.png" },
-        { image: "../../assets/images/mentor_3.png" },
-        { image: "../../assets/images/mentor_4.png" },
+        { id: 1, name: "arati", image: "../../assets/images/mentor_0.png" },
+        { id: 2, name: "nahmita", image: "../../assets/images/mentor_1.png" },
+        { id: 3, name: "aisha", image: "../../assets/images/mentor_2.png" },
+        { id: 4, name: "drmona", image: "../../assets/images/mentor_3.png" },
+        { id: 5, name: "nada", image: "../../assets/images/mentor_4.png" },
+        { id: 6, name: "simar", image: "../../assets/images/mentor_5.png" },
+        { id: 7, name: "nervana", image: "../../assets/images/mentor_6.png" },
+        { id: 8, name: "nataliya", image: "../../assets/images/mentor_7.png" },
+        { id: 9, name: "jameela", image: "../../assets/images/mentor_8.png" },
+        { id: 10, name: "dromneya", image: "../../assets/images/mentor_9.png" },
+        { id: 11, name: "sarah", image: "../../assets/images/mentor_10.png" },
+        { id: 12, name: "israa", image: "../../assets/images/mentor_11.png" },
       ],
 
-      selectedMentors: [],
+      selectedMentors: [] as number[],
     };
   },
   mounted() {
@@ -352,6 +348,14 @@ export default defineComponent({
     // Use the data as needed
   },
   methods: {
+    toggleMentorSelection(mentorId: number) {
+      const index = this.selectedMentors.indexOf(mentorId);
+      if (index > -1) {
+        this.selectedMentors.splice(index, 1);
+      } else if (this.selectedMentors.length < 4) {
+        this.selectedMentors.push(mentorId);
+      }
+    },
     getImageSrc(imagePath: string) {
       try {
         return new URL(`@/assets/${imagePath}`, import.meta.url).href;
@@ -479,6 +483,11 @@ export default defineComponent({
 .custom-checkbox:checked {
   background-color: #69478e;
   border-color: #69478e;
+}
+
+.custom-checkbox:disabled {
+  background-color: #d3d3d3;
+  border-color: #d3d3d3;
 }
 
 .ml-2 {

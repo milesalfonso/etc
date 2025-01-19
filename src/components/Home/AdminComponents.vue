@@ -186,7 +186,7 @@ export default defineComponent({
                   },
                   body: JSON.stringify({
                     full_name: participant.participant_name,
-                    email: "onboarding@ewc-program.ae",
+                    email: participant.participant_email,
                     subject:
                       "EWC | Your Mentor Assignment and Agreement for the EWC Program 2025",
                     body: `<!DOCTYPE html>
@@ -199,7 +199,7 @@ export default defineComponent({
                                   <p>Your Assigned Mentor is:</p>
                                   <p><strong>${mentor_name}</strong></p>
                                   <p>As part of the next steps, we would like to share with you the Undertaking Agreement with your assigned mentor. Please take the time to carefully review the document and acknowledge your commitment to the program. Kindly proceed to sign off the documents by clicking on the below link:</p>
-                                  <p><a href="https://api.dev-miles.com/ewc/#/mentee-pdf?id=${id}">Sign Agreement Document Here</a></p>
+                                  <p><a href="https://ewc-program.com/#/mentee-pdf?id=${id}">Sign Agreement Document Here</a></p>
                                   <p>The below steps have to be timely managed:</p>
                                   <ul style="text-align: left; display: inline-block; margin: 0 auto;">
                                     <li style="text-align: left;">Review the Undertaking Agreement.</li>
