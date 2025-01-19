@@ -209,7 +209,7 @@
       </div>
       <button
         v-if="participant_signature === '' || participant_signature === null"
-        class="btn btnPurplePillLight dynamic-width"
+        class="btn btnPurplePillLight dynamic-width mb-5"
         data-bs-toggle="modal"
         data-bs-target="#signatureTrack2Modal"
       >
@@ -217,6 +217,7 @@
       </button>
       <br />
       <button
+        v-if="participant_signature !== '' || participant_signature !== null"
         :class="{
           'btn btnPurplePillLight dynamic-width':
             participant_signature !== '' &&
@@ -227,11 +228,7 @@
             participant_signature === null ||
             !agreement,
         }"
-        :disabled="
-          participant_signature === '' ||
-          participant_signature === null ||
-          !agreement
-        "
+        :disabled="!agreement"
         @click="enroll"
       >
         SUBMIT
@@ -433,24 +430,12 @@ export default defineComponent({
           Swal.close();
           console.log("Email sent successfully:", emailMentorResult);
           // Show success modal
-          const modalElement = document.getElementById("successModal");
-          if (modalElement) {
-            const modal = new bootstrap.Modal(modalElement);
-            modal.show();
-          } else {
-            console.error("Modal element not found");
-          }
+          this.$router.push("/thank-you-mentor");
         } else {
           // console.error("Error sending email:", emailParticipantResult.error);
           console.error("Error sending email:", emailMentorResult.error);
         }
-        const modalElement = document.getElementById("successModal");
-        if (modalElement) {
-          const modal = new bootstrap.Modal(modalElement);
-          modal.show();
-        } else {
-          console.error("Modal element not found");
-        }
+        this.$router.push("/thank-you-mentor");
       } catch (error) {
         console.error("Error:", error);
       }
