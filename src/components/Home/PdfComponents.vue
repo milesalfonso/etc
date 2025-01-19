@@ -105,7 +105,7 @@
                 padding-bottom: 5px;
               "
             >
-              <img :src="waiver_signature" style="width: 50%" />
+              <img :src="waiver_signature" style="width: 25%" />
             </div>
             <p class="mb-0">Signature of Mentee:</p>
             <p class="mb-0">Name: {{ fullName }}</p>

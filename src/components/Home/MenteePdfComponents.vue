@@ -146,7 +146,7 @@
               }}
             </p>
             <p>
-              Signature: <img :src="participant_signature" style="width: 50%" />
+              Signature: <img :src="participant_signature" style="width: 25%" />
             </p>
           </div>
           <div class="col-6">
@@ -162,7 +162,7 @@
                   : mentor_signed_date
               }}
             </p>
-            <p>Signature: <img :src="mentor_signature" style="width: 50%" /></p>
+            <p>Signature: <img :src="mentor_signature" style="width: 25%" /></p>
           </div>
         </div>
         <div class="row mb-5">
