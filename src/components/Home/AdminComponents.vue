@@ -46,6 +46,7 @@
             >
               <input
                 class="form-check-input custom-checkbox me-3"
+                v-model="selectedMentor[participant.participant_id]"
                 type="radio"
                 :value="
                   participant.participant_id +
@@ -124,6 +125,7 @@ export default defineComponent({
   data() {
     return {
       participants: [] as Participant[],
+      selectedMentor: {} as { [key: string]: string },
     };
   },
   mounted() {
