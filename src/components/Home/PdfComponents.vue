@@ -151,21 +151,30 @@
           </router-link></label
         >
       </div>
-      <button
-        v-if="waiver_signature === ''"
-        class="btn btnPurplePillLight dynamic-width mt-3"
-        data-bs-toggle="modal"
-        data-bs-target="#signatureModal"
-      >
-        SIGN
-      </button>
-      <button
-        v-if="waiver_signature !== '' && agreement"
-        class="btn btnPurplePillLight dynamic-width mt-3"
-        @click="enroll"
-      >
-        ENROLL
-      </button>
+      <div class="row justify-content-center">
+        <button
+          v-if="waiver_signature === ''"
+          class="btn btnPurplePillLight dynamic-width mt-3"
+          data-bs-toggle="modal"
+          data-bs-target="#signatureModal"
+        >
+          SIGN
+        </button>
+      </div>
+      <div class="row justify-content-center">
+        <button
+          :class="{
+            'btn btnPurplePillLight dynamic-width mt-3':
+              waiver_signature !== '' && agreement,
+            'btn btnGrey dynamic-width mt-3':
+              waiver_signature === '' || !agreement,
+          }"
+          :disabled="waiver_signature === '' || !agreement"
+          @click="enroll"
+        >
+          ENROLL
+        </button>
+      </div>
     </div>
   </div>
   <ModalSignature
@@ -313,7 +322,24 @@ export default defineComponent({
                 full_name: this.fullName,
                 email: this.email,
                 pdfBase64: this.pdfBase64,
-                body: `<!DOCTYPE html><body><h1>A new enrollment has been submitted for ${this.fullName}</h1></body></html>`,
+                subject:
+                  "EWC | Successfully Enrollment to the EWC Program 2025",
+                body: `<!DOCTYPE html>
+                        <html>
+                            <body style="text-align: center;">
+                            <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                                <img src="https://angelicahenson.com/wp-content/uploads/2025/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <p style="text-align: left;">Dear Mentee,</p>
+                                <br>
+                                <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in Emirati Women Chapter (EWC) Program 2025.</p>
+                                <p style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
+                                <p style="text-align: left;">Thank you for your cooperation, and we look forward to a successful and engaging program experience.</p>
+                                <br>
+                                <p style="text-align: left;">Best regards,</p>
+                                <p style="text-align: left;">The EWC Team</p>
+                            </div>
+                            </body>
+                        </html>`,
               }),
             }
           );
@@ -323,23 +349,11 @@ export default defineComponent({
             Swal.close();
             console.log("Email sent successfully:", emailResult);
             // Show success modal
-            const modalElement = document.getElementById("successModal");
-            if (modalElement) {
-              const modal = new bootstrap.Modal(modalElement);
-              modal.show();
-            } else {
-              console.error("Modal element not found");
-            }
+            this.$router.push("/thank-you-mentor");
           } else {
             console.error("Error sending email:", emailResult.error);
           }
-          const modalElement = document.getElementById("successModal");
-          if (modalElement) {
-            const modal = new bootstrap.Modal(modalElement);
-            modal.show();
-          } else {
-            console.error("Modal element not found");
-          }
+          this.$router.push("/thank-you-mentor");
         } else {
           console.error(
             "Error inserting participant:"
