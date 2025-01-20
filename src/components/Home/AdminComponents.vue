@@ -17,7 +17,7 @@
     <div
       class="row d-flex justify-content-center align-items-center text-purple text-center"
     >
-      <div class="row">
+      <div class="row mb-3">
         <h1 class="text-purple">Programme Mapping</h1>
       </div>
       <div class="row mb-3" v-if="participants.length < 1">
@@ -26,7 +26,7 @@
         </h1>
       </div>
       <div class="row">
-        <h1 class="text-purple">Total Participants: {{ totalParticipants }}</h1>
+        <h4 class="text-purple">Total Participants: {{ totalParticipants }}</h4>
       </div>
       <div class="row justify-content-center">
         <div class="col-auto">
