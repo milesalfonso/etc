@@ -88,6 +88,10 @@
           />
         </div>
 
+        <p v-if="email !== confirm_email" class="text-danger">
+          Emails do not match. Please ensure both email fields are identical.
+        </p>
+
         <div class="row mb-5">
           <label for="mobile" class="form-label">EID Number</label>
           <div class="d-flex">
@@ -130,18 +134,7 @@
 
         <div class="row mb-3 justify-content-center align-items-center">
           <router-link
-            v-if="
-              full_name &&
-              title &&
-              entity &&
-              email &&
-              eidPart1.length == 3 &&
-              eidPart2.length == 4 &&
-              eidPart3.length == 7 &&
-              eidPart4.length == 1 &&
-              eidNumber &&
-              email == confirm_email
-            "
+            v-if="isFormValid"
             :to="{
               path: '/mentors',
               query: {
@@ -152,10 +145,19 @@
                 mobile: eidNumber,
               },
             }"
-            class="btn btnPurplePillLight dynamic-width"
+            :class="buttonClass"
+            class="btn dynamic-width"
           >
             Next
           </router-link>
+          <button
+            v-else
+            :class="buttonClass"
+            class="btn dynamic-width"
+            disabled
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
@@ -176,6 +178,23 @@ export default defineComponent({
   computed: {
     eidNumber() {
       return `${this.eidPart1}-${this.eidPart2}-${this.eidPart3}-${this.eidPart4}`;
+    },
+    isFormValid() {
+      return (
+        this.full_name &&
+        this.title &&
+        this.entity &&
+        this.email &&
+        this.eidPart1.length == 3 &&
+        this.eidPart2.length == 4 &&
+        this.eidPart3.length == 7 &&
+        this.eidPart4.length == 1 &&
+        this.eidNumber &&
+        this.email == this.confirm_email
+      );
+    },
+    buttonClass() {
+      return this.isFormValid ? "btnPurplePillLight" : "btnGrey";
     },
   },
   data() {
