@@ -20,10 +20,13 @@
       <div class="row">
         <h1 class="text-purple">Programme Mapping</h1>
       </div>
-      <div class="row" v-if="participants.length < 1">
+      <div class="row mb-3" v-if="participants.length < 1">
         <h1 class="text-purple">
           No pending mentee applications for matchmaking
         </h1>
+      </div>
+      <div class="row">
+        <h1 class="text-purple">Total Participants: {{ totalParticipants }}</h1>
       </div>
       <div class="row justify-content-center">
         <div class="col-auto">
@@ -143,12 +146,25 @@ export default defineComponent({
     return {
       participants: [] as Participant[],
       selectedMentor: {} as { [key: string]: string },
+      totalParticipants: 0,
     };
   },
   mounted() {
     this.fetchParticipantsAndMentors();
+    this.fetchTotalParticipants();
   },
   methods: {
+    async fetchTotalParticipants() {
+      try {
+        const response = await axios.get(
+          "https://api.dev-miles.com/ewc/fetch_total_participants"
+        );
+        console.log("Total participants:", response.data);
+        this.totalParticipants = response.data["participant_count"];
+      } catch (error) {
+        console.error("Error fetching total participants:", error);
+      }
+    },
     gatherSelectedMentors() {
       const selectedMentors = this.participants.flatMap((participant) => {
         return participant.mentors.map((mentor) => {

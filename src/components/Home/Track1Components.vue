@@ -131,6 +131,10 @@
               entity &&
               email &&
               eidNumber &&
+              eidPart1.length == 3 &&
+              eidPart2.length == 4 &&
+              eidPart3.length == 7 &&
+              eidPart4.length == 1 &&
               email == confirm_email
             "
             :to="{

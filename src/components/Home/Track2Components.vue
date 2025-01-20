@@ -135,6 +135,10 @@
               title &&
               entity &&
               email &&
+              eidPart1.length == 3 &&
+              eidPart2.length == 4 &&
+              eidPart3.length == 7 &&
+              eidPart4.length == 1 &&
               eidNumber &&
               email == confirm_email
             "
