@@ -2,31 +2,31 @@
   <div class="row mb-3">
     <div
       class="col d-flex justify-content-center align-items-center flex-column text-white"
-      style="background-color: #69478e; height: 350px"
+      style="background-color: #69478e"
     >
-      <div class="row mb-3">
+      <div class="row mb-3 mt-5">
         <img
           src="../../assets/EWC Logo-White.svg"
           alt="EWC Logo"
           class="img-fluid mx-auto d-block ms-4"
         />
       </div>
-      <div class="row w-75">
+      <div class="row w-75 mb-5">
         <h1 class="text-center">Welcome to the EWC Passion Goal</h1>
       </div>
     </div>
   </div>
   <div class="row mb-3 justify-content-center">
     <div class="col-12 text-center">
-      <iframe
-        width="1000"
-        height="562"
-        src="https://www.youtube.com/embed/WrXv4P6jr7o?si=tc6Njlnu2-x4iKA1&autoplay=1&controls=0"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-        referrerpolicy="strict-origin-when-cross-origin"
-      ></iframe>
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/WrXv4P6jr7o?si=tc6Njlnu2-x4iKA1&autoplay=1&controls=0"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
     </div>
 
     <div class="row text-center">
@@ -207,6 +207,42 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (min-width: 992px) {
+  .video-container {
+    padding-bottom: 0;
+    margin: auto;
+    height: 562px;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-container iframe {
+    position: relative;
+    width: 1000px;
+    height: 562px;
+  }
+}
+
 button {
   width: 100%;
   color: white;

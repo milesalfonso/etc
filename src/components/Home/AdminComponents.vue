@@ -2,9 +2,9 @@
   <div class="row mb-3">
     <div
       class="col d-flex justify-content-center align-items-center flex-column text-white"
-      style="background-color: #69478e; height: 200px"
+      style="background-color: #69478e"
     >
-      <div class="row">
+      <div class="row mb-5 mt-5">
         <img
           src="../../assets/EWC Logo-White.svg"
           alt="EWC Logo"
