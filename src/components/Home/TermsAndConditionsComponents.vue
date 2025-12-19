@@ -591,7 +591,7 @@ export default defineComponent({
 
         // Insert participant
         const participantResponse = await axios.post(
-          "https://api.dev-miles.com/ewc/insert-track1-participants",
+          "https://api.ewcprogram.com/ewc/insert-track1-participants",
           {
             ...participant,
           },
@@ -618,7 +618,7 @@ export default defineComponent({
 
           // Send email with PDF attachment
           const emailResponse = await fetch(
-            "https://api.dev-miles.com/ewc/send-email",
+            "https://api.ewcprogram.com/ewc/send-email",
             {
               method: "POST",
               headers: {

@@ -282,7 +282,7 @@ export default defineComponent({
           },
         });
         const response = await axios.get(
-          "https://api.dev-miles.com/ewc/fetch_track_2_participant",
+          "https://api.ewcprogram.com/ewc/fetch_track_2_participant",
           {
             params: {
               id: id,
@@ -349,7 +349,7 @@ export default defineComponent({
 
         // Send email with PDF attachment
         const emailParticipantResponse = await fetch(
-          "https://api.dev-miles.com/ewc/send-email",
+          "https://api.ewcprogram.com/ewc/send-email",
           {
             method: "POST",
             headers: {
@@ -383,7 +383,7 @@ export default defineComponent({
         );
 
         const emailMentorResponse = await fetch(
-          "https://api.dev-miles.com/ewc/send-email",
+          "https://api.ewcprogram.com/ewc/send-email",
           {
             method: "POST",
             headers: {
@@ -417,7 +417,7 @@ export default defineComponent({
         );
 
         const emailAdmin1Response = await fetch(
-          "https://api.dev-miles.com/ewc/send-email",
+          "https://api.ewcprogram.com/ewc/send-email",
           {
             method: "POST",
             headers: {
@@ -451,7 +451,7 @@ export default defineComponent({
         );
 
         const emailAdmin2Response = await fetch(
-          "https://api.dev-miles.com/ewc/send-email",
+          "https://api.ewcprogram.com/ewc/send-email",
           {
             method: "POST",
             headers: {

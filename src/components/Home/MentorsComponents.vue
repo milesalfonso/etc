@@ -311,7 +311,7 @@ export default defineComponent({
         });
 
         const response = await fetch(
-          "https://api.dev-miles.com/ewc/insert_mentors",
+          "https://api.ewcprogram.com/ewc/insert_mentors",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

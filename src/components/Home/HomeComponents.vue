@@ -69,7 +69,7 @@ export default defineComponent({
   setup() {
     onMounted(async () => {
       try {
-        const response = await axios.get("https://api.dev-miles.com/ewc/test");
+        const response = await axios.get("https://api.ewcprogram.com/ewc/test");
         console.log("Response from /test endpoint:", response.data);
       } catch (error) {
         console.error("Error calling /test endpoint:", error);

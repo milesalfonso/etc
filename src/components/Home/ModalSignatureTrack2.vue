@@ -156,7 +156,7 @@ export default defineComponent({
         }
 
         const response = await axios.post(
-          "https://api.dev-miles.com/ewc/" + endpoint,
+          "https://api.ewcprogram.com/ewc/" + endpoint,
           formData,
           {
             headers: {
@@ -203,7 +203,7 @@ export default defineComponent({
     //   }
 
     //   const response = await axios.post(
-    //     "https://api.dev-miles.com/api/update_initial_test",
+    //     "https://api.ewcprogram.com/api/update_initial_test",
     //     formData,
     //     {
     //       headers: {
