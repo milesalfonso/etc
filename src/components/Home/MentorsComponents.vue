@@ -105,7 +105,7 @@ import mentor9 from "@/assets/images/mentor_9.png";
 import mentor10 from "@/assets/images/mentor_10.png";
 import mentor11 from "@/assets/images/mentor_11.png";
 
-import mentor0_video from "@/assets/videos/sample.mp4";
+import mentor0_video from "@/assets/videos/test.mp4";
 // import mentor1_video from "@/assets/videos/mentor_1.mp4";
 // import mentor2_video from "@/assets/videos/mentor_2.mp4";
 // import mentor3_video from "@/assets/videos/mentor_3.mp4";
@@ -117,17 +117,17 @@ import mentor0_video from "@/assets/videos/sample.mp4";
 // import mentor9_video from "@/assets/videos/mentor_9.mp4";
 // import mentor10_video from "@/assets/videos/mentor_10.mp4";
 // import mentor11_video from "@/assets/videos/mentor_11.mp4";
-import mentor1_video from "@/assets/videos/sample.mp4";
-import mentor2_video from "@/assets/videos/sample.mp4";
-import mentor3_video from "@/assets/videos/sample.mp4";
-import mentor4_video from "@/assets/videos/sample.mp4";
-import mentor5_video from "@/assets/videos/sample.mp4";
-import mentor6_video from "@/assets/videos/sample.mp4";
-import mentor7_video from "@/assets/videos/sample.mp4";
-import mentor8_video from "@/assets/videos/sample.mp4";
-import mentor9_video from "@/assets/videos/sample.mp4";
-import mentor10_video from "@/assets/videos/sample.mp4";
-import mentor11_video from "@/assets/videos/sample.mp4";
+import mentor1_video from "@/assets/videos/test.mp4";
+import mentor2_video from "@/assets/videos/test.mp4";
+import mentor3_video from "@/assets/videos/test.mp4";
+import mentor4_video from "@/assets/videos/test.mp4";
+import mentor5_video from "@/assets/videos/test.mp4";
+import mentor6_video from "@/assets/videos/test.mp4";
+import mentor7_video from "@/assets/videos/test.mp4";
+import mentor8_video from "@/assets/videos/test.mp4";
+import mentor9_video from "@/assets/videos/test.mp4";
+import mentor10_video from "@/assets/videos/test.mp4";
+import mentor11_video from "@/assets/videos/test.mp4";
 
 export default defineComponent({
   name: "MentorsComponent",
@@ -311,7 +311,7 @@ export default defineComponent({
         });
 
         const response = await fetch(
-          "https://api.ewcprogram.com/ewc/insert_mentors",
+          "https://api.ewcprogram.com/insert_mentors",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

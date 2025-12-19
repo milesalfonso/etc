@@ -157,7 +157,7 @@ export default defineComponent({
     async fetchTotalParticipants() {
       try {
         const response = await axios.get(
-          "https://api.ewcprogram.com/ewc/fetch_total_participants"
+          "https://api.ewcprogram.com/fetch_total_participants"
         );
         console.log("Total participants:", response.data);
         this.totalParticipants = response.data["participant_count"];
@@ -195,7 +195,7 @@ export default defineComponent({
           const [participant_id, mentor_id, mentor_name] =
             selectedMentor.split("-");
           const response = await axios.post(
-            "https://api.ewcprogram.com/ewc/insert_track_2_participant",
+            "https://api.ewcprogram.com/insert_track_2_participant",
             {
               participant_id,
               mentor_id,
@@ -213,7 +213,7 @@ export default defineComponent({
             console.log("Participant:", participant);
             if (participant) {
               const emailParticipantResponse = await fetch(
-                "https://api.ewcprogram.com/ewc/send_email_no_attachments",
+                "https://api.ewcprogram.com/send_email_no_attachments",
                 {
                   method: "POST",
                   headers: {
@@ -304,7 +304,7 @@ export default defineComponent({
     //   },
     // });
     //       const response = await axios.post(
-    //         "https://api.ewcprogram.com/ewc/insert_track_2_participant",
+    //         "https://api.ewcprogram.com/insert_track_2_participant",
     //         {
     //           participant_id: participantId,
     //           mentor_id: mentorId,
@@ -323,7 +323,7 @@ export default defineComponent({
     //       if (participant && mentor) {
     //         // Send email to participant
     //         const emailParticipantResponse = await fetch(
-    //           "https://api.ewcprogram.com/ewc/send_email_no_attachments",
+    //           "https://api.ewcprogram.com/send_email_no_attachments",
     //           {
     //             method: "POST",
     //             headers: {
@@ -347,7 +347,7 @@ export default defineComponent({
 
     //         // Send email to mentor
     //         const emailMentorResponse = await fetch(
-    //           "https://api.ewcprogram.com/ewc/send_email_no_attachments",
+    //           "https://api.ewcprogram.com/send_email_no_attachments",
     //           {
     //             method: "POST",
     //             headers: {
@@ -401,7 +401,7 @@ export default defineComponent({
           },
         });
         const response = await axios.get(
-          "https://api.ewcprogram.com/ewc/fetch_participants_and_mentors"
+          "https://api.ewcprogram.com/fetch_participants_and_mentors"
         );
         this.participants = response.data;
         Swal.close();
@@ -416,9 +416,7 @@ export default defineComponent({
     },
     async exportToExcel() {
       try {
-        const response = await axios.get(
-          "https://api.ewcprogram.com/ewc/get-data"
-        );
+        const response = await axios.get("https://api.ewcprogram.com/get-data");
         const data = response.data;
 
         if (!Array.isArray(data)) {
