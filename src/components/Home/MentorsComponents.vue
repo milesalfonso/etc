@@ -49,9 +49,8 @@
             :ref="(el) => el && registerVideo(el as HTMLVideoElement, mentor.id)"
             :poster="mentor.poster"
             muted
-            loop
             playsinline
-            preload="auto"
+            preload="metadata"
           >
             <source :src="mentor.video" type="video/mp4" />
           </video>
@@ -85,6 +84,25 @@
   </div>
 
   <ModalSuccessSelection />
+  <Teleport to="body">
+    <div
+      v-if="showVideoModal"
+      class="video-modal-overlay"
+      @click.self="closeVideoModal"
+    >
+      <div class="video-modal">
+        <button class="close-btn" @click="closeVideoModal">X</button>
+
+        <video
+          v-if="activeMentor"
+          :src="activeMentor.video"
+          controls
+          autoplay
+          playsinline
+        ></video>
+      </div>
+    </div>
+  </Teleport>
 </template>
 
 <script lang="ts">
@@ -105,7 +123,7 @@ import mentor9 from "@/assets/images/mentor_9.png";
 import mentor10 from "@/assets/images/mentor_10.png";
 import mentor11 from "@/assets/images/mentor_11.png";
 
-import mentor0_video from "@/assets/videos/test.mp4";
+// import mentor0_video from "@/assets/videos/mentor_0.mp4";
 // import mentor1_video from "@/assets/videos/mentor_1.mp4";
 // import mentor2_video from "@/assets/videos/mentor_2.mp4";
 // import mentor3_video from "@/assets/videos/mentor_3.mp4";
@@ -117,6 +135,8 @@ import mentor0_video from "@/assets/videos/test.mp4";
 // import mentor9_video from "@/assets/videos/mentor_9.mp4";
 // import mentor10_video from "@/assets/videos/mentor_10.mp4";
 // import mentor11_video from "@/assets/videos/mentor_11.mp4";
+
+import mentor0_video from "@/assets/videos/test.mp4";
 import mentor1_video from "@/assets/videos/test.mp4";
 import mentor2_video from "@/assets/videos/test.mp4";
 import mentor3_video from "@/assets/videos/test.mp4";
@@ -135,6 +155,9 @@ export default defineComponent({
 
   data() {
     return {
+      showVideoModal: false as boolean,
+      activeMentor: null as any,
+      lastTappedMentorId: null as number | null,
       fullName: "",
       title: "",
       entity: "",
@@ -232,6 +255,16 @@ export default defineComponent({
   },
 
   methods: {
+    openVideoModal(mentor: any) {
+      this.activeMentor = mentor;
+      this.showVideoModal = true;
+    },
+
+    closeVideoModal() {
+      this.showVideoModal = false;
+      this.activeMentor = null;
+    },
+
     /* ---------------- VIDEO CONTROL ---------------- */
 
     registerVideo(el: HTMLVideoElement, id: number) {
@@ -272,20 +305,19 @@ export default defineComponent({
     /* ---------------- TOUCH FALLBACK ---------------- */
 
     handleTap(id: number) {
-      const video = this.videoRefs[id];
-      if (!video) return;
-
-      // First tap → play preview
-      if (this.lastTouchedVideo !== id) {
-        this.pauseAllExcept(id);
-        video.play();
-        this.lastTouchedVideo = id;
+      // Second tap on same mentor → select
+      if (this.lastTappedMentorId === id && !this.showVideoModal) {
+        this.toggleMentorSelection(id);
+        this.lastTappedMentorId = null;
         return;
       }
 
-      // Second tap → select
-      this.toggleMentorSelection(id);
-      this.lastTouchedVideo = null;
+      // First tap → open modal
+      const mentor = this.mentors.find((m) => m.id === id);
+      if (!mentor) return;
+
+      this.lastTappedMentorId = id;
+      this.openVideoModal(mentor);
     },
 
     /* ---------------- SELECTION ---------------- */
@@ -372,7 +404,7 @@ export default defineComponent({
 
 .mentor-video {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
@@ -414,5 +446,45 @@ export default defineComponent({
   .mentor-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.video-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 2147483647; /* max safe */
+  display: grid;
+  place-items: center;
+}
+
+.video-modal {
+  width: min(90vw, 960px);
+  aspect-ratio: 16 / 9;
+  background: black;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-modal video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 </style>
