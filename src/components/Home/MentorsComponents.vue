@@ -95,9 +95,12 @@
 
         <video
           v-if="activeMentor"
+          ref="modalVideo"
+          :key="activeMentor.video"
           :src="activeMentor.video"
           controls
           autoplay
+          muted
           playsinline
         ></video>
       </div>
@@ -136,18 +139,18 @@ import mentor11 from "@/assets/images/mentor_11.png";
 // import mentor10_video from "@/assets/videos/mentor_10.mp4";
 // import mentor11_video from "@/assets/videos/mentor_11.mp4";
 
-import mentor0_video from "@/assets/videos/test.mp4";
-import mentor1_video from "@/assets/videos/test.mp4";
-import mentor2_video from "@/assets/videos/test.mp4";
-import mentor3_video from "@/assets/videos/test.mp4";
-import mentor4_video from "@/assets/videos/test.mp4";
-import mentor5_video from "@/assets/videos/test.mp4";
-import mentor6_video from "@/assets/videos/test.mp4";
-import mentor7_video from "@/assets/videos/test.mp4";
-import mentor8_video from "@/assets/videos/test.mp4";
-import mentor9_video from "@/assets/videos/test.mp4";
-import mentor10_video from "@/assets/videos/test.mp4";
-import mentor11_video from "@/assets/videos/test.mp4";
+import mentor0_video from "/videos/test.mp4";
+import mentor1_video from "/videos/test.mp4";
+import mentor2_video from "/videos/test.mp4";
+import mentor3_video from "/videos/test.mp4";
+import mentor4_video from "/videos/test.mp4";
+import mentor5_video from "/videos/test.mp4";
+import mentor6_video from "/videos/test.mp4";
+import mentor7_video from "/videos/test.mp4";
+import mentor8_video from "/videos/test.mp4";
+import mentor9_video from "/videos/test.mp4";
+import mentor10_video from "/videos/test.mp4";
+import mentor11_video from "/videos/test.mp4";
 
 export default defineComponent({
   name: "MentorsComponent",
@@ -258,6 +261,19 @@ export default defineComponent({
     openVideoModal(mentor: any) {
       this.activeMentor = mentor;
       this.showVideoModal = true;
+
+      this.$nextTick(() => {
+        const v = this.$refs.modalVideo as HTMLVideoElement | undefined;
+        if (!v) return;
+
+        v.load();
+        const p = v.play();
+        if (p && typeof (p as any).catch === "function") {
+          (p as Promise<void>).catch(() => {
+            // Autoplay may be blocked; user can tap play
+          });
+        }
+      });
     },
 
     closeVideoModal() {
