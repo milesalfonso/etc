@@ -113,44 +113,10 @@ import { defineComponent } from "vue";
 import Swal from "sweetalert2";
 import ModalSuccessSelection from "./ModalSuccessSelection.vue";
 
-import mentor0 from "@/assets/images/mentor_0.png";
-import mentor1 from "@/assets/images/mentor_1.png";
-import mentor2 from "@/assets/images/mentor_2.png";
-import mentor3 from "@/assets/images/mentor_3.png";
-import mentor4 from "@/assets/images/mentor_4.png";
-import mentor5 from "@/assets/images/mentor_5.png";
-import mentor6 from "@/assets/images/mentor_6.png";
-import mentor7 from "@/assets/images/mentor_7.png";
-import mentor8 from "@/assets/images/mentor_8.png";
-import mentor9 from "@/assets/images/mentor_9.png";
-import mentor10 from "@/assets/images/mentor_10.png";
-import mentor11 from "@/assets/images/mentor_11.png";
+const ASSET_BASE = "https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com";
 
-// import mentor0_video from "@/assets/videos/mentor_0.mp4";
-// import mentor1_video from "@/assets/videos/mentor_1.mp4";
-// import mentor2_video from "@/assets/videos/mentor_2.mp4";
-// import mentor3_video from "@/assets/videos/mentor_3.mp4";
-// import mentor4_video from "@/assets/videos/mentor_4.mp4";
-// import mentor5_video from "@/assets/videos/mentor_5.mp4";
-// import mentor6_video from "@/assets/videos/mentor_6.mp4";
-// import mentor7_video from "@/assets/videos/mentor_7.mp4";
-// import mentor8_video from "@/assets/videos/mentor_8.mp4";
-// import mentor9_video from "@/assets/videos/mentor_9.mp4";
-// import mentor10_video from "@/assets/videos/mentor_10.mp4";
-// import mentor11_video from "@/assets/videos/mentor_11.mp4";
-
-import mentor0_video from "/videos/test.mp4";
-import mentor1_video from "/videos/test.mp4";
-import mentor2_video from "/videos/test.mp4";
-import mentor3_video from "/videos/test.mp4";
-import mentor4_video from "/videos/test.mp4";
-import mentor5_video from "/videos/test.mp4";
-import mentor6_video from "/videos/test.mp4";
-import mentor7_video from "/videos/test.mp4";
-import mentor8_video from "/videos/test.mp4";
-import mentor9_video from "/videos/test.mp4";
-import mentor10_video from "/videos/test.mp4";
-import mentor11_video from "/videos/test.mp4";
+const posterUrl = (id: number) => `${ASSET_BASE}/images/mentor_${id}.jpg`;
+const videoUrl = (id: number) => `${ASSET_BASE}/videos/mentor_${id}.mp4`;
 
 export default defineComponent({
   name: "MentorsComponent",
@@ -169,79 +135,175 @@ export default defineComponent({
 
       mentors: [
         {
-          id: 1,
-          name: "arati",
-          poster: mentor0,
-          video: mentor0_video,
+          id: 14,
+          name: "Mumtaz Abdullah",
+          poster: posterUrl(14),
+          video: videoUrl(14),
         },
         {
-          id: 2,
-          name: "nahmita",
-          poster: mentor1,
-          video: mentor1_video,
+          id: 15,
+          name: "Safaae RSCI",
+          poster: posterUrl(15),
+          video: videoUrl(15),
         },
         {
-          id: 3,
-          name: "aisha",
-          poster: mentor2,
-          video: mentor2_video,
+          id: 16,
+          name: "Rola Cheikha",
+          poster: posterUrl(16),
+          video: videoUrl(16),
         },
         {
-          id: 4,
-          name: "dr. mona",
-          poster: mentor3,
-          video: mentor3_video,
+          id: 17,
+          name: "Dr.Malek Najar",
+          poster: posterUrl(17),
+          video: videoUrl(17),
         },
         {
-          id: 5,
-          name: "nada",
-          poster: mentor4,
-          video: mentor4_video,
+          id: 18,
+          name: "Sandhya Mahalakshmi",
+          poster: posterUrl(18),
+          video: videoUrl(18),
         },
         {
-          id: 6,
-          name: "simar",
-          poster: mentor5,
-          video: mentor5_video,
+          id: 19,
+          name: "Anita Raina",
+          poster: posterUrl(19),
+          video: videoUrl(19),
         },
         {
-          id: 7,
-          name: "nervana",
-          poster: mentor6,
-          video: mentor6_video,
+          id: 20,
+          name: "Dinu Iheal Sound Healer",
+          poster: posterUrl(20),
+          video: videoUrl(20),
         },
         {
-          id: 8,
-          name: "nataliya",
-          poster: mentor7,
-          video: mentor7_video,
+          id: 21,
+          name: "Wafa Disi",
+          poster: posterUrl(21),
+          video: videoUrl(21),
         },
         {
-          id: 9,
-          name: "jameela",
-          poster: mentor8,
-          video: mentor8_video,
+          id: 22,
+          name: "Nowsheen Yaqoob",
+          poster: posterUrl(22),
+          video: videoUrl(22),
         },
         {
-          id: 10,
-          name: "dr. omneya",
-          poster: mentor9,
-          video: mentor9_video,
+          id: 23,
+          name: "Lena Zidan",
+          poster: posterUrl(23),
+          video: videoUrl(23),
         },
         {
-          id: 11,
-          name: "sarah",
-          poster: mentor10,
-          video: mentor10_video,
+          id: 24,
+          name: "Dr.Hanan Mohamed Selim",
+          poster: posterUrl(24),
+          video: videoUrl(24),
         },
         {
-          id: 12,
-          name: "israa",
-          poster: mentor11,
-          video: mentor11_video,
+          id: 25,
+          name: "Cristina Balhui",
+          poster: posterUrl(25),
+          video: videoUrl(25),
+        },
+        {
+          id: 26,
+          name: "Haneen Farid",
+          poster: posterUrl(26),
+          video: videoUrl(26),
+        },
+        {
+          id: 27,
+          name: "Olivia Tawadros",
+          poster: posterUrl(27),
+          video: videoUrl(27),
+        },
+        { id: 28, name: "Ahed", poster: posterUrl(28), video: videoUrl(28) },
+        {
+          id: 29,
+          name: "Hajra Hussain",
+          poster: posterUrl(29),
+          video: videoUrl(29),
+        },
+        {
+          id: 30,
+          name: "Shoneli Kamal",
+          poster: posterUrl(30),
+          video: videoUrl(30),
+        },
+        {
+          id: 31,
+          name: "Nada Ahmed",
+          poster: posterUrl(31),
+          video: videoUrl(31),
+        },
+        {
+          id: 32,
+          name: "Simar Halwany",
+          poster: posterUrl(32),
+          video: videoUrl(32),
+        },
+        {
+          id: 33,
+          name: "Arrati Vinay Tuteja",
+          poster: posterUrl(33),
+          video: videoUrl(33),
+        },
+        {
+          id: 34,
+          name: "Namita Malhotra",
+          poster: posterUrl(34),
+          video: videoUrl(34),
+        },
+        {
+          id: 35,
+          name: "Nataliya Wiedemeyer",
+          poster: posterUrl(35),
+          video: videoUrl(35),
+        },
+        {
+          id: 36,
+          name: "Mona Gamal",
+          poster: posterUrl(36),
+          video: videoUrl(36),
+        },
+        {
+          id: 37,
+          name: "Aisha Abdulqader",
+          poster: posterUrl(37),
+          video: videoUrl(37),
+        },
+        {
+          id: 38,
+          name: "Jamila Korek",
+          poster: posterUrl(38),
+          video: videoUrl(38),
+        },
+        {
+          id: 39,
+          name: "Sarah Tuqan",
+          poster: posterUrl(39),
+          video: videoUrl(39),
+        },
+        {
+          id: 40,
+          name: "Israa Zubdiyha",
+          poster: posterUrl(40),
+          video: videoUrl(40),
+        },
+        {
+          id: 41,
+          name: "Omneya Omer",
+          poster: posterUrl(41),
+          video: videoUrl(41),
+        },
+        {
+          id: 42,
+          name: "Nervana Yahya",
+          poster: posterUrl(42),
+          video: videoUrl(42),
         },
       ],
-
       selectedMentors: [] as number[],
       videoRefs: {} as Record<number, HTMLVideoElement>,
       lastTouchedVideo: null as number | null,
