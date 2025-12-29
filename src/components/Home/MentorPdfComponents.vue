@@ -12,7 +12,7 @@
         />
       </div>
       <div class="row w-75">
-        <h1 class="text-center">Welcome to the EWC Passion Goal</h1>
+        <h1 class="text-center">EMPOWER, INSPIRE, THRIVE</h1>
       </div>
     </div>
   </div>
@@ -23,18 +23,21 @@
       >
         <div class="row mb-3 justify-content-center">
           <div class="col-auto">
-            <h4 class="text-center">Enrollment Undertaking</h4>
-            <h4 class="text-center">Emirati Women Chapter (EWC)</h4>
-            <h4 class="text-center">January -Nov 2025</h4>
+            <h4 class="text-center">
+              Emirati Women Chapter (EWC) - Enrollment Undertaking
+            </h4>
+            <h4 class="text-center">
+              Duration from January - June 2026 (6 months)
+            </h4>
           </div>
         </div>
         <div class="row mb-3 justify-content-center">
           <div class="col-auto">
             <p class="text-left mb-3">
-              Pure Health Holding PJSC (hereby referred to as “Pure Health”)
-              agrees to sponsor the EWC Candidates for the EWC Development
-              Program, effective from the date of signing this form by the
-              Mentee and Personal Mentor named below.
+              Pure Health Medical Supplies LLC (hereby referred to as “Pure
+              Health”) agrees to sponsor the EWC Candidates for the EWC
+              Development Program, effective from the date of signing this form
+              by the Mentee and Personal Mentor named below.
             </p>
             <p class="text-left mb-0">
               Mentee and Personal Mentor undertake that they will commit and
@@ -71,32 +74,34 @@
             <hr />
             <ul>
               <li>
-                The Mentee shall actively participate in the learning process
-                and dedicate the necessary time and effort to achieve the set
-                learning objectives.
+                The EWC candidate should commit to actively participating in the
+                learning process and dedicate the necessary time and effort to
+                achieve the set learning objective.
               </li>
               <li>
-                The Mentee shall attend 100% of the scheduled learning sessions,
-                workshops, or activities related to the learning objective, and
-                complete assigned tasks and assignments on time.
+                The EWC candidate should attend 100% of the scheduled learning
+                sessions, workshops, or activities related to the learning
+                objective, and complete assigned tasks and assignments on time.
+                Any missed coaching session will required notification minimum
+                24hours before.
               </li>
               <li>
-                The Mentee shall possess the basic skills, knowledge, and
-                prerequisites necessary to successfully pursue this learning
-                objective.
+                The EWC candidate should possess the basic skills, knowledge,
+                and prerequisites needed to pursue this learning objective.
               </li>
               <li>
-                The Mentee shall proactively seek assistance or guidance from
-                mentors, trainers, or relevant resources as needed.
+                The EWC candidate should proactively seek assistance or guidance
+                from mentors, trainers, or relevant resources.
               </li>
               <li>
-                The Mentee should engage in self-reflection and assess her
-                progress regularly to identify areas for improvement.
+                The EWC candidate should engage in self-reflection and assess
+                her progress regularly to identify areas for improvement, by
+                responding to surveys and reflect networking on LinkedIn.
               </li>
               <li>
-                The Mentee shall participate in interactive activities,
-                discussions, or assessments to enhance her capability in
-                achieving desired learning outcomes.
+                The EWC candidate should participate in interactive activities,
+                discussions, or assessments to enhance her capability in the
+                desired learning outcome.
               </li>
             </ul>
           </div>
@@ -127,6 +132,10 @@
                 Design and oversight the customized development plan for the
                 assigned candidates and act as a case manager to collaborate on
                 the program phases inquires.
+              </li>
+              <li>
+                Comply with the coaching unified method & mentorship. Other
+                therapeutic methods will apply if needed/ demanded.
               </li>
             </ul>
           </div>
@@ -177,6 +186,12 @@
               no compensation will be provided for such use and you agree to
               waive any claims regarding publicity, privacy, or moral rights
               related to the content's use.
+            </p>
+            <p>
+              <span style="font-weight: bold"
+                >During the 1:1 online session both camera for the mentees and
+                mentors should be ON.</span
+              >
             </p>
           </div>
         </div>

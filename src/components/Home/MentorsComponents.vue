@@ -13,7 +13,26 @@
         />
       </div>
       <div class="row w-75 mb-5">
-        <h1 class="text-center">Welcome to the EWC Passion Goal</h1>
+        <h1 class="text-center">
+          تهانينا! لقد أتممتمي بنجاح الوصول إلى هذا المستوى من التسجيل في برنامج
+          EWC. يرجى اختيار ثلاثة (3) مدربات بعناية من القائمة المعتمدة لعام
+          2026، مع تخصيص 30–33 دقيقة لمراجعة جميع المقاطع التعريفية. يشترط
+          النظام إدخال ثلاثة اختيارات فقط. بعد الإرسال، سيتم تعيين مدربة واحدة،
+          وسيتم إرسال نموذج موافقة آلي خاص بالخصوصية والسرية عبر رابط الكتروني
+          بالايميل، ليتم توقيعه من قبلكم ومن قبل المدربة المختارة. ستُرسل نسخ من
+          النموذج الموقّع إلى إدارة البرنامج، والمدربة، وإليكم. نتمنى لكِ تجربة
+          اختيار سلسة ومثمرة.
+        </h1>
+        <h4>
+          CONGRATULATIONS! You have successfully achieved this level of
+          enrolment in the EWC Program. Please carefully select three (3)
+          preferred mentors from the provided 2026 list. Allow 30–33 minutes to
+          review all videos. The system requires exactly three selections. After
+          submission, one mentor will be assigned, and an automated privacy and
+          confidentiality consent form will be shared for signature by both you
+          and the mentor. Copies will be provided to Program Management, your
+          mentor, and yourself. We wish you a smooth selection process.
+        </h4>
       </div>
     </div>
   </div>

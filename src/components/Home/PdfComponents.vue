@@ -12,7 +12,7 @@
         />
       </div>
       <div class="row w-75">
-        <h1 class="text-center">Welcome to the EWC Passion Goal</h1>
+        <h1 class="text-center">EMPOWER, INSPIRE, AND THRIVE</h1>
       </div>
     </div>
   </div>
@@ -25,79 +25,97 @@
           <div class="col-auto">
             <h4 class="text-center">Enrollment Undertaking</h4>
             <h4 class="text-center">Emirati Women Chapter (EWC)</h4>
-            <h4 class="text-center">January -Nov 2025</h4>
+            <h4 class="text-center">Jan - Aug 2026</h4>
           </div>
         </div>
         <div class="row mb-0 justify-content-center">
           <div class="col-auto">
             <p class="text-left mb-0">
-              <span style="font-weight: bold">WHEREAS</span> , Pure Health
-              Holding PJSC (hereby referred to as “Pure Health”) agrees to
-              sponsor the EWC Candidates for the
-              <span style="font-weight: bold">EWC Development Program</span> .
+              Pure Health Medical Supplies LLC (hereby referred to as “Pure
+              Health”) agrees to sponsor the EWC Candidates for the EWC
+              Development Program, effective from the date of signing this form
+              by the participant.
             </p>
             <p class="text-left">
-              <span style="font-weight: bold">WHEREAS</span> , the undersigned,
-              Name:
-              <span style="text-decoration: underline; font-weight: bold">{{
-                fullName
-              }}</span>
-              EID no:
-              <span style="text-decoration: underline; font-weight: bold">{{
-                mobile
-              }}</span>
-              (hereinafter referred to as the "
-              <span style="font-weight: bold">Mentee</span> "), wishes to attend
-              the EWC Program to develop her skills and expertise. NOW,
-              THEREFORE, in consideration of the opportunity to participate in
-              the EWC Program, the Mentee hereby undertakes to the following
-              obligations:
+              The participants undertake that they will commit and adhere to the
+              terms and conditions of this undertaking form, in return Pure
+              Health will consider designing a constructive plan to develop the
+              required skills for the program participants, through
+              well-selected topics and a skilled trainer acting as subject
+              matter experts during the program.
             </p>
           </div>
         </div>
+        <div class="row mb-5 justify-content-center">
+          <div class="col">
+            <div class="row" style="background-color: rgba(61, 61, 61, 0.5)">
+              <p>EWC Participant - referred to as "Candidate"</p>
+            </div>
+            <p class="mb-0">Name: {{ fullName }}</p>
+            <p class="mb-0">Title: {{ title }}</p>
+            <p class="mb-0">Entity: {{ entity }}</p>
+          </div>
+        </div>
+        <div class="row mb-0 justify-content-center">
+          <hr />
+          <h4 class="text-center">Participant's Commitments</h4>
+          <hr />
+        </div>
         <div class="row mb-0 justify-content-center">
           <div class="col-auto">
-            <ol>
+            <ul style="list-style-type: none; padding-left: 0">
               <li>
-                <span style="font-weight: bold">Active Participation:</span> The
-                Mentee shall actively participate in the learning process and
-                dedicate the necessary time and effort to achieve the set
-                learning objectives.
+                <span style="font-weight: bold">Active Participation:</span
+                ><span style="margin-left: 25px; margin-right: 25px">•</span>
+                The EWC candidate should commit to actively participating in the
+                learning process and dedicate the necessary time and effort to
+                achieve the set learning objective.
               </li>
               <li>
-                <span style="font-weight: bold">Attendance:</span> The Mentee
-                shall attend 100% of the scheduled learning sessions, workshops,
-                or activities related to the learning objectives and shall
-                complete all assigned tasks and assignments on time.
+                <span style="font-weight: bold">Attendance:</span
+                ><span style="margin-left: 25px; margin-right: 25px">•</span>The
+                EWC candidate should attend 100% of the scheduled learning
+                sessions, workshops, or activities related to the learning
+                objective, and complete assigned tasks and assignments on time.
               </li>
               <li>
-                <span style="font-weight: bold">Prerequisites:</span> The Mentee
-                shall possess the basic skills, knowledge, and prerequisites
-                necessary to successfully pursue this learning objective.
+                <span style="font-weight: bold">Prerequisites:</span
+                ><span style="margin-left: 25px; margin-right: 25px">•</span>The
+                EWC candidate should possess the basic skills, knowledge, and
+                prerequisites needed to pursue this learning objective.
               </li>
               <li>
-                <span style="font-weight: bold">Seeking Assistance:</span> The
-                Mentee shall proactively seek assistance or guidance from
-                mentors, trainers, or relevant resources as needed.
+                <span style="font-weight: bold">Seeking Assistance:</span
+                ><span style="margin-left: 25px; margin-right: 25px">•</span>The
+                EWC candidate should proactively seek assistance or guidance
+                from mentors, trainers, or relevant resources.
               </li>
               <li>
                 <span style="font-weight: bold"
                   >Self-Reflection and Assessment:</span
                 >
-                The Mentee shall engage in regular self-reflection and assess
-                her progress to identify areas for improvement.
+                <span style="margin-left: 25px; margin-right: 25px">•</span>The
+                EWC candidate should engage in self-reflection and assess her
+                progress regularly to identify areas for improvement, by
+                responding to surveys and reflect networking on LinkedIn.
               </li>
               <li>
-                <span style="font-weight: bold">Active Engagement:</span> The
-                Mentee shall actively participate in interactive activities,
-                discussions, or assessments to enhance her capabilities in
-                achieving the desired learning outcomes.
+                <span style="font-weight: bold">Active Engagement:</span
+                ><span style="margin-left: 25px; margin-right: 25px">•</span>The
+                EWC candidate should participate in interactive activities,
+                discussions, or assessments to enhance her capability in the
+                desired learning outcome.
               </li>
-            </ol>
+            </ul>
           </div>
         </div>
         <div class="row mb-5 justify-content-center">
           <div class="col">
+            <div class="row" style="background-color: rgba(61, 61, 61, 0.5)">
+              <p>EWC Candidate - referred to as "Mentee"</p>
+            </div>
+            <p class="mb-0">Name: {{ fullName }}</p>
+            <p class="mb-0">Date: {{ getCurrentDate() }}</p>
             <div
               style="
                 border-bottom: 1px solid #69478e;
@@ -107,9 +125,7 @@
             >
               <img :src="waiver_signature" style="width: 25%" />
             </div>
-            <p class="mb-0">Signature of Mentee:</p>
-            <p class="mb-0">Name: {{ fullName }}</p>
-            <p class="mb-0">Date: {{ getCurrentDate() }}</p>
+            <p class="mb-0">Signature:</p>
           </div>
         </div>
         <div class="row mb-5">
@@ -124,6 +140,12 @@
               no compensation will be provided for such use and you agree to
               waive any claims regarding publicity, privacy, or moral rights
               related to the content's use.
+            </p>
+            <p>
+              <span style="font-weight: bold"
+                >During the 1:1 online session both camera for the mentees and
+                mentors should be ON.</span
+              >
             </p>
           </div>
         </div>
