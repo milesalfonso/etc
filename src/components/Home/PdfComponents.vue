@@ -344,7 +344,7 @@ export default defineComponent({
                 full_name: this.fullName,
                 email: this.email,
                 pdfBase64: this.pdfBase64,
-                subject: "EWC | Successful Enrollment to the EWC Program 2025",
+                subject: "EWC | Successful Enrollment to the EWC Program 2026",
                 body: `<!DOCTYPE html>
                         <html>
                             <body style="text-align: center;">
@@ -376,7 +376,7 @@ export default defineComponent({
                 full_name: this.fullName,
                 email: "onboarding@ewc-program.ae",
                 pdfBase64: this.pdfBase64,
-                subject: "EWC | Successful Enrollment to the EWC Program 2025",
+                subject: "EWC | Successful Enrollment to the EWC Program 2026",
                 body: `<!DOCTYPE html>
                         <html>
                             <body style="text-align: center;">
@@ -408,7 +408,7 @@ export default defineComponent({
                 full_name: this.fullName,
                 email: "emiratiwomenchapter@purehealth.ae",
                 pdfBase64: this.pdfBase64,
-                subject: "EWC | Successful Enrollment to the EWC Program 2025",
+                subject: "EWC | Successful Enrollment to the EWC Program 2026",
                 body: `<!DOCTYPE html>
                         <html>
                             <body style="text-align: center;">
