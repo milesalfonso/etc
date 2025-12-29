@@ -52,7 +52,7 @@
               <p>EWC Participant - referred to as "Candidate"</p>
             </div>
             <p class="mb-0">Name: {{ fullName }}</p>
-            <p class="mb-0">Title: {{ title }}</p>
+            <p class="mb-0">Job Title: {{ title }}</p>
             <p class="mb-0">Entity: {{ entity }}</p>
           </div>
         </div>

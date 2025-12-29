@@ -49,7 +49,7 @@
         </div>
 
         <div class="row mb-3">
-          <label for="title" class="form-label">Title</label>
+          <label for="title" class="form-label">Job Title</label>
           <input
             type="text"
             class="form-control inputBox"

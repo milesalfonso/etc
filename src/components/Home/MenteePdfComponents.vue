@@ -55,7 +55,7 @@
               <p>EWC Candidate - referred to as “Mentee”</p>
             </div>
             <p>Name: {{ participant_name }}</p>
-            <p>Title: {{ participant_title }}</p>
+            <p>Job Title: {{ participant_title }}</p>
             <p>Entity: {{ participant_entity }}</p>
           </div>
           <div class="col-6">
@@ -63,7 +63,7 @@
               <p>Personal coach- referred to as “Personal Mentor”</p>
             </div>
             <p>Name: {{ mentor_name }}</p>
-            <p>Title: {{ mentor_title }}</p>
+            <p>Job Title: {{ mentor_title }}</p>
             <p>Entity: {{ mentor_entity }}</p>
           </div>
         </div>
