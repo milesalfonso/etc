@@ -234,7 +234,7 @@ export default defineComponent({
                             <html>
                               <body style="text-align: center;">
                                 <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                                  <img src="https://angelicahenson.com/wp-content/uploads/2026/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                  <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
                                   <p>Dear 2026 Candidate,</p>
                                   <p>We are excited to inform you that the mentor assignment process for the EWC Program 2026- cohort 2, has been completed, and you have been assigned to a mentor from the pre-list that matches your profile.</p>
                                   <p>Your Assigned Mentor is:</p>

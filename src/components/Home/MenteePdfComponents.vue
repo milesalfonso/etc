@@ -433,7 +433,7 @@ export default defineComponent({
                       <html>
                         <body style="text-align: center;">
                           <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                            <img src="https://angelicahenson.com/wp-content/uploads/2026/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
                             <p>Dear 2026 Mentor,</p>
                             <br>
                             <p>We are pleased to inform you that your mentee from EWC Program 2026- cohort 2, has completed the necessary steps and submitted the signed Undertaking Agreement.</p>

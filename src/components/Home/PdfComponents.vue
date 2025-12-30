@@ -389,7 +389,7 @@ export default defineComponent({
                         <html>
                             <body style="text-align: center;">
                             <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                                <img src="https://angelicahenson.com/wp-content/uploads/2026/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
                                 <p style="text-align: left;">Dear Mentee,</p>
                                 <br>
                                 <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in the Emirati Women Chapter (EWC) Program 2026.</p>
@@ -421,7 +421,7 @@ export default defineComponent({
                         <html>
                             <body style="text-align: center;">
                             <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                                <img src="https://angelicahenson.com/wp-content/uploads/2026/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
                                 <p style="text-align: left;">Dear Mentee,</p>
                                 <br>
                                 <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in the Emirati Women Chapter (EWC) Program 2026.</p>
@@ -453,7 +453,7 @@ export default defineComponent({
                         <html>
                             <body style="text-align: center;">
                             <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                                <img src="https://angelicahenson.com/wp-content/uploads/2026/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
                                 <p style="text-align: left;">Dear Mentee,</p>
                                 <br>
                                 <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in the Emirati Women Chapter (EWC) Program 2026.</p>
