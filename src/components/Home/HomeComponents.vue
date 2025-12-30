@@ -46,12 +46,6 @@
       </div>
     </div>
   </div>
-  <!-- Purple footer (full width like header) -->
-  <div class="row mt-4">
-    <div class="col p-0">
-      <div class="purple-footer"></div>
-    </div>
-  </div>
 </template>
 
 <script lang="ts">
