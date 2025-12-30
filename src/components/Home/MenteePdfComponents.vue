@@ -428,13 +428,13 @@ export default defineComponent({
               email: this.mentor_email,
               pdfBase64: this.pdfBase64,
               subject:
-                "Emirati Women Chapter | Please Acknowledge and Sign the Undertaking Agreement for the Emirati Women Chapter Program 2025",
+                "Emirati Women Chapter | Please Acknowledge and Sign the Undertaking Agreement for the Emirati Women Chapter Program 2026",
               body: `<!DOCTYPE html>
                       <html>
                         <body style="text-align: center;">
                           <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                            <img src="https://angelicahenson.com/wp-content/uploads/2025/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
-                            <p>Dear 2025 Mentor,</p>
+                            <img src="https://angelicahenson.com/wp-content/uploads/2026/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                            <p>Dear 2026 Mentor,</p>
                             <br>
                             <p>We are pleased to inform you that your mentee from EWC Program 2026- cohort 2, has completed the necessary steps and submitted the signed Undertaking Agreement.</p>
                             <p>Next, we need you to review, sign, and submit the Undertaking Agreement from your end as a second party. Please read the document and acknowledge your commitment to supporting your mentee throughout the program.</p>

@@ -17,7 +17,7 @@
         <div class="row mb-3 justify-content-center">
           <div class="col-auto">
             <h2 class="text-center">MENTORING GUIDELINES</h2>
-            <h4 class="text-center">Emirati Women Chapter 2025</h4>
+            <h4 class="text-center">Emirati Women Chapter 2026</h4>
             <hr />
           </div>
         </div>
@@ -271,7 +271,7 @@
             <p class="text-left">
               Mentor Agreement: Mentors will be awarded a separate contractual
               service agreement for each mentee they coach over a 6- 9 month
-              period, starting in February 2025.
+              period, starting in February 2026.
             </p>
             <p class="text-left">
               Scope of Work: A defined scope of work will be outlined, including
@@ -340,7 +340,7 @@
             <p class="text-left">
               The material will be uploaded in each personal mentor deck. There
               will be an expected opening meeting with each mentee by their
-              mentors 1:1 meeting on 5 th Feb 2025. A structure timetable for
+              mentors 1:1 meeting on 5 th Feb 2026. A structure timetable for
               the back-to-back meeting that will run in one day for 4 hours will
               be shared with the mentors while they are in process of developing
               the PDP proposal for the mentee using the above shared material.

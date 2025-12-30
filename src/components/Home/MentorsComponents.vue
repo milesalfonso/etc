@@ -114,6 +114,12 @@
         ></video>
       </div>
     </div>
+    <!-- Purple footer (full width like header) -->
+    <div class="row mt-4">
+      <div class="col p-0">
+        <div class="purple-footer"></div>
+      </div>
+    </div>
   </Teleport>
 </template>
 
@@ -417,8 +423,7 @@ export default defineComponent({
         cancelButtonText: "Go back",
         reverseButtons: true,
         width: 900,
-
-        buttonsStyling: false, // ⬅️ IMPORTANT: allows custom classes
+        buttonsStyling: false,
         customClass: {
           confirmButton: "btn btnPurplePillLight dynamic-width",
           cancelButton: "btn btnGrey dynamic-width",
@@ -454,15 +459,63 @@ export default defineComponent({
 
         if (!response.ok) throw new Error("Failed to submit mentor selection");
 
+        // ✅ Email user after successful insert
+        Swal.fire({
+          title: "Emailing...",
+          text: "Sending confirmation email",
+          allowOutsideClick: false,
+          didOpen: () => Swal.showLoading(),
+        });
+
+        const emailBody = `<!DOCTYPE html>
+                        <html>
+                            <body style="text-align: center;">
+                            <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                                <img src="https://angelicahenson.com/wp-content/uploads/2026/01/Pure-Health_Header.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <p style="text-align: left;">Dear ${
+                                  this.fullName || ""
+                                },</p>
+                                <br>
+                                <p style="text-align: left;">Thank you for submitting your selection.</p>
+                                <p style="text-align: left;">Once the EWC Program Team has completed the matchmaking process, you will receive a confirmation email which includes a privacy and confidentiality consent form which you need to sign.</p>
+                                <p style="text-align: left;">A signed copy of the consent form will be emailed to you and the EWC Program team once your mentor has signed.</p>
+                                <br>
+                                <p style="text-align: left;">Best regards,</p>
+                                <p style="text-align: left;">EWC Program Team</p>
+                            </div>
+                            </body>
+                        </html>`;
+
+        const emailRes = await fetch(
+          "https://api.ewcprogram.com/send_email_no_attachments",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              full_name: this.fullName,
+              email: this.email,
+              subject: "EWC Matchmaking in Progress",
+              body: emailBody,
+            }),
+          }
+        );
+
+        const emailJson = await emailRes.json().catch(() => ({}));
+        if (!emailRes.ok) {
+          throw new Error(
+            emailJson?.error || "Failed to send confirmation email"
+          );
+        }
+
         Swal.close();
         this.$router.push("/thank-you");
       } catch (e) {
+        console.error(e);
         Swal.fire({
           title: "Error",
           text: "Something went wrong while submitting your selection. Please try again.",
           icon: "error",
         });
-        console.error(e);
       }
     },
   },
