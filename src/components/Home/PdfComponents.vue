@@ -48,8 +48,10 @@
         </div>
         <div class="row mb-5 justify-content-center">
           <div class="col">
-            <div class="row" style="background-color: rgba(61, 61, 61, 0.5)">
-              <p>EWC Participant - referred to as "Candidate"</p>
+            <div class="no-break section-header">
+              <p class="section-title">
+                EWC Participant - referred to as "Candidate"
+              </p>
             </div>
             <p class="mb-0">Name: {{ fullName }}</p>
             <p class="mb-0">Job Title: {{ title }}</p>
@@ -63,56 +65,88 @@
         </div>
         <div class="row mb-0 justify-content-center">
           <div class="col-auto">
-            <ul style="list-style-type: none; padding-left: 0">
-              <li>
-                <span style="font-weight: bold">Active Participation:</span
-                ><span style="margin-left: 25px; margin-right: 25px">•</span>
-                The EWC candidate should commit to actively participating in the
-                learning process and dedicate the necessary time and effort to
-                achieve the set learning objective.
-              </li>
-              <li>
-                <span style="font-weight: bold">Attendance:</span
-                ><span style="margin-left: 25px; margin-right: 25px">•</span>The
-                EWC candidate should attend 100% of the scheduled learning
-                sessions, workshops, or activities related to the learning
-                objective, and complete assigned tasks and assignments on time.
-              </li>
-              <li>
-                <span style="font-weight: bold">Prerequisites:</span
-                ><span style="margin-left: 25px; margin-right: 25px">•</span>The
-                EWC candidate should possess the basic skills, knowledge, and
-                prerequisites needed to pursue this learning objective.
-              </li>
-              <li>
-                <span style="font-weight: bold">Seeking Assistance:</span
-                ><span style="margin-left: 25px; margin-right: 25px">•</span>The
-                EWC candidate should proactively seek assistance or guidance
-                from mentors, trainers, or relevant resources.
-              </li>
-              <li>
-                <span style="font-weight: bold"
-                  >Self-Reflection and Assessment:</span
-                >
-                <span style="margin-left: 25px; margin-right: 25px">•</span>The
-                EWC candidate should engage in self-reflection and assess her
-                progress regularly to identify areas for improvement, by
-                responding to surveys and reflect networking on LinkedIn.
-              </li>
-              <li>
-                <span style="font-weight: bold">Active Engagement:</span
-                ><span style="margin-left: 25px; margin-right: 25px">•</span>The
-                EWC candidate should participate in interactive activities,
-                discussions, or assessments to enhance her capability in the
-                desired learning outcome.
-              </li>
-            </ul>
+            <div class="row mb-0 justify-content-center">
+              <div class="col-auto">
+                <div class="commitments">
+                  <div class="commitment-row">
+                    <div class="c-label">
+                      <strong>Active Participation:</strong>
+                    </div>
+                    <div class="c-bullet">•</div>
+                    <div class="c-text">
+                      The EWC candidate should commit to actively participating
+                      in the learning process and dedicate the necessary time
+                      and effort to achieve the set learning objective.
+                    </div>
+                  </div>
+
+                  <div class="commitment-row">
+                    <div class="c-label"><strong>Attendance:</strong></div>
+                    <div class="c-bullet">•</div>
+                    <div class="c-text">
+                      The EWC candidate should attend 100% of the scheduled
+                      learning sessions, workshops, or activities related to the
+                      learning objective, and complete assigned tasks and
+                      assignments on time.
+                    </div>
+                  </div>
+
+                  <div class="commitment-row">
+                    <div class="c-label"><strong>Prerequisites:</strong></div>
+                    <div class="c-bullet">•</div>
+                    <div class="c-text">
+                      The EWC candidate should possess the basic skills,
+                      knowledge, and prerequisites needed to pursue this
+                      learning objective.
+                    </div>
+                  </div>
+
+                  <div class="commitment-row">
+                    <div class="c-label">
+                      <strong>Seeking Assistance:</strong>
+                    </div>
+                    <div class="c-bullet">•</div>
+                    <div class="c-text">
+                      The EWC candidate should proactively seek assistance or
+                      guidance from mentors, trainers, or relevant resources.
+                    </div>
+                  </div>
+
+                  <div class="commitment-row">
+                    <div class="c-label">
+                      <strong>Self-Reflection and Assessment:</strong>
+                    </div>
+                    <div class="c-bullet">•</div>
+                    <div class="c-text">
+                      The EWC candidate should engage in self-reflection and
+                      assess her progress regularly to identify areas for
+                      improvement, by responding to surveys and reflect
+                      networking on LinkedIn.
+                    </div>
+                  </div>
+
+                  <div class="commitment-row">
+                    <div class="c-label">
+                      <strong>Active Engagement:</strong>
+                    </div>
+                    <div class="c-bullet">•</div>
+                    <div class="c-text">
+                      The EWC candidate should participate in interactive
+                      activities, discussions, or assessments to enhance her
+                      capability in the desired learning outcome.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row mb-5 justify-content-center">
           <div class="col">
-            <div class="row" style="background-color: rgba(61, 61, 61, 0.5)">
-              <p>EWC Candidate - referred to as "Mentee"</p>
+            <div class="no-break section-header">
+              <p class="section-title">
+                EWC Candidate – referred to as “Mentee”
+              </p>
             </div>
             <p class="mb-0">Name: {{ fullName }}</p>
             <p class="mb-0">Date: {{ getCurrentDate() }}</p>
@@ -254,18 +288,13 @@ export default defineComponent({
       }
 
       const opt = {
-        margin: [0.5, 0.6, 0.6, 0.6], // top, left, bottom, right (inches)
+        margin: [0.5, 0.6, 0.6, 0.6],
         filename: "document.pdf",
-        image: { type: "jpeg", quality: 0.85 },
+        image: { type: "jpeg", quality: 0.7 },
         html2canvas: {
-          scale: 2,
+          scale: 1.2,
           useCORS: true,
-          allowTaint: true,
           backgroundColor: "#ffffff",
-        },
-        pagebreak: {
-          mode: ["css", "legacy", "avoid-all"],
-          avoid: [".no-break", ".row", ".col-6", "li", "p", "img", "hr"],
         },
         jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
       };
@@ -504,5 +533,79 @@ input {
 .custom-checkbox:checked {
   background-color: #69478e;
   border-color: #69478e;
+}
+
+/* Force clean page rendering */
+#pdf-content {
+  background: #fff;
+}
+
+/* This prevents slicing */
+.no-break {
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+}
+
+/* Replace Bootstrap row behavior */
+.section-header {
+  background-color: rgba(61, 61, 61, 0.5);
+  padding: 6px 12px;
+  margin-bottom: 8px;
+}
+
+/* Text styling */
+.section-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Kill flex slicing */
+.section-header,
+.section-header * {
+  display: block !important;
+}
+
+/* Lists & paragraphs must not split */
+#pdf-content p,
+#pdf-content ul,
+#pdf-content li,
+#pdf-content hr,
+#pdf-content img {
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+}
+
+.commitments {
+  width: 100%;
+}
+
+.commitment-row {
+  display: grid;
+  grid-template-columns: 220px 40px 1fr; /* label | bullet | text */
+  column-gap: 0px;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.c-label {
+  font-weight: 700;
+  white-space: normal;
+}
+
+.c-bullet {
+  text-align: center;
+}
+
+.c-text {
+  text-align: left;
+}
+
+/* Keep it stable for PDF rendering */
+.commitment-row,
+.c-label,
+.c-bullet,
+.c-text {
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 </style>

@@ -51,16 +51,20 @@
         </div>
         <div class="row mb-5 justify-content-center">
           <div class="col-6">
-            <div class="row" style="background-color: rgba(61, 61, 61, 0.5)">
-              <p>EWC Candidate - referred to as “Mentee”</p>
+            <div class="no-break section-header">
+              <p class="section-title">
+                EWC Candidate – referred to as “Mentee”
+              </p>
             </div>
             <p>Name: {{ participant_name }}</p>
             <p>Job Title: {{ participant_title }}</p>
             <p>Entity: {{ participant_entity }}</p>
           </div>
           <div class="col-6">
-            <div class="row" style="background-color: rgba(61, 61, 61, 0.5)">
-              <p>Personal coach- referred to as “Personal Mentor”</p>
+            <div class="no-break section-header">
+              <p class="section-title">
+                Personal coach - referred to as “Personal Mentor”
+              </p>
             </div>
             <p>Name: {{ mentor_name }}</p>
             <p>Job Title: {{ mentor_title }}</p>
@@ -142,8 +146,10 @@
         </div>
         <div class="row mb-5 justify-content-center">
           <div class="col-6">
-            <div class="row" style="background-color: rgba(61, 61, 61, 0.5)">
-              <p>EWC Candidate - referred to as “Mentee”</p>
+            <div class="no-break section-header">
+              <p class="section-title">
+                EWC Candidate – referred to as “Mentee”
+              </p>
             </div>
             <p>Name: {{ participant_name }}</p>
             <p>
@@ -159,8 +165,10 @@
             </p>
           </div>
           <div class="col-6">
-            <div class="row" style="background-color: rgba(61, 61, 61, 0.5)">
-              <p>Personal coach - referred to as “Personal Mentor”</p>
+            <div class="no-break section-header">
+              <p class="section-title">
+                Personal coach - referred to as “Personal Mentor”
+              </p>
             </div>
             <p>Name: {{ mentor_name }}</p>
             <p>
@@ -360,18 +368,13 @@ export default defineComponent({
       }
 
       const opt = {
-        margin: [0.5, 0.6, 0.6, 0.6], // top, left, bottom, right (inches)
+        margin: [0.5, 0.6, 0.6, 0.6],
         filename: "document.pdf",
-        image: { type: "jpeg", quality: 0.85 },
+        image: { type: "jpeg", quality: 0.7 },
         html2canvas: {
-          scale: 2,
+          scale: 1.2,
           useCORS: true,
-          allowTaint: true,
           backgroundColor: "#ffffff",
-        },
-        pagebreak: {
-          mode: ["css", "legacy", "avoid-all"],
-          avoid: [".no-break", ".row", ".col-6", "li", "p", "img", "hr"],
         },
         jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
       };
@@ -523,5 +526,45 @@ input {
 .custom-checkbox:checked {
   background-color: #69478e;
   border-color: #69478e;
+}
+
+/* Force clean page rendering */
+#pdf-content {
+  background: #fff;
+}
+
+/* This prevents slicing */
+.no-break {
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+}
+
+/* Replace Bootstrap row behavior */
+.section-header {
+  background-color: rgba(61, 61, 61, 0.5);
+  padding: 6px 12px;
+  margin-bottom: 8px;
+}
+
+/* Text styling */
+.section-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Kill flex slicing */
+.section-header,
+.section-header * {
+  display: block !important;
+}
+
+/* Lists & paragraphs must not split */
+#pdf-content p,
+#pdf-content ul,
+#pdf-content li,
+#pdf-content hr,
+#pdf-content img {
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
 }
 </style>
