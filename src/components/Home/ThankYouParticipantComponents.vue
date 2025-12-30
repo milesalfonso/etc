@@ -15,12 +15,13 @@
         <h3 class="text-center mb-5">Thank you for your participation.</h3>
         <h3 class="text-center mb-5">
           The signed undertaking letter will be shared via email through
-          noreply@ewcprogram.com.
+          <span style="font-weight: bold">noreply@ewcprogram.com</span>.
         </h3>
-        <h5>
+        <p class="text-center mb-5">
           Note: If you don't see the email in your inbox, please check your Spam
-          or Junk folder for a message from noreply@ewcprogram.com.
-        </h5>
+          or Junk folder for a message from
+          <span style="font-weight: bold">noreply@ewcprogram.com</span>.
+        </p>
       </div>
     </div>
   </div>

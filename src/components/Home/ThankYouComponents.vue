@@ -21,11 +21,11 @@
           <span style="font-weight: bold">noreply@ewcprogram.com</span> to
           confirm your mentor.
         </h3>
-        <h5 class="text-center mb-5">
+        <p class="text-center mb-5">
           Note: If you don't see the email in your inbox, please check your Spam
           or Junk folder for a message from
           <span style="font-weight: bold">noreply@ewcprogram.com</span>.
-        </h5>
+        </p>
       </div>
     </div>
   </div>
