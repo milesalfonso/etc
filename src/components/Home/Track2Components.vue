@@ -1,3 +1,4 @@
+<!-- Track2Components.vue -->
 <template>
   <div class="row mb-3">
     <div
@@ -16,34 +17,41 @@
       </div>
     </div>
   </div>
+
   <div class="row mb-3 justify-content-center">
     <div class="row w-75 mb-5">
-      <h4 class="text-center">
-        تهانينا! لقد أتممتمي بنجاح الوصول إلى هذا المستوى من التسجيل في برنامج
-        EWC. يرجى اختيار ثلاثة (3) مدربات بعناية من القائمة المعتمدة لعام 2026،
-        مع تخصيص 30–33 دقيقة لمراجعة جميع المقاطع التعريفية. يشترط النظام إدخال
-        ثلاثة اختيارات فقط. بعد الإرسال، سيتم تعيين مدربة واحدة، وسيتم إرسال
-        نموذج موافقة آلي خاص بالخصوصية والسرية عبر رابط الكتروني بالايميل، ليتم
-        توقيعه من قبلكم ومن قبل المدربة المختارة. ستُرسل نسخ من النموذج الموقّع
-        إلى إدارة البرنامج، والمدربة، وإليكم. نتمنى لكِ تجربة اختيار سلسة
-        ومثمرة.
-      </h4>
-      <h4>
-        CONGRATULATIONS! You have successfully achieved this level of enrolment
-        in the EWC Program. Please carefully select three (3) preferred mentors
-        from the provided 2026 list. Allow 30–33 minutes to review all videos.
-        The system requires exactly three selections. After submission, one
-        mentor will be assigned, and an automated privacy and confidentiality
-        consent form will be shared for signature by both you and the mentor.
-        Copies will be provided to Program Management, your mentor, and
-        yourself. We wish you a smooth selection process.
-      </h4>
+      <div class="instruction-block ar-text">
+        <h4 class="mb-0">
+          تهانينا! لقد أتممتمي بنجاح الوصول إلى هذا المستوى من التسجيل في برنامج
+          EWC. يرجى اختيار ثلاثة (3) مدربات بعناية من القائمة المعتمدة لعام
+          2026، مع تخصيص 30–33 دقيقة لمراجعة جميع المقاطع التعريفية. يشترط
+          النظام إدخال ثلاثة اختيارات فقط. بعد الإرسال، سيتم تعيين مدربة واحدة،
+          وسيتم إرسال نموذج موافقة آلي خاص بالخصوصية والسرية عبر رابط الكتروني
+          بالايميل، ليتم توقيعه من قبلكم ومن قبل المدربة المختارة. ستُرسل نسخ من
+          النموذج الموقّع إلى إدارة البرنامج، والمدربة، وإليكم. نتمنى لكِ تجربة
+          اختيار سلسة ومثمرة.
+        </h4>
+      </div>
+
+      <div class="instruction-block en-text">
+        <h4 class="mb-0">
+          CONGRATULATIONS! You have successfully achieved this level of
+          enrolment in the EWC Program. Please carefully select three (3)
+          preferred mentors from the provided 2026 list. Allow 30–33 minutes to
+          review all videos. The system requires exactly three selections. After
+          submission, one mentor will be assigned, and an automated privacy and
+          confidentiality consent form will be shared for signature by both you
+          and the mentor. Copies will be provided to Program Management, your
+          mentor, and yourself. We wish you a smooth selection process.
+        </h4>
+      </div>
     </div>
 
     <div class="row text-center">
       <h1 class="text-purple">Complete Your Profile</h1>
     </div>
   </div>
+
   <div class="row d-flex justify-content-center align-items-center text-center">
     <div class="col-10 col-md-3 mx-auto">
       <div
@@ -90,11 +98,13 @@
         </div>
 
         <div class="row mb-3">
-          <label for="email" class="form-label">Confirm Email Address</label>
+          <label for="confirm_email" class="form-label"
+            >Confirm Email Address</label
+          >
           <input
             type="text"
             class="form-control inputBox"
-            id="email"
+            id="confirm_email"
             v-model="confirm_email"
           />
         </div>
@@ -173,16 +183,17 @@
       </div>
     </div>
   </div>
+  <!-- Purple footer (full width like header) -->
+  <div class="row mt-4">
+    <div class="col p-0">
+      <div class="purple-footer"></div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from "vue";
-import { onMounted, onUnmounted } from "vue";
-import { useRouter } from "vue-router";
-import Swal from "sweetalert2";
+import { defineComponent, nextTick } from "vue";
 import "../../assets/body-bg.css";
-
-//   import { login } from "../../api/server";
 
 export default defineComponent({
   name: "Track2Components",
@@ -228,11 +239,7 @@ export default defineComponent({
       if (target && target.value.length === target.maxLength) {
         nextTick(() => {
           const nextField = this.$refs[nextFieldId] as HTMLInputElement | null;
-          if (nextField) {
-            nextField.focus();
-          } else {
-            console.error(`Element with ref ${nextFieldId} not found.`);
-          }
+          if (nextField) nextField.focus();
         });
       }
     },
@@ -241,42 +248,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-  overflow: hidden;
-  max-width: 100%;
-  background: #000;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-@media (min-width: 992px) {
-  .video-container {
-    padding-bottom: 0;
-    margin: auto;
-    height: 562px;
-    width: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .video-container iframe {
-    position: relative;
-    width: 1000px;
-    height: 562px;
-  }
-}
-
 button {
   width: 100%;
   color: white;
@@ -290,5 +261,29 @@ input {
   width: 100%;
   padding: 10px 10px;
   font-size: 0.875em;
+}
+
+.purple-footer {
+  margin-top: 24px;
+  height: 60px;
+  width: 100%;
+  background-color: #69478e;
+  border-radius: 12px;
+}
+
+.instruction-block {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.ar-text {
+  direction: rtl;
+  unicode-bidi: plaintext;
+  text-align: center;
+}
+
+.en-text {
+  direction: ltr;
+  text-align: center;
 }
 </style>

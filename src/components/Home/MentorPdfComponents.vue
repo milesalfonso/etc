@@ -331,22 +331,33 @@ export default defineComponent({
     },
     async generatePdf() {
       const element = document.getElementById("pdf-content");
-      if (element) {
-        const opt = {
-          margin: 1,
-          filename: "document.pdf",
-          image: { type: "jpeg", quality: 0.75 }, // Reduce image quality to 75%
-          html2canvas: { scale: 1.5 }, // Reduce the scale to 1.5
-          jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-        };
-        const pdf = await html2pdf()
-          .from(element)
-          .set(opt)
-          .outputPdf("datauristring");
-        this.pdfBase64 = pdf.split(",")[1]; // Get base64 part of the data URI
-      } else {
+      if (!element) {
         console.error("PDF content element not found");
+        return;
       }
+
+      const opt = {
+        margin: [0.5, 0.6, 0.6, 0.6], // top, left, bottom, right (inches)
+        filename: "document.pdf",
+        image: { type: "jpeg", quality: 0.85 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: "#ffffff",
+        },
+        pagebreak: {
+          mode: ["css", "legacy", "avoid-all"],
+          avoid: [".no-break", ".row", ".col-6", "li", "p", "img", "hr"],
+        },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      };
+
+      const pdf = await html2pdf()
+        .from(element)
+        .set(opt)
+        .outputPdf("datauristring");
+      this.pdfBase64 = pdf.split(",")[1];
     },
     async enroll() {
       try {

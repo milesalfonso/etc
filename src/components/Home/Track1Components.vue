@@ -1,3 +1,4 @@
+<!-- Track1Components.vue -->
 <template>
   <div class="row mb-3">
     <div
@@ -16,6 +17,7 @@
       </div>
     </div>
   </div>
+
   <div class="row mb-3 justify-content-center">
     <div
       class="row d-flex justify-content-center align-items-center text-purple text-center"
@@ -28,14 +30,15 @@
       </div>
     </div>
   </div>
+
   <div class="row d-flex justify-content-center align-items-center text-center">
     <div class="col-10 col-md-3 mx-auto">
       <div
         class="row d-flex justify-content-center align-items-center text-purple"
       >
         <div class="row mb-3">
-          <label for="full_name" class="form-label">Full Name</label
-          ><input
+          <label for="full_name" class="form-label">Full Name</label>
+          <input
             type="text"
             class="form-control inputBox mx-auto"
             id="full_name"
@@ -74,14 +77,20 @@
         </div>
 
         <div class="row mb-3">
-          <label for="email" class="form-label">Confirm Email Address</label>
+          <label for="confirm_email" class="form-label"
+            >Confirm Email Address</label
+          >
           <input
             type="text"
             class="form-control inputBox mx-auto"
-            id="email"
+            id="confirm_email"
             v-model="confirm_email"
           />
         </div>
+
+        <p v-if="email !== confirm_email" class="text-danger">
+          Emails do not match. Please ensure both email fields are identical.
+        </p>
 
         <div class="row mb-5">
           <label for="mobile" class="form-label">EID Number</label>
@@ -125,18 +134,7 @@
 
         <div class="row mb-3 justify-content-center align-items-center">
           <router-link
-            v-if="
-              full_name &&
-              title &&
-              entity &&
-              email &&
-              eidNumber &&
-              eidPart1.length == 3 &&
-              eidPart2.length == 4 &&
-              eidPart3.length == 7 &&
-              eidPart4.length == 1 &&
-              email == confirm_email
-            "
+            v-if="isFormValid"
             :to="{
               path: '/pdf',
               query: {
@@ -147,30 +145,57 @@
                 mobile: eidNumber,
               },
             }"
-            class="btn btnPurplePillLight dynamic-width"
+            :class="buttonClass"
+            class="btn dynamic-width"
           >
             Next
           </router-link>
+          <button
+            v-else
+            :class="buttonClass"
+            class="btn dynamic-width"
+            disabled
+          >
+            Next
+          </button>
         </div>
       </div>
+    </div>
+  </div>
+  <!-- Purple footer (full width like header) -->
+  <div class="row mt-4">
+    <div class="col p-0">
+      <div class="purple-footer"></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from "vue";
-import { onMounted, onUnmounted } from "vue";
-import { useRouter } from "vue-router";
-import Swal from "sweetalert2";
+import { defineComponent, nextTick } from "vue";
 import "../../assets/body-bg.css";
-
-//   import { login } from "../../api/server";
 
 export default defineComponent({
   name: "Track1Components",
   computed: {
     eidNumber() {
       return `${this.eidPart1}-${this.eidPart2}-${this.eidPart3}-${this.eidPart4}`;
+    },
+    isFormValid() {
+      return (
+        this.full_name &&
+        this.title &&
+        this.entity &&
+        this.email &&
+        this.eidPart1.length == 3 &&
+        this.eidPart2.length == 4 &&
+        this.eidPart3.length == 7 &&
+        this.eidPart4.length == 1 &&
+        this.eidNumber &&
+        this.email == this.confirm_email
+      );
+    },
+    buttonClass() {
+      return this.isFormValid ? "btnPurplePillLight" : "btnGrey";
     },
   },
   data() {
@@ -193,11 +218,7 @@ export default defineComponent({
       if (target && target.value.length === target.maxLength) {
         nextTick(() => {
           const nextField = this.$refs[nextFieldId] as HTMLInputElement | null;
-          if (nextField) {
-            nextField.focus();
-          } else {
-            console.error(`Element with ref ${nextFieldId} not found.`);
-          }
+          if (nextField) nextField.focus();
         });
       }
     },
@@ -219,5 +240,13 @@ input {
   width: 100%;
   padding: 10px 10px;
   font-size: 0.875em;
+}
+
+.purple-footer {
+  margin-top: 24px;
+  height: 60px;
+  width: 100%;
+  background-color: #69478e;
+  border-radius: 12px;
 }
 </style>

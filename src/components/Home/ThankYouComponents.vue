@@ -18,13 +18,13 @@
 
         <h3 class="text-center mb-5">
           Our team will send an email through
-          <span style="font-weight: bold">noreply@ewcprogram.com</span> to
+          <span style="font-weight: bold">no-reply@ewcprogram.com</span> to
           confirm your mentor.
         </h3>
         <p class="text-center mb-5">
           Note: If you don't see the email in your inbox, please check your Spam
           or Junk folder for a message from
-          <span style="font-weight: bold">noreply@ewcprogram.com</span>.
+          <span style="font-weight: bold">no-reply@ewcprogram.com</span>.
         </p>
       </div>
     </div>
