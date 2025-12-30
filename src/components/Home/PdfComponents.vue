@@ -414,7 +414,7 @@ export default defineComponent({
               },
               body: JSON.stringify({
                 full_name: this.fullName,
-                email: "onboarding@ewc-program.ae",
+                email: "emiratiwomenchapter@gmail.com",
                 pdfBase64: this.pdfBase64,
                 subject: "EWC | Successful Enrollment to the EWC Program 2026",
                 body: `<!DOCTYPE html>
