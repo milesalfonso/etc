@@ -412,3 +412,9 @@ body {
   color: white !important;
   padding: 5px 20px !important;
 }
+
+.swal-actions-row {
+  gap: 12px;
+  display: flex;
+  justify-content: center;
+}

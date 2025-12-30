@@ -17,16 +17,27 @@
     </div>
   </div>
   <div class="row mb-3 justify-content-center">
-    <div class="col-12 text-center">
-      <div class="video-container">
-        <iframe
-          src="https://www.youtube.com/embed/WrXv4P6jr7o?si=tc6Njlnu2-x4iKA1&autoplay=1&controls=0"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-          referrerpolicy="strict-origin-when-cross-origin"
-        ></iframe>
-      </div>
+    <div class="row w-75 mb-5">
+      <h4 class="text-center">
+        تهانينا! لقد أتممتمي بنجاح الوصول إلى هذا المستوى من التسجيل في برنامج
+        EWC. يرجى اختيار ثلاثة (3) مدربات بعناية من القائمة المعتمدة لعام 2026،
+        مع تخصيص 30–33 دقيقة لمراجعة جميع المقاطع التعريفية. يشترط النظام إدخال
+        ثلاثة اختيارات فقط. بعد الإرسال، سيتم تعيين مدربة واحدة، وسيتم إرسال
+        نموذج موافقة آلي خاص بالخصوصية والسرية عبر رابط الكتروني بالايميل، ليتم
+        توقيعه من قبلكم ومن قبل المدربة المختارة. ستُرسل نسخ من النموذج الموقّع
+        إلى إدارة البرنامج، والمدربة، وإليكم. نتمنى لكِ تجربة اختيار سلسة
+        ومثمرة.
+      </h4>
+      <h4>
+        CONGRATULATIONS! You have successfully achieved this level of enrolment
+        in the EWC Program. Please carefully select three (3) preferred mentors
+        from the provided 2026 list. Allow 30–33 minutes to review all videos.
+        The system requires exactly three selections. After submission, one
+        mentor will be assigned, and an automated privacy and confidentiality
+        consent form will be shared for signature by both you and the mentor.
+        Copies will be provided to Program Management, your mentor, and
+        yourself. We wish you a smooth selection process.
+      </h4>
     </div>
 
     <div class="row text-center">

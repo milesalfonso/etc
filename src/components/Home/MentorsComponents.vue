@@ -12,28 +12,6 @@
           class="img-fluid mx-auto d-block ms-4"
         />
       </div>
-      <div class="row w-75 mb-5">
-        <h1 class="text-center">
-          تهانينا! لقد أتممتمي بنجاح الوصول إلى هذا المستوى من التسجيل في برنامج
-          EWC. يرجى اختيار ثلاثة (3) مدربات بعناية من القائمة المعتمدة لعام
-          2026، مع تخصيص 30–33 دقيقة لمراجعة جميع المقاطع التعريفية. يشترط
-          النظام إدخال ثلاثة اختيارات فقط. بعد الإرسال، سيتم تعيين مدربة واحدة،
-          وسيتم إرسال نموذج موافقة آلي خاص بالخصوصية والسرية عبر رابط الكتروني
-          بالايميل، ليتم توقيعه من قبلكم ومن قبل المدربة المختارة. ستُرسل نسخ من
-          النموذج الموقّع إلى إدارة البرنامج، والمدربة، وإليكم. نتمنى لكِ تجربة
-          اختيار سلسة ومثمرة.
-        </h1>
-        <h4>
-          CONGRATULATIONS! You have successfully achieved this level of
-          enrolment in the EWC Program. Please carefully select three (3)
-          preferred mentors from the provided 2026 list. Allow 30–33 minutes to
-          review all videos. The system requires exactly three selections. After
-          submission, one mentor will be assigned, and an automated privacy and
-          confidentiality consent form will be shared for signature by both you
-          and the mentor. Copies will be provided to Program Management, your
-          mentor, and yourself. We wish you a smooth selection process.
-        </h4>
-      </div>
     </div>
   </div>
 
@@ -41,45 +19,55 @@
   <div class="row mb-3 justify-content-center">
     <h4 class="text-purple text-center">Welcome, {{ fullName }}.</h4>
     <h4 class="text-purple text-center">
-      Please select three mentors who you think would be the best fit.
+      Please watch the mentor introduction videos.
+    </h4>
+    <h4 class="text-purple text-center">
+      After watching them select
+      <span style="font-weight: bold">three mentors</span> who you feel align
+      best with your goals, interests, and learning style
     </h4>
   </div>
 
-  <!-- Mentor Video Grid -->
+  <!-- Mentor Grid -->
   <div class="row justify-content-center">
     <div class="col-12 px-4">
       <div class="mentor-grid">
         <div
           v-for="mentor in mentors"
           :key="mentor.id"
-          class="mentor-card"
+          class="mentor-item"
           :class="{
             selected: selectedMentors.includes(mentor.id),
             disabled:
               !selectedMentors.includes(mentor.id) &&
-              selectedMentors.length >= 4,
+              selectedMentors.length >= 3,
           }"
-          @mouseenter="handleHover(mentor.id)"
-          @mouseleave="pauseVideo(mentor.id)"
-          @click="handleTap(mentor.id)"
         >
-          <video
-            class="mentor-video"
-            :ref="(el) => el && registerVideo(el as HTMLVideoElement, mentor.id)"
-            :poster="mentor.poster"
-            muted
-            playsinline
-            preload="metadata"
+          <!-- Thumbnail (poster image) -->
+          <button
+            type="button"
+            class="thumb"
+            @click="openVideoModal(mentor)"
+            :aria-label="`Play video for ${mentor.name}`"
           >
-            <source :src="mentor.video" type="video/mp4" />
-          </video>
+            <img class="thumb-img" :src="mentor.poster" :alt="mentor.name" />
+            <span class="play-btn" aria-hidden="true">▶</span>
+          </button>
 
-          <div class="mentor-overlay">
+          <!-- Checkbox + Name -->
+          <label class="mentor-meta">
+            <input
+              type="checkbox"
+              class="mentor-checkbox"
+              :checked="selectedMentors.includes(mentor.id)"
+              :disabled="
+                !selectedMentors.includes(mentor.id) &&
+                selectedMentors.length >= 3
+              "
+              @change="toggleMentorSelection(mentor.id)"
+            />
             <span class="mentor-name">{{ mentor.name }}</span>
-            <span v-if="selectedMentors.includes(mentor.id)" class="checkmark">
-              ✓
-            </span>
-          </div>
+          </label>
         </div>
       </div>
     </div>
@@ -103,6 +91,8 @@
   </div>
 
   <ModalSuccessSelection />
+
+  <!-- Video Modal -->
   <Teleport to="body">
     <div
       v-if="showVideoModal"
@@ -145,7 +135,7 @@ export default defineComponent({
     return {
       showVideoModal: false as boolean,
       activeMentor: null as any,
-      lastTappedMentorId: null as number | null,
+
       fullName: "",
       title: "",
       entity: "",
@@ -328,9 +318,8 @@ export default defineComponent({
           video: videoUrl(42),
         },
       ],
+
       selectedMentors: [] as number[],
-      videoRefs: {} as Record<number, HTMLVideoElement>,
-      lastTouchedVideo: null as number | null,
     };
   },
 
@@ -355,9 +344,7 @@ export default defineComponent({
         v.load();
         const p = v.play();
         if (p && typeof (p as any).catch === "function") {
-          (p as Promise<void>).catch(() => {
-            // Autoplay may be blocked; user can tap play
-          });
+          (p as Promise<void>).catch(() => {});
         }
       });
     },
@@ -366,63 +353,6 @@ export default defineComponent({
       this.showVideoModal = false;
       this.activeMentor = null;
     },
-
-    /* ---------------- VIDEO CONTROL ---------------- */
-
-    registerVideo(el: HTMLVideoElement, id: number) {
-      this.videoRefs[id] = el;
-
-      el.addEventListener("loadeddata", () => {
-        console.log(`🎬 Video ${id} loadeddata`);
-      });
-
-      el.addEventListener("canplay", () => {
-        console.log(`▶️ Video ${id} canplay`);
-      });
-    },
-
-    pauseAllExcept(id: number) {
-      Object.entries(this.videoRefs).forEach(([key, video]) => {
-        if (Number(key) !== id) {
-          video.pause();
-          video.currentTime = 0; // ← reset to show poster
-          video.load(); // ← forces poster repaint
-        }
-      });
-    },
-
-    handleHover(id: number) {
-      const video = this.videoRefs[id];
-      if (!video) return;
-
-      this.pauseAllExcept(id);
-      video.play();
-    },
-
-    pauseVideo(id: number) {
-      const video = this.videoRefs[id];
-      if (video) video.pause();
-    },
-
-    /* ---------------- TOUCH FALLBACK ---------------- */
-
-    handleTap(id: number) {
-      // Second tap on same mentor → select
-      if (this.lastTappedMentorId === id && !this.showVideoModal) {
-        this.toggleMentorSelection(id);
-        this.lastTappedMentorId = null;
-        return;
-      }
-
-      // First tap → open modal
-      const mentor = this.mentors.find((m) => m.id === id);
-      if (!mentor) return;
-
-      this.lastTappedMentorId = id;
-      this.openVideoModal(mentor);
-    },
-
-    /* ---------------- SELECTION ---------------- */
 
     toggleMentorSelection(id: number) {
       const index = this.selectedMentors.indexOf(id);
@@ -433,13 +363,75 @@ export default defineComponent({
       }
     },
 
-    /* ---------------- API (UNCHANGED) ---------------- */
-
     async insertMentors() {
+      const selected = this.mentors.filter((m) =>
+        this.selectedMentors.includes(m.id)
+      );
+
+      const cardsHtml = `
+    <div style="text-align:left;">
+      <p style="margin:0 0 10px 0;">
+        Please take a moment to review your selected mentors and confirm that they are correct.
+      </p>
+      <p style="margin:0 0 16px 0;">
+        Once confirmed, we’ll proceed with the matching process. If you need to make any changes, now is the best time to do so before moving forward.
+      </p>
+
+      <div style="font-weight:700; margin: 0 0 10px 0;">Mentor selections:</div>
+
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+        ${[0, 1, 2]
+          .map((i) => {
+            const m = selected[i];
+            return `
+              <div style="border:1px solid rgba(0,0,0,0.12); border-radius:12px; overflow:hidden; background:#fff;">
+                <div style="aspect-ratio: 16/9; background:#000;">
+                  ${
+                    m
+                      ? `<img src="${m.poster}" alt="${m.name}" style="width:100%; height:100%; object-fit:cover; display:block;" />`
+                      : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#fff;">—</div>`
+                  }
+                </div>
+                <div style="padding:10px 12px;">
+                  <div style="font-weight:700; margin-bottom:6px;">Mentor ${
+                    i + 1
+                  }:</div>
+                  <div style="font-size:14px; font-weight:600;">${
+                    m ? m.name : "—"
+                  }</div>
+                </div>
+              </div>
+            `;
+          })
+          .join("")}
+      </div>
+    </div>
+  `;
+
+      const result = await Swal.fire({
+        title: "Confirm your selection",
+        html: cardsHtml,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Confirm",
+        cancelButtonText: "Go back",
+        reverseButtons: true,
+        width: 900,
+
+        buttonsStyling: false, // ⬅️ IMPORTANT: allows custom classes
+        customClass: {
+          confirmButton: "btn btnPurplePillLight dynamic-width",
+          cancelButton: "btn btnGrey dynamic-width",
+          actions: "swal-actions-row",
+        },
+      });
+
+      if (!result.isConfirmed) return;
+
       try {
         Swal.fire({
           title: "Sending...",
-          text: "Sending your mentor selection",
+          text: "Submitting your mentor selection",
           allowOutsideClick: false,
           didOpen: () => Swal.showLoading(),
         });
@@ -460,11 +452,16 @@ export default defineComponent({
           }
         );
 
-        if (response.ok) {
-          Swal.close();
-          this.$router.push("/thank-you");
-        }
+        if (!response.ok) throw new Error("Failed to submit mentor selection");
+
+        Swal.close();
+        this.$router.push("/thank-you");
       } catch (e) {
+        Swal.fire({
+          title: "Error",
+          text: "Something went wrong while submitting your selection. Please try again.",
+          icon: "error",
+        });
         console.error(e);
       }
     },
@@ -476,66 +473,81 @@ export default defineComponent({
 .mentor-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.mentor-card {
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #000;
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+.mentor-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.mentor-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-}
-
-.mentor-card.selected {
+.mentor-item.selected .thumb {
   outline: 4px solid #69478e;
+  outline-offset: 0;
 }
 
-.mentor-card.disabled {
-  opacity: 0.4;
+.mentor-item.disabled {
+  opacity: 0.45;
   pointer-events: none;
 }
 
-.mentor-video {
+.thumb {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
 }
 
-.mentor-overlay {
+.thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.play-btn {
   position: absolute;
-  inset: auto 0 0 0;
-  padding: 0.75rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 44px;
+  line-height: 1;
   color: white;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.15) 35%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.mentor-meta {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+  color: #2f2f2f;
+}
+
+.mentor-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #69478e;
 }
 
 .mentor-name {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  text-transform: capitalize;
-}
-
-.checkmark {
-  background: #69478e;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
 }
 
 @media (max-width: 992px) {
@@ -550,11 +562,12 @@ export default defineComponent({
   }
 }
 
+/* Modal (unchanged) */
 .video-modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.85);
-  z-index: 2147483647; /* max safe */
+  z-index: 2147483647;
   display: grid;
   place-items: center;
 }

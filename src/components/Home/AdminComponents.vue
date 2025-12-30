@@ -431,7 +431,6 @@ export default defineComponent({
           "Mentor 1",
           "Mentor 2",
           "Mentor 3",
-          "Mentor 4",
         ];
         const formattedData = [
           headers,
