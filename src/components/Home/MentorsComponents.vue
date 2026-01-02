@@ -277,7 +277,7 @@ export default defineComponent({
         },
         {
           id: 35,
-          name: "Arati Vinay Tuteja",
+          name: "Arrati Vinay Tuteja",
           poster: posterUrl(35),
           video: videoUrl(35),
         },
