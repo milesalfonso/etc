@@ -479,56 +479,56 @@ export default defineComponent({
           }
         );
 
-        const emailAdmin2Response = await fetch(
-          "https://api.ewcprogram.com/send-email",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              full_name: this.participant_name,
-              email: "emiratiwomenchapter@gmail.com",
-              pdfBase64: this.pdfBase64,
-              subject:
-                "EWC | Signed Undertaking Agreement for EWC Program - 2026",
-              body: `<!DOCTYPE html>
-                      <html>
-                        <body style="text-align: center;">
-                          <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
-                            <p  style="text-align: left;">Dear Mentor & Mentee,</p>
-                            <br>
-                            <p  style="text-align: left;">We are pleased to confirm that the Undertaking Agreement for the Emirati Women Chapter (EWC) Program 2026 has been successfully signed by both of you.</p>
-                            <p  style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
-                            <p  style="text-align: left;">The EWC Management was notified that the process has been completed.</p>
-                            <p  style="text-align: left;">Thank you for your cooperation, and we look forward to a successful and engaging program experience.</p>
-                            <br>
-                            <p  style="text-align: left;">Best Regards,</p>
-                            <p  style="text-align: left;">The EWC Team</p>
-                          </div>
-                        </body>
-                      </html>`,
-            }),
-          }
-        );
+        // const emailAdmin2Response = await fetch(
+        //   "https://api.ewcprogram.com/send-email",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //       full_name: this.participant_name,
+        //       email: "emiratiwomenchapter@gmail.com",
+        //       pdfBase64: this.pdfBase64,
+        //       subject:
+        //         "EWC | Signed Undertaking Agreement for EWC Program - 2026",
+        //       body: `<!DOCTYPE html>
+        //               <html>
+        //                 <body style="text-align: center;">
+        //                   <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+        //                     <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+        //                     <p  style="text-align: left;">Dear Mentor & Mentee,</p>
+        //                     <br>
+        //                     <p  style="text-align: left;">We are pleased to confirm that the Undertaking Agreement for the Emirati Women Chapter (EWC) Program 2026 has been successfully signed by both of you.</p>
+        //                     <p  style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
+        //                     <p  style="text-align: left;">The EWC Management was notified that the process has been completed.</p>
+        //                     <p  style="text-align: left;">Thank you for your cooperation, and we look forward to a successful and engaging program experience.</p>
+        //                     <br>
+        //                     <p  style="text-align: left;">Best Regards,</p>
+        //                     <p  style="text-align: left;">The EWC Team</p>
+        //                   </div>
+        //                 </body>
+        //               </html>`,
+        //     }),
+        //   }
+        // );
 
         const emailParticipantResult = await emailParticipantResponse.json();
         const emailMentorResult = await emailMentorResponse.json();
         const emailAdmin1Result = await emailAdmin1Response.json();
-        const emailAdmin2Result = await emailAdmin2Response.json();
+        // const emailAdmin2Result = await emailAdmin2Response.json();
 
         if (
           emailParticipantResponse.ok &&
           emailMentorResponse.ok &&
-          emailAdmin1Response.ok &&
-          emailAdmin2Response.ok
+          emailAdmin1Response.ok
+          // && emailAdmin2Response.ok
         ) {
           Swal.close();
           console.log("Email sent successfully:", emailParticipantResult);
           console.log("Email sent successfully:", emailMentorResult);
           console.log("Email sent successfully:", emailAdmin1Result);
-          console.log("Email sent successfully:", emailAdmin2Result);
+          // console.log("Email sent successfully:", emailAdmin2Result);
           // Show success modal
 
           this.$router.push("/thank-you-for-participating");
@@ -536,7 +536,7 @@ export default defineComponent({
           console.error("Error sending email:", emailParticipantResult.error);
           console.error("Error sending email:", emailMentorResult.error);
           console.error("Error sending email:", emailAdmin1Result.error);
-          console.error("Error sending email:", emailAdmin2Result.error);
+          // console.error("Error sending email:", emailAdmin2Result.error);
         }
       } catch (error) {
         console.error("Error:", error);
