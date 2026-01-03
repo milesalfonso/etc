@@ -433,8 +433,8 @@ export default defineComponent({
                       <html>
                         <body style="text-align: center;">
                           <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
-                            <p>Dear 2026 Mentor,</p>
+                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                            <p>Dear 2026 ${this.mentor_name},</p>
                             <br>
                             <p>We are pleased to inform you that your mentee from EWC Program 2026- cohort 2, has completed the necessary steps and submitted the signed Undertaking Agreement.</p>
                             <p>Next, we need you to review, sign, and submit the Undertaking Agreement from your end as a second party. Please read the document and acknowledge your commitment to supporting your mentee throughout the program.</p>

@@ -394,7 +394,7 @@ export default defineComponent({
                       <html>
                         <body style="text-align: center;">
                           <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
                             <p  style="text-align: left;">Dear Mentor & Mentee,</p>
                             <br>
                             <p  style="text-align: left;">We are pleased to confirm that the Undertaking Agreement for the Emirati Women Chapter (EWC) Program 2026 has been successfully signed by both of you.</p>
@@ -428,7 +428,7 @@ export default defineComponent({
                       <html>
                         <body style="text-align: center;">
                           <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
                             <p  style="text-align: left;">Dear Mentor & Mentee,</p>
                             <br>
                             <p  style="text-align: left;">We are pleased to confirm that the Undertaking Agreement for the Emirati Women Chapter (EWC) Program 2026 has been successfully signed by both of you.</p>
@@ -462,7 +462,7 @@ export default defineComponent({
                       <html>
                         <body style="text-align: center;">
                           <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
                             <p  style="text-align: left;">Dear Mentor & Mentee,</p>
                             <br>
                             <p  style="text-align: left;">We are pleased to confirm that the Undertaking Agreement for the Emirati Women Chapter (EWC) Program 2026 has been successfully signed by both of you.</p>
@@ -496,7 +496,7 @@ export default defineComponent({
                       <html>
                         <body style="text-align: center;">
                           <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                            <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
                             <p  style="text-align: left;">Dear Mentor & Mentee,</p>
                             <br>
                             <p  style="text-align: left;">We are pleased to confirm that the Undertaking Agreement for the Emirati Women Chapter (EWC) Program 2026 has been successfully signed by both of you.</p>

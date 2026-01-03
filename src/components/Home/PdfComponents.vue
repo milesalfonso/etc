@@ -389,8 +389,8 @@ export default defineComponent({
                         <html>
                             <body style="text-align: center;">
                             <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                                <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
-                                <p style="text-align: left;">Dear Mentee,</p>
+                                <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <p style="text-align: left;">Dear ${this.fullName},</p>
                                 <br>
                                 <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in the Emirati Women Chapter (EWC) Program 2026.</p>
                                 <p style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
@@ -421,8 +421,8 @@ export default defineComponent({
                         <html>
                             <body style="text-align: center;">
                             <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                                <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
-                                <p style="text-align: left;">Dear Mentee,</p>
+                                <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <p style="text-align: left;">Dear ${this.fullName},</p>
                                 <br>
                                 <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in the Emirati Women Chapter (EWC) Program 2026.</p>
                                 <p style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
@@ -453,8 +453,8 @@ export default defineComponent({
                         <html>
                             <body style="text-align: center;">
                             <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                                <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.png" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
-                                <p style="text-align: left;">Dear Mentee,</p>
+                                <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                                <p style="text-align: left;">Dear ${this.fullName},</p>
                                 <br>
                                 <p style="text-align: left;">We are pleased to confirm that you have successfully enrolled in the Emirati Women Chapter (EWC) Program 2026.</p>
                                 <p style="text-align: left;">You can now download the attached approved version of the signed agreement.</p>
