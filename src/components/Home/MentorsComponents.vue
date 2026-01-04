@@ -252,12 +252,6 @@ export default defineComponent({
           video: videoUrl(30),
         },
         {
-          id: 31,
-          name: "Wafa Disi",
-          poster: posterUrl(31),
-          video: videoUrl(31),
-        },
-        {
           id: 32,
           name: "Dinu Basnayake",
           poster: posterUrl(32),
@@ -289,7 +283,7 @@ export default defineComponent({
         },
         {
           id: 37,
-          name: "Safaae Oussalem",
+          name: "Safae Oussalem",
           poster: posterUrl(37),
           video: videoUrl(37),
         },
