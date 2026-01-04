@@ -295,7 +295,7 @@ export default defineComponent({
         },
         {
           id: 39,
-          name: "Nada El Gazza",
+          name: "Nada El Gazzar",
           poster: posterUrl(39),
           video: videoUrl(39),
         },
