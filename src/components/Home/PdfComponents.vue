@@ -64,9 +64,9 @@
           <hr />
         </div>
         <div class="row mb-0 justify-content-center">
-          <div class="col-auto">
+          <div class="col-12">
             <div class="row mb-0 justify-content-center">
-              <div class="col-auto">
+              <div class="col-12">
                 <div class="commitments">
                   <div class="commitment-row">
                     <div class="c-label">
