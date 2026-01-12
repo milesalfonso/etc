@@ -17,6 +17,7 @@ import TermsAndConditionsView from "../views/TermsAndConditionsView.vue";
 import ThankYouView from "../views/ThankYouView.vue";
 import ThankYouViewMentor from "../views/ThankYouMentorView.vue";
 import ThankYouViewParticipant from "../views/ThankYouParticipantView.vue";
+import SignatoryStatusView from "../views/SignatoryStatusView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -66,6 +67,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/thank-you-participant",
     component: ThankYouViewParticipant,
+  },
+  {
+    path: "/signatory-status",
+    component: SignatoryStatusView,
   },
 ];
 

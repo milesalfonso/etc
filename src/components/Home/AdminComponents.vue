@@ -186,11 +186,70 @@ export default defineComponent({
     },
     async handleSubmit() {
       const selectedMentors = this.gatherSelectedMentors();
+
+      if (selectedMentors.length === 0) {
+        Swal.fire({
+          icon: "warning",
+          title: "No Selection",
+          text: "Please select at least one mentor for the participants",
+        });
+        return;
+      }
+
+      // Prepare mapping details for confirmation
+      const mappingDetails = selectedMentors.map((selectedMentor) => {
+        const [participant_id, mentor_id, mentor_name] = selectedMentor.split("-");
+        const participant = this.participants.find((p) =>
+          p.participant_id.toString() === participant_id.toString()
+        );
+        return {
+          participant_name: participant?.participant_name || "Unknown",
+          participant_email: participant?.participant_email || "Unknown",
+          mentor_name,
+        };
+      });
+
+      // Show confirmation modal
+      const confirmResult = await Swal.fire({
+        title: "Confirm Mentor Mapping",
+        html: `
+          <div style="text-align: left; max-height: 400px; overflow-y: auto;">
+            <p><strong>You are about to assign ${selectedMentors.length} participant(s) to their mentors.</strong></p>
+            <p>The following assignments will be made and emails will be sent:</p>
+            <hr>
+            ${mappingDetails.map((m, index) => `
+              <div style="margin-bottom: 15px; padding: 10px; background-color: #f5f5f5; border-radius: 5px;">
+                <strong>${index + 1}. ${m.participant_name}</strong><br>
+                <small style="color: #666;">${m.participant_email}</small><br>
+                <span style="color: #69478e;">→ Mentor: ${m.mentor_name}</span>
+              </div>
+            `).join('')}
+          </div>
+        `,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Submit",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#69478e",
+        cancelButtonColor: "#6c757d",
+        width: "600px",
+      });
+
+      if (!confirmResult.isConfirmed) {
+        return;
+      }
+
       console.log("Selected mentors:", selectedMentors);
+
+      const results = {
+        successful: [] as Array<{ name: string; email: string; mentor: string }>,
+        failed: [] as Array<{ name: string; email: string; reason: string }>,
+      };
+
       try {
         Swal.fire({
-          title: "Inserting...",
-          text: "Inserting participants and mentors data",
+          title: "Processing...",
+          html: `Processing <strong>${selectedMentors.length}</strong> participant(s)...<br><small>Please wait, this may take a moment.</small>`,
           allowOutsideClick: false,
           didOpen: () => {
             Swal.showLoading();
@@ -198,97 +257,195 @@ export default defineComponent({
         });
 
         for (const selectedMentor of selectedMentors) {
-          const [participant_id, mentor_id, mentor_name] =
-            selectedMentor.split("-");
-          const response = await axios.post(
-            "https://api.ewcprogram.com/insert_track_2_participant",
-            {
-              participant_id,
-              mentor_id,
-            }
-          );
+          const [participant_id, mentor_id, mentor_name] = selectedMentor.split("-");
 
-          if (response.status === 200) {
-            console.log("Response from server:", response.data);
-            const { id } = response.data;
+          try {
+            // Insert to database
+            const response = await axios.post(
+              "https://api.ewcprogram.com/insert_track_2_participant",
+              { participant_id, mentor_id }
+            );
 
-            // Send email to participant
-            const participant = this.participants.find((p) => {
-              return p.participant_id.toString() === participant_id.toString();
-            });
-            console.log("Participant:", participant);
-            if (participant) {
-              const emailParticipantResponse = await fetch(
-                "https://api.ewcprogram.com/send_email_no_attachments",
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    full_name: participant.participant_name,
-                    email: participant.participant_email,
-                    subject:
-                      "EWC | Your Mentor Assignment and Agreement for the EWC Program 2026",
-                    body: `<!DOCTYPE html>
-                            <html>
-                              <body style="text-align: center;">
-                                <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-                                  <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
-                                  <p>Dear 2026 ${participant.participant_name},</p>
-                                  <p>We are excited to inform you that the mentor assignment process for the EWC Program 2026- cohort 2, has been completed, and you have been assigned to a mentor from the pre-list that matches your profile.</p>
-                                  <p>Your Assigned Mentor is:</p>
-                                  <p><strong>${mentor_name}</strong></p>
-                                  <p>As part of the next steps, we would like to share with you the Undertaking Agreement with your assigned mentor. Please take the time to carefully review the document and acknowledge your commitment to the program. Kindly proceed to sign off the documents by clicking on the below link:</p>
-                                  <p><a href="https://ewcprogram.com/#/mentee-pdf?id=${id}">Sign Agreement Document Here</a></p>
-                                  <p>The below steps have to be timely managed:</p>
-                                  <ul style="text-align: left; display: inline-block; margin: 0 auto;">
-                                    <li style="text-align: left;">Review the Undertaking Agreement.</li>
-                                    <li style="text-align: left;">Sign the agreement.</li>
-                                    <li style="text-align: left;">Submit the signed agreement.</li>
-                                  </ul>
-                                  <p>Please ensure that you complete these steps as soon as possible to move forward in the program. Thank you, and we look forward to your continued engagement in the program.</p>
-                                  <p>It will be great to engage them.</p>
-                                </div>
-                              </body>
-                            </html>`,
-                  }),
-                }
+            if (response.status === 200) {
+              const { id } = response.data;
+              const participant = this.participants.find((p) =>
+                p.participant_id.toString() === participant_id.toString()
               );
-              const emailParticipantData =
-                await emailParticipantResponse.json();
-              if (emailParticipantResponse.ok) {
-                console.log("Email sent to participant:", emailParticipantData);
-                Swal.fire({
-                  title: "Success",
-                  text: `Email sent to participant ${participant.participant_name}`,
-                  icon: "success",
-                });
-              } else {
-                console.error(
-                  `Error sending email to participant ${participant.participant_name} (${participant.participant_email}):`,
-                  emailParticipantData
+
+              if (participant) {
+                // Send email to participant
+                const emailResponse = await fetch(
+                  "https://api.ewcprogram.com/send_email_no_attachments",
+                  {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      full_name: participant.participant_name,
+                      email: participant.participant_email,
+                      subject: "EWC | Your Mentor Assignment and Agreement for the EWC Program 2026",
+                      body: `<!DOCTYPE html>
+                        <html>
+                          <body style="text-align: center;">
+                            <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                              <img src="https://ewc-assets-2026.s3.ap-southeast-1.amazonaws.com/images/banner.jpg" alt="Email Banner" style="width: 100%; max-width: 600px;"/>
+                              <p>Dear ${participant.participant_name},</p>
+                              <p>We are excited to inform you that the mentor assignment process for the EWC Program 2026- cohort 2, has been completed, and you have been assigned to a mentor from the pre-list that matches your profile.</p>
+                              <p>Your Assigned Mentor is:</p>
+                              <p><strong>${mentor_name}</strong></p>
+                              <p>As part of the next steps, we would like to share with you the Undertaking Agreement with your assigned mentor. Please take the time to carefully review the document and acknowledge your commitment to the program. Kindly proceed to sign off the documents by clicking on the below link:</p>
+                              <p><a href="https://ewcprogram.com/#/mentee-pdf?id=${id}">Sign Agreement Document Here</a></p>
+                              <p>The below steps have to be timely managed:</p>
+                              <ul style="text-align: left; display: inline-block; margin: 0 auto;">
+                                <li style="text-align: left;">Review the Undertaking Agreement.</li>
+                                <li style="text-align: left;">Sign the agreement.</li>
+                                <li style="text-align: left;">Submit the signed agreement.</li>
+                              </ul>
+                              <p>Please ensure that you complete these steps as soon as possible to move forward in the program. Thank you, and we look forward to your continued engagement in the program.</p>
+                              <p>It will be great to engage them.</p>
+                            </div>
+                          </body>
+                        </html>`,
+                    }),
+                  }
                 );
+
+                const emailData = await emailResponse.json();
+
+                if (emailResponse.ok) {
+                  results.successful.push({
+                    name: participant.participant_name,
+                    email: participant.participant_email,
+                    mentor: mentor_name,
+                  });
+                  console.log(`✓ Email sent to ${participant.participant_name}:`, emailData);
+                } else {
+                  results.failed.push({
+                    name: participant.participant_name,
+                    email: participant.participant_email,
+                    reason: emailData.error || "Email failed to send",
+                  });
+                  console.error(`✗ Email error for ${participant.participant_name}:`, emailData);
+                }
+              } else {
+                results.failed.push({
+                  name: `Participant ID: ${participant_id}`,
+                  email: "Unknown",
+                  reason: "Participant not found in list",
+                });
               }
+            } else {
+              throw new Error("Database insert failed");
             }
-          } else {
-            throw new Error("Failed to submit mentors");
+          } catch (error: any) {
+            const participant = this.participants.find((p) =>
+              p.participant_id.toString() === participant_id.toString()
+            );
+            console.error(`✗ Error processing participant ${participant_id}:`, error);
+            results.failed.push({
+              name: participant?.participant_name || `ID: ${participant_id}`,
+              email: participant?.participant_email || "Unknown",
+              reason: error.response?.data?.error || error.message || "Unknown error",
+            });
           }
         }
 
         Swal.close();
-        Swal.fire({
-          title: "Success",
-          text: "Mentors submitted successfully",
-          icon: "success",
-        });
-        location.reload();
-      } catch (error) {
+
+        // Show detailed results
+        if (results.failed.length === 0) {
+          // All successful
+          await Swal.fire({
+            icon: "success",
+            title: "All Mappings Successful!",
+            html: `
+              <div style="text-align: left;">
+                <p><strong>Successfully processed ${results.successful.length} participant(s):</strong></p>
+                <ul style="max-height: 300px; overflow-y: auto;">
+                  ${results.successful.map((s) => `
+                    <li>
+                      <strong>${s.name}</strong><br>
+                      <small style="color: #666;">${s.email}</small><br>
+                      <small style="color: #69478e;">→ Mentor: ${s.mentor}</small>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            `,
+            confirmButtonColor: "#69478e",
+          });
+          location.reload();
+        } else if (results.successful.length === 0) {
+          // All failed
+          await Swal.fire({
+            icon: "error",
+            title: "All Mappings Failed",
+            html: `
+              <div style="text-align: left;">
+                <p><strong>Failed to process all ${results.failed.length} participant(s):</strong></p>
+                <ul style="max-height: 300px; overflow-y: auto; color: #dc3545;">
+                  ${results.failed.map((f) => `
+                    <li>
+                      <strong>${f.name}</strong><br>
+                      <small>${f.email}</small><br>
+                      <small><strong>Reason:</strong> ${f.reason}</small>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            `,
+            confirmButtonColor: "#69478e",
+          });
+        } else {
+          // Partial success
+          await Swal.fire({
+            icon: "warning",
+            title: "Partial Success",
+            html: `
+              <div style="text-align: left;">
+                <p>
+                  <strong style="color: #28a745;">Successful:</strong> ${results.successful.length}<br>
+                  <strong style="color: #dc3545;">Failed:</strong> ${results.failed.length}
+                </p>
+                <hr>
+                <details>
+                  <summary style="cursor: pointer; color: #28a745; font-weight: bold;">✓ Successful (${results.successful.length})</summary>
+                  <ul style="max-height: 200px; overflow-y: auto; margin-top: 10px;">
+                    ${results.successful.map((s) => `
+                      <li>
+                        <strong>${s.name}</strong><br>
+                        <small style="color: #666;">${s.email}</small><br>
+                        <small style="color: #69478e;">→ ${s.mentor}</small>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </details>
+                <br>
+                <details open>
+                  <summary style="cursor: pointer; color: #dc3545; font-weight: bold;">✗ Failed (${results.failed.length})</summary>
+                  <ul style="max-height: 200px; overflow-y: auto; margin-top: 10px; color: #dc3545;">
+                    ${results.failed.map((f) => `
+                      <li>
+                        <strong>${f.name}</strong><br>
+                        <small>${f.email}</small><br>
+                        <small><strong>Reason:</strong> ${f.reason}</small>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </details>
+              </div>
+            `,
+            confirmButtonColor: "#69478e",
+            width: "600px",
+          });
+          location.reload();
+        }
+      } catch (error: any) {
         console.error("Error submitting mentors:", error);
         Swal.fire({
           icon: "error",
-          title: "Error",
-          text: "Failed to submit mentors",
+          title: "Unexpected Error",
+          text: error.message || "An unexpected error occurred. Please try again.",
+          confirmButtonColor: "#69478e",
         });
       }
     },
