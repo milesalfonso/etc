@@ -60,7 +60,6 @@
             type="button"
             class="btn btnPurpleLight"
             @click="handleSubmit"
-            data-bs-dismiss="modal"
           >
             Submit
           </button>
@@ -74,9 +73,6 @@
 import { defineComponent } from "vue";
 import { VueSignaturePad } from "vue-signature-pad";
 import Swal from "sweetalert2";
-
-// import Swal from "sweetalert2";
-// import * as bootstrap from "bootstrap";
 
 export default defineComponent({
   name: "ModalAddSignature",
@@ -92,7 +88,16 @@ export default defineComponent({
   methods: {
     async handleSubmit() {
       const signaturePad = this.$refs.signaturePad as any;
-      const dataUrl = signaturePad.saveSignature();
+      const { isEmpty, data } = signaturePad.saveSignature();
+
+      if (isEmpty) {
+        await Swal.fire({
+          icon: "warning",
+          title: "Signature Required",
+          text: "Please provide your signature before submitting.",
+        });
+        return;
+      }
 
       Swal.fire({
         title: "Adding Signature...",
@@ -103,9 +108,17 @@ export default defineComponent({
         },
       });
       try {
-        this.$emit("signature-added", dataUrl);
+        this.$emit("signature-added", { data });
         this.$emit("close-modal");
         Swal.close();
+        // Close the modal programmatically
+        const modalEl = document.getElementById("signatureModal");
+        if (modalEl) {
+          const modal = (window as any).bootstrap?.Modal.getInstance(modalEl);
+          if (modal) {
+            modal.hide();
+          }
+        }
       } catch (error) {
         console.error("Error updating initial test:", error);
         Swal.close();

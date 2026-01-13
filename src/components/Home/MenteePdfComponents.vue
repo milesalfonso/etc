@@ -240,7 +240,6 @@
       </button>
       <br />
       <button
-        v-if="participant_signature !== '' || participant_signature !== null"
         :class="{
           'btn btnPurplePillLight dynamic-width':
             participant_signature !== '' &&
@@ -251,7 +250,7 @@
             participant_signature === null ||
             !agreement,
         }"
-        :disabled="!agreement"
+        :disabled="participant_signature === '' || participant_signature === null || !agreement"
         @click="enroll"
       >
         SUBMIT

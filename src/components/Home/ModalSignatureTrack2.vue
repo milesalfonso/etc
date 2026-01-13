@@ -60,7 +60,6 @@
             type="button"
             class="btn btnPurpleLight"
             @click="handleSubmit"
-            data-bs-dismiss="modal"
           >
             Submit
           </button>
@@ -106,7 +105,19 @@ export default defineComponent({
   methods: {
     async handleSubmit() {
       const signaturePad = this.$refs.signaturePad as any;
-      const dataUrl = signaturePad.saveSignature();
+      const { isEmpty, data } = signaturePad.saveSignature();
+
+      // Check if signature pad is empty before saving
+      if (isEmpty) {
+        await Swal.fire({
+          icon: "warning",
+          title: "Signature Required",
+          text: "Please provide your signature before submitting.",
+        });
+        return;
+      }
+
+      const dataUrl = { isEmpty, data };
 
       Swal.fire({
         title: "Adding Signature...",
@@ -123,7 +134,7 @@ export default defineComponent({
           participant_signed_date: this.date,
           participant_signature: {
             data: dataUrl,
-            isEmpty: dataUrl === "",
+            isEmpty: dataUrl.isEmpty,
           },
         };
 
